@@ -7,12 +7,13 @@
         body {
             background-color: #d69a44;
         }
+
         /* face */
         .face {
             position: absolute;
             left: 50%;
             margin-left: -175px;
-            top:40px;
+            top: 40px;
             width: 350px;
             height: 250px;
             border-radius: 50% 50% 30% 30%;
@@ -21,6 +22,7 @@
             background: #fbf8f1;
             overflow: hidden;
         }
+
         /* ear */
         .ear-wrap {
             position: absolute;
@@ -29,27 +31,36 @@
             margin-left: -150px;
             /*   top: 100px; */
         }
-        .ear-wrap{
+
+        .ear-wrap {
             position: absolute;
             left: 50%;
             width: 300px;
             margin-left: -150px;
             margin-top: 20px;
         }
+
         .ear {
             position: absolute;
             width: 80px;
             height: 100px;
             border: 2px solid #000;
             background: #fbf8f1;
-            border-radius: 100% 10% 50% 0% ;
+            border-radius: 100% 10% 50% 0%;
+            -webkit-transition: transform 1s ease-in-out;
+            -moz-transition: transform 1s ease-in-out;
+            -ms-transition: transform 1s ease-in-out;
+            -o-transition: transform 1s ease-in-out;
+            transition: transform 1s ease-in-out;
         }
+
         .ear-wrap .right {
             left: auto;
             right: 0;
             border-radius: 10% 100% 0% 50%;
             background: #f1ac2b;
         }
+
         /* 头发 */
         .hair {
             position: absolute;
@@ -61,6 +72,7 @@
             background: #f3b32e;
             border-radius: 50% 50% 50% 50%;
         }
+
         /* 眼睛 */
         .eye-wrap {
             position: absolute;
@@ -71,11 +83,13 @@
             margin-left: -140px;
             overflow: hidden;
         }
+
         .eye {
             height: 100px;
             width: 100px;
             position: absolute;
         }
+
         .eye-circle {
             width: 100px;
             height: 80px;
@@ -85,7 +99,13 @@
             background: #fff;
             border-radius: 50% 50% 40% 40%;
             box-sizing: border-box;
+            -webkit-transition: transform 1s ease-in-out;
+            -moz-transition: transform 1s ease-in-out;
+            -ms-transition: transform 1s ease-in-out;
+            -o-transition: transform 1s ease-in-out;
+            transition: transform 1s ease-in-out;
         }
+
         .eye-core {
             height: 55px;
             width: 46px;
@@ -96,6 +116,7 @@
             left: 50%;
             margin-left: -23px;
         }
+
         .eye-bottom {
             height: 50px;
             width: 100px;
@@ -104,23 +125,35 @@
             margin-top: 48px;
             border-top: 2px solid #46240b;
             background: #f6f7f2;
+            -webkit-transition: margin-top 1s ease-in-out;
+            -moz-transition: margin-top 1s ease-in-out;
+            -ms-transition: margin-top 1s ease-in-out;
+            -o-transition: margin-top 1s ease-in-out;
+            transition: margin-top 1s ease-in-out;
         }
+
         .eye-wrap .right {
             left: auto;
             right: 0px;
         }
+
         .face-red {
             position: absolute;
             height: 20px;
             width: 70px;
-            background: red;
             top: 45px;
             /*top: 64px;*/
             left: 18px;
             border-radius: 50% 50% 50% 50%;
             background: #e85a5e;
             opacity: 0.0;
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -ms-transition: opacity 1s ease-in-out;
+            -o-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out;
         }
+
         /* 鼻子 */
         .nose {
             width: 20px;
@@ -132,6 +165,7 @@
             margin-left: -10px;
             position: absolute;
         }
+
         /* 嘴巴 */
         .mouth-wrap {
             position: absolute;
@@ -142,6 +176,7 @@
             height: 20px;
             overflow: hidden;
         }
+
         .mouth {
             width: 40px;
             height: 40px;
@@ -151,7 +186,13 @@
             margin-top: -26px;
             position: absolute;
             left: 0;
+            -webkit-transition: border-radius 1s ease-in-out;
+            -moz-transition: border-radius 1s ease-in-out;
+            -ms-transition: border-radius 1s ease-in-out;
+            -o-transition: border-radius 1s ease-in-out;
+            transition: border-radius 1s ease-in-out;
         }
+
         .mouth-wrap .right {
             border-bottom: 4px solid #000;
             border-right: none;
@@ -161,7 +202,53 @@
             left: auto;
             right: 0;
         }
+
         /*鼠标hover样式 写在这里*/
+        /*
+        悬浮元素是a，样式改变元素是b，
+        俩个元素之间的关系：
+        就是b是a的子元素就可以使用a:hover>b{....}
+        b刚好是a的同级元素并且是紧接着的，使用a:hover+b{....}
+        b这一类的元素都是a的同级元素并且是a元素之后的，使用a:hover~b{....}
+        */
+        /*
+         * 耳朵动画
+         * 注意添加transition
+         */
+        .face:hover ~ .ear-wrap .left {
+            transform: rotate(-15deg);
+        }
+
+        .face:hover ~ .ear-wrap .right {
+            transform: rotate(15deg);
+        }
+
+        /*脸蛋动画*/
+        .face:hover .face-red {
+            opacity: 0.7;
+        }
+
+        /*眼睛动画*/
+        .face:hover .eye-bottom {
+            margin-top: 30px;
+        }
+
+        .face:hover .eye-circle {
+            -webkit-transform: scale(0.8, 1);
+            -moz-transform: scale(0.8, 1);
+            -ms-transform: scale(0.8, 1);
+            -o-transform: scale(0.8, 1);
+            transform: scale(0.8, 1);
+        }
+
+        /*嘴巴动画*/
+        .face:hover .mouth-wrap .left {
+            border-radius: 0% 40% 50% 50%;
+        }
+
+        .face:hover .mouth-wrap .right {
+            border-radius: 40% 0% 50% 50%;
+        }
     </style>
 </head>
 <body>
@@ -201,8 +288,8 @@
     </div>
     <!-- 耳朵 -->
     <div class="ear-wrap">
-        <div class="ear left"> </div>
-        <div class="ear right"> </div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
     </div>
 </div>
 </body>
