@@ -1,0 +1,49 @@
+nav {
+    height: 900px;
+    color: #fff;
+    float: left;
+    padding: 50px 70px;
+    margin-right: 35px;
+    background-color: #00a5ff;
+}
+
+article {
+    padding: 35px;
+}
+
+#resume h1 {
+    font-size: 36px;
+}
+
+#resume h2 {
+    font-size: 30px;
+}
+
+#resume ul, #resume p {
+    font-size: 20px;
+}
+
+#resume ul {
+    padding: 0;
+}
+
+#resume li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+#resume li:nth-child(odd) {
+    padding-right: 15px;
+}
+
+#resume li:nth-child(even) {
+    padding-right: 30px;
+}
+
+#resume h3 {
+    margin-bottom: 3px;
+}
+
+#resume p {
+    margin-top: 3px;
+}

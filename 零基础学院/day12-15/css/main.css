@@ -1,0 +1,16 @@
+hr {
+    height: 2px;
+    border: none;
+    border-top: 2px solid #78ac5f;
+}
+
+body {
+    background-color: #f1b5eb;
+}
+
+h6 {
+    font-size: 14px;
+    padding: 0;
+    margin: 0 20px;
+    font-weight: normal;
+}

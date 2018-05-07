@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+          name="viewport;"/>
+    <title>第七天到第八天：学习布局</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>第七天到第八天：学习布局</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<p>
+    通过大量练习，来学习布局的各种方式。
+</p>
+
+<hr/>
+<h2>正式任务：</h2>
+<ol>
+    <li>
+        <h3>编码</h3>
+        <p>分别尝试用<strong>Float、Position或者Flexbox</strong>来实现如下需求：</p>
+        <ul>
+            <li>实现一个<a href="html/07.1.html" target="_blank">两栏布局</a>，左侧占30%宽度，右侧占70%宽度</li>
+            <li>实现一个<a href="html/07.2.html" target="_blank">两栏布局</a>，左侧固定宽度，右侧根据浏览器宽度进行自适应变化</li>
+            <li>实现一个<a href="html/07.3.html" target="_blank">两栏布局</a>，右侧固定宽度，左侧根据浏览器宽度进行自适应变化</li>
+            <li>实现一个<a href="html/07.4.html" target="_blank">三栏布局</a>，左侧右侧固定宽度，中间部分宽度随浏览器宽度变化而自适应变化
+            </li>
+            <li>实现一个<a href="html/07.5.html" target="_blank">三栏布局</a>，左侧中间固定宽度，右侧部分宽度随浏览器宽度变化而自适应变化
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>编码</h3>
+        <p>实现<a href="#design">设计稿</a>。链接：./psd</p>
+        <ul>设计稿描述:
+            <li>设计稿分为头部，中间的Banner，主导航，内容区域，底部</li>
+            <li>头部区域为100%宽的一个深色背景，头部中间有一块960px的定宽居中区域，里面包括了左边的Logo和右上角导航</li>
+            <li>Banner为100%宽的区块，中间右下方有banner轮显的当前图片数字的示例，其中正在显示的图片对应的数字有特殊样式</li>
+            <li>主导航区域，有一个100%宽的灰色线条，线条之上，在中间960px区域是导航菜单，当前正在浏览页对应的菜单有特殊样式</li>
+            <li>主要内容区域，宽度为960px，里面每个内容都有至少80px的padding，每一个内容的宽度均为自适应，可以使用flex布局</li>
+        </ul>
+    </li>
+</ol>
+
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-5-2</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>2天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td>多练习，学习布局的各种样式</td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>盒模型，文本垂直居中，浮动</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>border在布局时产生的影响怎么合理去除</td>
+    </tr>
+</table>
+<h3>设计稿详情：</h3>
+<!--开始-->
+<div id="design">
+    <!--设计稿头部-->
+    <header>
+        <div>
+            <span>Logo</span>
+            <ul>
+                <li>Github</li>
+                <li>Register</li>
+                <li>Login</li>
+            </ul>
+        </div>
+    </header>
+    <!--导航栏-->
+    <nav>
+        <div>
+            <ul>
+                <li>1</li>
+                <li class="active">2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </nav>
+    <!--主体-->
+    <main>
+        <div>
+            <ul>
+                <li class="active">HOME</li>
+                <li>PROFILE</li>
+                <li>ABOUT</li>
+            </ul>
+        </div>
+        <article>
+            <div class="content1">This is Content 1</div>
+            <div class="content2">Content 2</div>
+            <div class="content3">Content 3</div>
+            <div class="content4">Content 4</div>
+            <div class="content5">Content 5</div>
+            <div class="content6">Content 6</div>
+            <div class="content7">Content 7</div>
+            <div class="content8">Content 8</div>
+            <div class="content9">Content 9</div>
+            <div class="content10">Content 10</div>
+        </article>
+    </main>
+    <!--页脚-->
+    <footer>
+        © 2018 ife.baidu.com
+    </footer>
+</div>
+<!--结束-->
+
+<hr/>
+<h2>验证：</h2>
+<ul>
+    <li>
+        <h3>Position相关概念及使用Position进行布局的场景和方法</h3>
+        <p>答：</p>
+        <ol>
+            <li>
+                什么是定位：css中的position属性，position有四个值：absolute/relative/fixed/static(绝对/相对/固定/静态(默认))通过定位属性可以设置一些不规则的布局，使用TRBL(top,right,bottom,left)来调整元素位置。
+            </li>
+            <li>各个属性值的描述：
+                <ul>
+                    <li>static(静态) 没有特别的设定，遵循基本的定位规定，不能通过z-index进行层次分级，在普通流中，各个元素默认的属性。</li>
+                    <li>relative(相对定位) 对象不可层叠、不脱离文档流，参考自身静态位置通过 top,right,bottom,left 定位。</li>
+                    <li>absolute(绝对定位) 脱离文档流，通过 top,right,bottom,left
+                        定位。选取其最近一个最有定位设置的父级对象进行绝对定位，如果对象的父级没有设置定位属性，absolute元素将以body坐标原点进行定位。
+                    </li>
+                    <li>
+                        fixed（固定定位）这里所固定的参照对像是可视窗口而并非是body或是父级元素。使用了fixed的元素不会随着窗口的滚动而滚动。属于absolute的子集。
+                    </li>
+                </ul>
+            </li>
+            <li>各个属性值的具体作用：
+                <ul>
+                    <li>static：（静态，默认的属性）通常情况下都不会使用，但是会存在有些场景，就是你想把position的值从其他值修改成默认时使用；</li>
+                    <li>
+                        relative：（相对定位）一个元素设定了position:relative，因为其不脱离文本流，如果不设置TRBL(top,right,bottom,left)的话，它的位置不会被改变，且不会影响当前布局，相当于没事发生一样。如果设置了TRBL(top,right,bottom,left)后，元素就可以向指定的方向偏移，但是他原有的位置还是占据着的；
+                    </li>
+                    <li>absolute: (绝对定位)，完全脱离文本流（普通流），原来的位置不再占有，且可以设置TLBR任意移动；</li>
+                    <li>fixed：(固定定位),不会随着页面滚动而滚动，这里就不贴图了，最形象的就是那些网页小广告，你滚动页面，但是它一直在网页的右边或左边，死跟着你。
+                    </li>
+                </ul>
+            </li>
+            <li>定位布局技巧：position：relative 与 position：absolute 结合使用。</li>
+        </ol>
+    </li>
+    <li>
+        <h3>Flexbox相关概念及使用Flexbox进行布局的场景和方法</h3>
+        <p>答：</p>
+        <ol>
+            <li>什么是Flexbox布局？
+                <p>Flexbox Layout(Flexible Box)模块，W3C官方称为CSS弹性盒子布局，是在CSS3中定义的一种新的布局模式.</p>
+            </li>
+            <li>Flexbox布局主要用于什么场景？
+
+                <p>大部分用于移动网页制作上，react Native混合开发布局也是基于Flexbox布局，Angular等框架布局也采用Flexbox布局</p>
+            </li>
+            <li>Flexbox布局它的语法是什么？
+                <p>注意:设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。</p>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h3>掌握常用的两栏、三栏布局的各种方式</h3>
+        <p>答：嗯嗯</p>
+    </li>
+</ul>
+</body>
+</html>

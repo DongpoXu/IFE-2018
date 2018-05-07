@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+          name="viewport"/>
+    <title>第四天，背景边框列表链接和更复杂的选择器</title>
+    <link rel="stylesheet" href="style04.css">
+</head>
+<body>
+
+<h1>第四天，背景边框列表链接和更复杂的选择器</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<p>
+    掌握CSS稍微复杂的一些选择器，还有背景，边框等一些CSS样式属性
+</p>
+
+<hr/>
+<h2>正式任务：</h2>
+<ul>
+    <li>
+        <h3>阅读</h3>
+        <ul>
+            <li><a href="http://www.w3school.com.cn/css/css_background.asp">W3School-背景</a></li>
+        </ul>
+    </li>
+    <li>
+        <h3>编码</h3>
+        <p><strong>练习背景样式设置</strong>实践以下样式</p>
+        <ul>
+            <li>background</li>
+            <li>background-color</li>
+            <li>background-image</li>
+            <li>background-repeat</li>
+            <li>background-position</li>
+        </ul>
+    </li>
+    <li>
+        <h3>阅读</h3>
+        <ul>
+            <li><a href="http://www.w3school.com.cn/css/css_border.asp">W3School-边框</a></li>
+        </ul>
+    </li>
+    <li>
+        <h3>编码</h3>
+        <p><strong>练习边框样式设置</strong>实践以下样式</p>
+        <ul>
+            <li>border</li>
+            <li>border-color</li>
+            <li>border-style</li>
+            <li>border-width</li>
+            <li>border上下左右</li>
+        </ul>
+    </li>
+    <li>
+        <h3>阅读</h3>
+        <ul>
+            <li><a href="http://www.w3school.com.cn/css/css_list.asp">W3School-列表</a></li>
+        </ul>
+    </li>
+    <li>
+        <h3>编码</h3>
+        <p><strong>练习列表样式设置</strong>实践以下样式</p>
+        <ul>
+            <li>list-style</li>
+            <li>list-style-type</li>
+            <li>list-style-image</li>
+        </ul>
+    </li>
+    <li>
+        <h3>阅读</h3>
+        <ul>
+            <li><a href="http://www.w3school.com.cn/css/css_link.asp">W3School-链接</a></li>
+        </ul>
+    </li>
+    <li>
+        <h3>编码</h3>
+        <p><strong>练习链接样式设置</strong>实践以下样式</p>
+        <ul>
+            <li>a:link</li>
+            <li>a:visited</li>
+            <li>a:hover</li>
+            <li>a:active</li>
+        </ul>
+    </li>
+</ul>
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-4-27</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>1天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td>个人简历样式添加，使用并理解各类样式。掌握概念</td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>list-style-image</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>list-style-image怎么设定图像大小？</td>
+    </tr>
+</table>
+<h3>详情：</h3>
+<div>
+    <h1>个人简历</h1>
+    <h6>成功源于自信，自信铸就辉煌</h6>
+    <h1>PERSONAL RESUME</h1>
+    <hr>
+    <div>
+        <h2>基本资料</h2>
+        <table>
+            <tr>
+                <td>姓名：</td>
+                <td>许东坡</td>
+                <td>性别：</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td>出生日期：</td>
+                <td>
+                    <time>1996-02-05</time>
+                </td>
+                <td>学历：</td>
+                <td>研究生</td>
+            </tr>
+            <tr>
+                <td>毕业院校：</td>
+                <td>长春理工大学</td>
+                <td>专业：</td>
+                <td>物理学</td>
+            </tr>
+        </table>
+        <h2>自我评价</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque blanditiis
+            consectetur consequuntur dolores eius eveniet hic laboriosam libero minima
+            necessitatibus neque obcaecati, officiis possimus repellendus tempore tenetur
+            voluptatibus? Quis!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam aspernatur
+            aut commodi deserunt iusto modi molestias nisi odio perferendis perspiciatis quae quam
+            qui ratione reiciendis, saepe unde ut, velit.
+        </p>
+        <p>
+            在xxx期间，参与过<a href="#a">激光测距项目</a>，在项目中担任XX角色，遇到了XXX问题，通过XXX的方式解决。
+        </p>
+        <p>
+            在xxx期间，参与过<a href="#b">基于机器视觉的可触摸投影仪项目</a>，在项目中担任XX角色，遇到了XXX问题，通过XXX的方式解决。
+        </p>
+        <p>
+            在xxx期间，参与过<a href="#c">同步触发器项目</a>，在项目中担任XX角色，遇到了XXX问题，通过XXX的方式解决。
+        </p>
+        <p>
+            在xxx期间，参与过<a href="#d">LabVIEW下载器项目</a>，在项目中担任XX角色，遇到了XXX问题，通过XXX的方式解决。
+        </p>
+        <h2>项目经历</h2>
+        <ul>
+            <li>
+                <h3 id="a">激光测距</h3>
+                <h6>xxxx-xx-xx---xxxx-xx-xx</h6>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dignissimos
+                    est
+                    fugit reiciendis sed sunt. Consequatur cum eos, necessitatibus nihil obcaecati
+                    officiis
+                    omnis quidem sint tenetur! Nisi obcaecati quisquam reiciendis?
+                </p>
+            </li>
+            <li>
+                <h3 id="b">基于机器视觉的可触摸投影仪</h3>
+                <h6>xxxx-xx-xx---xxxx-xx-xx</h6>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dignissimos
+                    est
+                    fugit reiciendis sed sunt. Consequatur cum eos, necessitatibus nihil obcaecati
+                    officiis
+                    omnis quidem sint tenetur! Nisi obcaecati quisquam reiciendis?
+                </p>
+            </li>
+            <li>
+                <h3 id="c">同步触发器</h3>
+                <h6>xxxx-xx-xx---xxxx-xx-xx</h6>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dignissimos
+                    est
+                    fugit reiciendis sed sunt. Consequatur cum eos, necessitatibus nihil obcaecati
+                    officiis
+                    omnis quidem sint tenetur! Nisi obcaecati quisquam reiciendis?
+                </p>
+            </li>
+            <li>
+                <h3 id="d">LabVIEW下载器</h3>
+                <h6>xxxx-xx-xx---xxxx-xx-xx</h6>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dignissimos
+                    est
+                    fugit reiciendis sed sunt. Consequatur cum eos, necessitatibus nihil obcaecati
+                    officiis
+                    omnis quidem sint tenetur! Nisi obcaecati quisquam reiciendis?
+                </p>
+            </li>
+        </ul>
+        <h2>工作经历</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloremque dolores neque
+            praesentium rerum, sit voluptates! Corporis debitis eligendi eveniet harum nihil quas
+            quia quisquam rem totam vitae. Nulla, totam.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci doloremque eos, eum
+            expedita explicabo inventore nam! Architecto dolores est eveniet, iusto quia reiciendis
+            reprehenderit. Cumque doloremque expedita necessitatibus obcaecati saepe.
+        </p>
+        <h2>兴趣爱好</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consectetur consequatur
+            culpa dolorem dolores dolorum ex, ipsum, iste itaque modi, nisi nostrum obcaecati odit
+            pariatur quaerat quidem rerum tempora? Quisquam!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam autem cupiditate
+            delectus, dolorem dolorum exercitationem ipsa magnam maiores neque nisi ratione
+            recusandae velit voluptate voluptates. Aliquid labore optio tempore.
+        </p>
+        <h2>求职意向</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam blanditiis,
+            consectetur consequuntur ea eum iste labore minima minus modi nesciunt porro quos
+            tempora, voluptas voluptates. A non quaerat sunt.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet consequuntur,
+            cupiditate delectus dignissimos dolore ea et in ipsum iste modi nemo odit officiis omnis
+            perferendis quasi recusandae reprehenderit sequi.
+        </p>
+    </div>
+</div>
+
+<hr/>
+<h2>验证：</h2>
+<ul>
+    <li>
+        <h3>背景，边框，列表，链接相关属性</h3>
+        <p>答：</p>
+        <ul>
+            <li>
+                <ul>背景相关属性
+                    <li>背景颜色：{background-color:数值}</li>
+                    <li>背景图片：{background-image:url(...)|none}</li>
+                    <li>背景重复：{background-repeat:inherit|no-repeat|repeat-x|repeat-y}</li>
+                    <li>背景固定：{background-attachment:fixed|scroll}</li>
+                    <li>背景定位：{background-position:数值|top|bottom|left|right|center}</li>
+                    <li>背景样式：{background:背景颜色|背景图片|背景重复|背景附件|背景位置}</li>
+                </ul>
+            </li>
+            <li>
+                <ul>边框相关属性
+                    <li>边框宽度：{border-width:数值}</li>
+                    <li>边框颜色：{border-color:数值}</li>
+                    <li>边框样式：{border-style:dotted|solid|double|dashed}</li>
+                    <li>边框简写：{border:边框宽度 边框样式 边框颜色}</li>
+                </ul>
+            </li>
+            <li>
+                <ul>列表相关属性
+                    <li>列表图片：{list-style-image:url(...)}</li>
+                    <li>列表位置：{list-style-position:inside|outside |inherit}</li>
+                    <li>列表类型：{list-style-type:...|none}</li>
+                    <li>列表简写：{list-style:square inside url('...gif');}</li>
+                </ul>
+            </li>
+            <li>
+                <ul>链接相关属性
+                    <li>a:link - 普通的、未被访问的链接</li>
+                    <li>a:visited - 用户已访问的链接</li>
+                    <li>a:hover - 鼠标指针位于链接的上方</li>
+                    <li>a:active - 正在被点击的链接</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>CSS 各种选择器的概念，使用方法及使用场景</h3>
+        <p>答：</p>
+    </li>
+    <li>
+        <h3>CSS 选择器的优先级</h3>
+        <p>答：</p>
+        <ol>
+            <li>!important总是优先于其他规则</li>
+            <li>出现顺序：越后出现的权重越大</li>
+            <li>
+                特殊性：
+                <table>
+                    <tr>
+                        <td>内联样式:</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>ID属性:</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>类属性/属性选择/伪类:</td>
+                        <td>010</td>
+                    </tr>
+                    <tr>
+                        <td>元素/伪元素:</td>
+                        <td>001</td>
+                    </tr>
+                </table>
+            </li>
+        </ol>
+        特殊性:
+        ID属性100;
+        类属性/属性选择/伪类010;
+        元素/伪元素001
+    </li>
+</ul>
+</body>
+</html>

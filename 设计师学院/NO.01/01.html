@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+          name="viewport;"/>
+    <title>No.1 - 制作一个简单的菜单动画效果</title>
+    <style>
+        #container {
+            position: relative;
+            width: 100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #container h3 {
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+            transition-property: color;
+            transition-delay: 0.3s;
+            transition-timing-function: linear;
+        }
+
+        #container h3.action {
+            color: #539dff;
+        }
+
+        #container span {
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            top: 35px;
+            height: 3px;
+            left: 50px;
+            width: 0;
+            background-color: #539dff;
+            transition-property: width,left;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+        }
+
+        #container span.action {
+            width: 100px;
+            /* 居中 */
+            left: 0;
+        }
+
+        #container button {
+            display: block;
+            margin: 30px auto 0;
+            font-size: 14px;
+            padding: 6px 18px;
+            background-color: transparent;
+            border: 1px solid #999;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>No.1 - 制作一个简单的菜单动画效果</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<p>
+    通过大量练习，来学习布局的各种方式。
+</p>
+
+<hr/>
+<h2>正式任务：</h2>
+<ol>
+    <li>任务目的
+        <ul>
+            <li>熟悉 CSS3 过渡子属性</li>
+            <li>通过 JavaScript 触发过渡效果</li>
+            <li>理解语义化，合理地使用 HTML 标签来构建页面</li>
+        </ul>
+    </li>
+    <li>任务描述
+        <ul>
+            <li>通过 CSS transition 实现demo效果</li>
+            <li>每次点击【切换样式】按钮的时候，出现视频 demo 所示的动画效果。</li>
+            <li>研究一下，如何通过修改贝塞尔曲线，让这个动效更贴近自然。</li>
+        </ul>
+    </li>
+    <li>任务注意事项
+        <ul>
+            <li>CSS transition 的各项子属性（时间曲线）等详细值可以自由定义；</li>
+            <li>注意浏览器中的兼容性；</li>
+            <li>HTML 及 CSS 代码结构清晰、规范；</li>
+            <li>代码中含有必要的注释；</li>
+        </ul>
+    </li>
+</ol>
+
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-5-2</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>2天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td>多练习，学习布局的各种样式</td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>盒模型，文本垂直居中，浮动</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>border在布局时产生的影响怎么合理去除</td>
+    </tr>
+</table>
+<h3>详情：</h3>
+<div id="container">
+    <h3>前端学院</h3>
+    <span></span>
+    <button>切换样式</button>
+</div>
+
+<hr/>
+<h2>验证：</h2>
+<p>无</p>
+<script>
+    window.onload = function () {
+        let oH3 = document.getElementById("container").getElementsByTagName("h3")[0];
+        let oSpan = document.getElementById("container").getElementsByTagName("span")[0];
+        let oBtn = document.getElementById("container").getElementsByTagName("button")[0];
+        oBtn.onclick = function () {
+            oH3.classList.toggle('action');
+            oSpan.classList.toggle('action');
+        };
+    };
+</script>
+</body>
+</html>
