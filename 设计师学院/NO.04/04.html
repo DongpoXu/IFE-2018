@@ -6,7 +6,61 @@
           name="viewport;"/>
     <title>No.4 - 3D 空间的卡片翻转动效</title>
     <style>
+        .container {
+            width: 250px;
+            height: 350px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 2px dotted #999;
+            border-radius: 10px;
+        }
 
+        .card-wrap {
+            width: 250px;
+            height: 350px;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+
+        .side {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 1s ease-in-out;
+        }
+
+        .side-front {
+            -webkit-transform: rotateY(0deg);
+            -moz-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            -o-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+        }
+
+        .side-back {
+            -webkit-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            -o-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+        }
+
+        .card-wrap:hover .side-front {
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
+
+        .card-wrap:hover .side-back {
+            -webkit-transform: rotateY(0deg);
+            -moz-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            -o-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+        }
     </style>
 </head>
 
@@ -25,7 +79,7 @@
 <h2>正式任务：</h2>
 <ol>
     <li>任务描述
-       <p>根据 动效 demo 中的效果 、通过 CSS 实现一个卡片翻转的效果。</p>
+        <p>根据 动效 demo 中的效果 、通过 CSS 实现一个卡片翻转的效果。</p>
     </li>
     <li>任务注意事项
         <ul>
@@ -69,7 +123,16 @@
     </tr>
 </table>
 <h3>详情：</h3>
-<a href="index.html">Little Kitty</a>
+<div class="container">
+    <div class="card-wrap">
+        <div class="side side-front">
+            <img src="img/正面.jpg"/>
+        </div>
+        <div class="side side-back">
+            <img src="img/反面.jpg"/>
+        </div>
+    </div>
+</div>
 
 <hr/>
 <h2>验证：</h2>
