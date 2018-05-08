@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cool Slider</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            position: fixed;
+            bottom: 5%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image {
+            width: 15%;
+            padding: 0 0.5%;
+        }
+
+        .image img {
+            width: 100%;
+            filter: brightness(0.5);
+            -webkit-transition: filter 1s;
+            -moz-transition: filter 1s;
+            -ms-transition: filter 1s;
+            -o-transition: filter 1s;
+            transition: filter 1s;
+        }
+
+        .wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+        }
+
+        .bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+        }
+
+        .bg0 {
+            background: url("img/bg-01.jpg");
+        }
+
+        .bg1 {
+            background: url("img/bg-02.jpg");
+        }
+
+        .bg2 {
+            background: url("img/bg-03.jpg");
+        }
+
+        .bg3 {
+            background: url("img/bg-04.jpg");
+        }
+
+        .bg4 {
+            background: url("img/bg-05.jpg");
+        }
+
+        .image img:hover {
+            filter: brightness(1);
+        }
+
+        /*动画*/
+        .image0:hover ~ .wrap .bg0 {
+            animation: image0 .5s ease-out;
+            z-index: -1;
+        }
+
+        @keyframes image0 {
+            /*左边移入*/
+            from {
+                left: -500px;
+            }
+            to {
+                left: 0;
+            }
+        }
+
+        .image1:hover ~ .wrap .bg1 {
+            animation: image1 .5s ease-out;
+            z-index: -1;
+        }
+
+        @keyframes image1 {
+            /*向上移入*/
+            from {
+                top: 350px;
+            }
+            to {
+                top: 0;
+            }
+        }
+
+        .image2:hover ~ .wrap .bg2 {
+            animation: image2 1s ease-in;
+            z-index: -1;
+        }
+
+        @keyframes image2 {
+            /*由小到大*/
+            from {
+                transform: scale(0.1, 0.1);
+            }
+            to {
+                transform: scale(1, 1);
+            }
+        }
+
+        .image3:hover ~ .wrap .bg3 {
+            animation: image3 1s ease-out;
+            z-index: -1;
+        }
+
+        @keyframes image3 {
+            /*由大到小*/
+            from {
+                transform: scale(2, 2);
+            }
+            to {
+                transform: scale(1, 1);
+            }
+        }
+
+        .image4:hover ~ .wrap .bg4 {
+            animation: image4 .7s ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes image4 {
+            /*旋转进入*/
+            from {
+                transform: scale(0.1, 0.1) rotate(-360deg);
+            }
+            to {
+                transform: scale(1, 1) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!--此处参考 林奕萍 同学的样式，方便CSS选择器使用-->
+    <a class="image image0"><img src="img/bg-01.jpg" alt="bg-01"></a>
+    <a class="image image1"><img src="img/bg-02.jpg" alt="bg-02"></a>
+    <a class="image image2"><img src="img/bg-03.jpg" alt="bg-03"></a>
+    <a class="image image3"><img src="img/bg-04.jpg" alt="bg-04"></a>
+    <a class="image image4"><img src="img/bg-05.jpg" alt="bg-05"></a>
+    <div class="wrap">
+        <div class="bg bg0"></div>
+        <div class="bg bg1"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+        <div class="bg bg4"></div>
+    </div>
+</div>
+</body>
+</html>
