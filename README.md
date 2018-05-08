@@ -28,3 +28,5 @@
 [demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.04/04.html)
 ### No.5 - 纯 CSS 制作绕中轴旋转的立方体
 [demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.05/05.html)
+### No.6 - 利用 CSS animation 制作一个炫酷的 Slider
+[demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.06/index.html)
