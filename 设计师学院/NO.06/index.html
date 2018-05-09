@@ -10,7 +10,11 @@
             height: 100%;
         }
 
-        .container {
+        .container input {
+            display: none;
+        }
+
+        .link {
             position: fixed;
             bottom: 5%;
             width: 100%;
@@ -18,12 +22,12 @@
             justify-content: center;
         }
 
-        .image {
+        .link label {
             width: 15%;
             padding: 0 0.5%;
         }
 
-        .image img {
+        .link label img {
             width: 100%;
             filter: brightness(0.5);
             -webkit-transition: filter 1s;
@@ -49,33 +53,33 @@
             z-index: -5;
         }
 
-        .bg0 {
+        .bg1 {
             background: url("img/bg-01.jpg");
         }
 
-        .bg1 {
+        .bg2 {
             background: url("img/bg-02.jpg");
         }
 
-        .bg2 {
+        .bg3 {
             background: url("img/bg-03.jpg");
         }
 
-        .bg3 {
+        .bg4 {
             background: url("img/bg-04.jpg");
         }
 
-        .bg4 {
+        .bg5 {
             background: url("img/bg-05.jpg");
         }
 
-        .image img:hover {
+        .link label img:hover {
             filter: brightness(1);
         }
 
         /*动画*/
-        .image0:hover ~ .wrap .bg0 {
-            animation: image0 .5s ease-out;
+        #image1:checked ~ .wrap .bg1 {
+            animation: image0 0.5s ease-out;
             z-index: -1;
         }
 
@@ -89,8 +93,8 @@
             }
         }
 
-        .image1:hover ~ .wrap .bg1 {
-            animation: image1 .5s ease-out;
+        #image2:checked ~ .wrap .bg2 {
+            animation: image1 0.5s ease-out;
             z-index: -1;
         }
 
@@ -104,7 +108,7 @@
             }
         }
 
-        .image2:hover ~ .wrap .bg2 {
+        #image3:checked ~ .wrap .bg3 {
             animation: image2 1s ease-in;
             z-index: -1;
         }
@@ -119,7 +123,7 @@
             }
         }
 
-        .image3:hover ~ .wrap .bg3 {
+        #image4:checked ~ .wrap .bg4 {
             animation: image3 1s ease-out;
             z-index: -1;
         }
@@ -134,7 +138,7 @@
             }
         }
 
-        .image4:hover ~ .wrap .bg4 {
+        #image5:checked ~ .wrap .bg5 {
             animation: image4 .7s ease-in-out;
             z-index: -1;
         }
@@ -153,17 +157,39 @@
 <body>
 <div class="container">
     <!--此处参考 林奕萍 同学的样式，方便CSS选择器使用-->
-    <a class="image image0"><img src="img/bg-01.jpg" alt="bg-01"></a>
-    <a class="image image1"><img src="img/bg-02.jpg" alt="bg-02"></a>
-    <a class="image image2"><img src="img/bg-03.jpg" alt="bg-03"></a>
-    <a class="image image3"><img src="img/bg-04.jpg" alt="bg-04"></a>
-    <a class="image image4"><img src="img/bg-05.jpg" alt="bg-05"></a>
+    <!--<a class="image image0"><img src="img/bg-01.jpg" alt="bg-01"></a>-->
+    <!--<a class="image image1"><img src="img/bg-02.jpg" alt="bg-02"></a>-->
+    <!--<a class="image image2"><img src="img/bg-03.jpg" alt="bg-03"></a>-->
+    <!--<a class="image image3"><img src="img/bg-04.jpg" alt="bg-04"></a>-->
+    <!--<a class="image image4"><img src="img/bg-05.jpg" alt="bg-05"></a>-->
+    <div class="link">
+        <label for="image1">
+            <img src="img/bg-01.jpg" alt="bg-01">
+        </label>
+        <label for="image2">
+            <img src="img/bg-02.jpg" alt="bg-02">
+        </label>
+        <label for="image3">
+            <img src="img/bg-03.jpg" alt="bg-03">
+        </label>
+        <label for="image4">
+            <img src="img/bg-04.jpg" alt="bg-04">
+        </label>
+        <label for="image5">
+            <img src="img/bg-05.jpg" alt="bg-05">
+        </label>
+    </div>
+    <input type="radio" name="image" id="image1">
+    <input type="radio" name="image" id="image2">
+    <input type="radio" name="image" id="image3">
+    <input type="radio" name="image" id="image4">
+    <input type="radio" name="image" id="image5">
     <div class="wrap">
-        <div class="bg bg0"></div>
-        <div class="bg bg1"></div>
         <div class="bg bg2"></div>
         <div class="bg bg3"></div>
         <div class="bg bg4"></div>
+        <div class="bg bg5"></div>
+        <div class="bg bg1"></div>
     </div>
 </div>
 </body>
