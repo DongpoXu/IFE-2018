@@ -6,7 +6,7 @@ $(document).ready(function () {     //等待DOM元素加载完毕
 
     for (let i = 0; i < 2; i++) {
         oInput.eq(i).focus(function () {
-            oLabel.eq(i).css("top", "-10px");
+            oLabel.eq(i).css("top", "-15px");
             oLabel.eq(i).css("font-size", "15px");
             oWrapper.eq(i).removeClass("hide_line");
             oWrapper.eq(i).addClass("show_line");
