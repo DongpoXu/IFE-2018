@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+          name="viewport;"/>
+    <title>No.7 - 使用 animate.css 实现一个优雅的登录框</title>
+</head>
+<body>
+
+<h1>No.7 - 使用 animate.css 实现一个优雅的登录框</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<ul>
+    <li>深度理解掌握 transition-timing-function 以及它的意义</li>
+    <li>配合 CSS transform 和 CSS transition 制作交互动效</li>
+    <li>通过 jQuery 判断并控制动画的触发条件</li>
+    <li>接触并使用 animate.css 开源库</li>
+</ul>
+
+<hr/>
+<h2>正式任务：</h2>
+<ol>
+    <li>任务描述
+        <ul>
+            <li>观看视频 demo 中的交互动效</li>
+            <li>在我们提供给你的 HTML 文件基础上，适当的添加 CSS transition 和 CSS transform 属性，实现视频 demo 中的效果</li>
+            <li>要求：
+                <ul>
+                    <li>通过 jQuery 判断输入框是否有内容，如果 Email 和 Password 都填充了内容，为 Submit 按钮添加动画让它变得引人注目</li>
+                    <li>当 输入框 出于 focus 状态的时候，Label 要变小并退到上面去</li>
+                    <li>研究一下为自己的 transition 添加什么样的 transition-timing-function 会让效果更流畅</li>
+                    <li>要求使用动画开源库 ：https://daneden.github.io/animate.css/ 制作按钮的动画</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>任务注意事项
+        <ul>
+            <li>注意浏览器中的兼容性</li>
+            <li>请注意代码风格的整齐、优雅</li>
+            <li>HTML 及 CSS 代码结构清晰、规范</li>
+            <li>代码中含有必要的注释</li>
+        </ul>
+    </li>
+</ol>
+
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-5-9</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>1天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td>多练习，学习布局的各种样式</td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>盒模型，文本垂直居中，浮动</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>border在布局时产生的影响怎么合理去除</td>
+    </tr>
+</table>
+<h3>详情：</h3>
+<a href="index.html">Logo in</a>
+
+<hr/>
+<h2>验证：</h2>
+<p>无</p>
+<script>
+    window.onload = function () {
+        let oH3 = document.getElementById("container").getElementsByTagName("h3")[0];
+        let oSpan = document.getElementById("container").getElementsByTagName("span")[0];
+        let oBtn = document.getElementById("container").getElementsByTagName("button")[0];
+        oBtn.onclick = function () {
+            oH3.classList.toggle('action');
+            oSpan.classList.toggle('action');
+        };
+    };
+</script>
+</body>
+</html>
