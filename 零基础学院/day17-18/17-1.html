@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="first-number" type="number" value="0" placeholder="第一个数字">
+<input id="second-number" type="number" value="0" placeholder="第二个数字">
+<button id="add-btn">加</button>
+<button id="minus-btn">减</button>
+<button id="times-btn">乘</button>
+<button id="divide-btn">除</button>
+<p id="result">运算结果</p>
+<script>
+    window.onload = function () {
+        let oFnumber = document.getElementById("first-number");
+        let oSnumber = document.getElementById("second-number");
+        let oAdd = document.getElementById("add-btn");
+        let oMinus = document.getElementById("minus-btn");
+        let oTimes = document.getElementById("times-btn");
+        let oDivide = document.getElementById("divide-btn");
+        let oResult = document.getElementById("result");
+
+        function ParseInt() {
+            aFnumber = parseInt(oFnumber.value);
+            aSnumber = parseInt(oSnumber.value);
+        };
+
+        oAdd.onclick = function () {
+            ParseInt();
+            oResult.innerHTML = aFnumber + aSnumber;
+        };
+        oMinus.onclick = function () {
+            ParseInt();
+            oResult.innerHTML = aFnumber - aSnumber;
+        };
+        oTimes.onclick = function () {
+            ParseInt();
+            oResult.innerHTML = aFnumber * aSnumber;
+        };
+        oDivide.onclick = function () {
+            ParseInt();
+            if (parseInt(oSnumber.value) === 0) {
+                alert("除数不能为0！");
+                return false;
+            }
+            oResult.innerHTML = aFnumber / aSnumber;
+        };
+    };
+</script>
+</body>
+</html>

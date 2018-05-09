@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+          name="viewport;"/>
+    <title>第十七天到第十八天，“如果”可以“重来”</title>
+</head>
+<body>
+
+<h1>第十七天到第十八天，“如果”可以“重来”</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<p>
+    今天将继续学习 JavaScript 的一些基本知识，比如if如果判断，for循环等
+</p>
+
+<hr/>
+<h2>正式任务：</h2>
+<h3>编码</h3>
+<ol>
+    <li>
+        <p><a href="17-1.html">demo</a>
+            判断两个输入框是否都是正常输入了数字类型的内容，比如除法的时候除数是否为0，当判断到输入有异常的时候，把错误信息提示到Console中。
+        </p>
+    </li>
+    <li>
+        <p><a href="17-2.html">demo</a>
+            实现当点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+        </p>
+    </li>
+</ol>
+
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-4-28</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>1天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td>依据要求为自己的个人简历添加三种样式</td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>盒模型，文本垂直居中，浮动</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>border在布局时产生的影响怎么合理去除</td>
+    </tr>
+</table>
+<h3>详情：</h3>
+
+<hr/>
+<h2>验证：</h2>
+<ul>
+    <li>
+        <h3>盒模型的概念</h3>
+        <p>答：</p>
+        <ul>
+            <li>Margin(外边距) - 清除边框外的区域，外边距是透明的</li>
+            <li>Border(边框) - 围绕在内边距和内容外的边框</li>
+            <li>Padding(内边距) - 清除内容周围的区域，内边距是透明的</li>
+            <li>Content(内容) - 盒子的内容，显示文本和图像</li>
+        </ul>
+    </li>
+    <li>
+        <h3>inline、block和inline-block的概念</h3>
+        <p>答：概念</p>
+        <ol>
+            <li>
+                block：将元素转为块元素，块元素占一行，可以设置宽和高。
+            </li>
+            <li>
+                inline：将元素转为行内元素，占一行，不可以设置宽和高。
+            </li>
+            <li>
+                inline-block：将元素设置为行内块元素，这时元素既可以设置宽和高，又占一行。但这时的元素之间会出现缝隙，解决办法：1）设置浮动
+                2)将父元素的font-size设置为0，子元素设置为实际大小
+            </li>
+            <li>
+                <ul>常见的几种元素：
+                    <li>块级元素：div、h1~h6、li、dt、dd、p</li>
+                    <li>行内元素：span、u、a、em、b、i、u、em</li>
+                    <li>行内块元素：input、img、button、textarea、label。</li>
+
+                </ul>
+            </li>
+            <li>
+                <p>p标签不能包含div标签，块级元素和行内元素之间的嵌套，是块级可以嵌套行内元素和某些块级元素，而行内元素不能嵌套块级元素，可以嵌套文本和其他行内元素。</p>
+                <p>但有几个特殊的块级元素只能包含行内元素，h1~h6、p、dt，因此p标签不能包含div元素，因为浏览器渲染的缘故，p包含div元素时会被渲染成：&lt;p&gt;xxx&lt;p&gt;&nbsp;&lt;div&gt;xxx&lt;div&gt;&nbsp;&lt;p&gt;xxx&lt;p&gt;</p>
+                <p>li 内可包含 div 标签：&lt;li&gt;&lt;div&gt;&lt;div&gt;&lt;li&gt;</p>
+                <p>块级元素与块级元素并列、行内元素与行内元素并列，如下：</p>
+                <ul>
+                    <li>&lt;div&gt;&lt;h1&gt;&lt;h1&gt;&lt;p&gt;&lt;p&gt;&lt;div&gt;---正确</li>
+                    <li>&lt;div&gt;&lt;a&gt;&lt;a&gt;&lt;span&gt;&lt;span&gt;&lt;div&gt;---正确</li>
+                    <li>&lt;div&gt;&lt;h2&gt;&lt;h2&gt;&lt;span&gt;&lt;span&gt;&lt;div&gt;---错误，行内元素与块级元素并列了</li>
+                </ul>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <h3>内外边距，宽度，高度，box-sizing等属性</h3>
+        <p>答：</p>
+        <ul>
+            <li>内边距：padding---定义元素边框与元素内容之间的空白区域。</li>
+            <li>外边距：margin---围绕在元素边框的空白区域是外边距。</li>
+            <li>宽度：width---元素宽度</li>
+            <li>高度：height---元素高度</li>
+            <li>box-sizing: content-box|border-box|inherit---指定宽度和高度</li>
+        </ul>
+    </li>
+    <li>
+        <h3>浮动，清除浮动</h3>
+        <p>答：</p>
+        <ul>
+            <li>浮动：
+                <p>浮动的元素脱离标准流、互相贴靠、有文字环绕效果</p>
+            </li>
+            <li>清除浮动：
+                <p>1）清除浮动：清除对应的单词是 clear，对应CSS中的属性是 clear：left | right | both | none；
+                    2）闭合浮动：更确切的含义是使浮动元素闭合，从而减少浮动带来的影响。 </p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>如何使用浮动进行布局</h3>
+        <p>答：float~~~</p>
+    </li>
+</ul>
+<script src="js/main.js"></script>
+</body>
+</html>

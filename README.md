@@ -19,7 +19,7 @@
 ### 第十六天
 [感受JS的乐趣](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day16/16.html)
 ### 第十七到第十八天
-[循环练习](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day17-18/17.html)
+[“如果”可以“重来”](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day17-18/17.html)
 
 ## 设计师学院
 ### No.1 - 制作一个简单的菜单动画效果
