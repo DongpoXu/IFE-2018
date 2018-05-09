@@ -88,7 +88,7 @@
 <div>
     <h1 id="title">个人简历</h1>
     <h6>成功源于自信，自信铸就辉煌</h6>
-    <h1>PERSONAL RESUME</h1>
+    <h1 id="item">PERSONAL RESUME</h1>
     <hr>
     <div>
         <h2>基本资料</h2>
@@ -296,6 +296,20 @@
         <p>答：float~~~</p>
     </li>
 </ul>
-<script src="js/main.js"></script>
+<script>
+    !function() {
+        let say = document.createElement('h2'),
+            item = document.getElementById('item'),
+            time = new Date().getHours(),
+            text;
+        if(time > -1 && time < 5) text = '少熬夜';
+        else if(time > 5 && time < 11) text = '早上好~';
+        else if(time > 11 && time < 14) text = '中午好~';
+        else if(time > 14 && time < 18) text = '下午好~';
+        else text = '晚上好';
+        say.textContent = text;
+        item.parentNode.insertBefore(say, item);
+    }();
+</script>
 </body>
 </html>
