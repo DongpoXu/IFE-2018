@@ -4,55 +4,21 @@
     <title>IFE ECMAScript</title>
 </head>
 <body>
-<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
-<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
-<button id="trans-btn">转化为二进制</button>
-<p id="result">运算结果</p>
+<p id="numberGame"></p>
 <script>
-    function dec2bin(decNumber) {
-        // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
-        let aBit = document.getElementById("bin-bit").value;
-
-        let arr = [];
-        let BinaryNumber;
-        if (decNumber < 0) {
-            return "请输入非负整数";
-        }
-        else {
-            for (let i = 0; 1; i++) {
-                if (decNumber / 2 >= 1) {
-                    arr[i] = decNumber % 2;
-                    decNumber = parseInt(decNumber / 2);
-                } else {
-                    arr[i] = 1;
-                    break;
-                }
-            }
-            if (arr.length < aBit) {
-                for (let j = arr.length; j < aBit; j++) {
-                    arr[j] = 0;
-                }
-            } else {
-                throw new Error("bin-bit太小");
-            }
-            // 先将数组倒序，然后转换为字符串
-            BinaryNumber = arr.reverse().join("");
-            return BinaryNumber;
-        }
-    }
-
-    // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
-    // 新的需求是，转化显示后的二进制数为bin-bit中输入的数字宽度，例如
-    // dec-number为5，bin-bit为5，则转化后数字为00101
-    // 如果bin-bit小于转化后的二进制本身位数，则使用原本的位数，如dec-number为5，bin-bit为2，依然输出101，但同时在console中报个错
     window.onload = function () {
-        let oNumber = document.getElementById("dec-number");
-        let oBtn = document.getElementById("trans-btn");
-        let oReault = document.getElementById("result");
-
-        oBtn.onclick = function () {
-            oReault.innerHTML = dec2bin(oNumber.value);
-        }
+        const $game = document.getElementById("numberGame");
+        let start = 1;
+        let timer = setInterval(() => {
+            let number = start++;
+            if(number.toString().match("3") || !(number % 3)) number = "PA";
+            $game.innerHTML += number + "，";
+            if(!((start - 1) % 10)) {
+                const $br = document.createElement('br');
+                $game.appendChild($br);
+            }
+            if(number === 100) clearInterval(timer);
+        }, 100)
     }
 </script>
 </body>
