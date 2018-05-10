@@ -1,3 +1,656 @@
+/*左边栏 CSS*/
 header {
+    width: 100px;
+    height: 100%;
+    background-color: #1F2530;
+    text-align: center;
+    position: relative;
+    float: left;
+}
 
+header ul.header-top {
+    padding: 20px 10px;
+}
+
+header ul.header-top li {
+    width: 60px;
+    padding: 10px;
+}
+
+header ul.header-bottom {
+    display: flex;
+    position: fixed;
+    bottom: 12px;
+    left: 18px;
+}
+
+header ul.header-bottom li {
+    padding: 8px;
+    display: inline-block;
+}
+
+/*导航栏 CSS*/
+nav {
+    width: 250px;
+    height: 100%;
+    background-color: #242C3B;
+    text-align: center;
+    position: relative;
+    float: left;
+}
+
+nav .list-box {
+    height: calc(100% - 84px);
+    position: relative;
+    overflow: auto;
+}
+
+nav .list-box::-webkit-scrollbar {
+    display: none;
+}
+
+/*导航栏条目*/
+nav .list-box .item {
+    text-align: left;
+    width: 190px;
+    padding: 0 5px;
+    margin: 30px 25px;
+}
+
+nav .list-box .item h3 {
+    color: #666;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: bottom;
+    background: url("../img/icon-settings.png") right top no-repeat;
+}
+
+nav .list-box .item ul {
+    padding: 14px 0;
+}
+
+nav .list-box .item ul li {
+    color: #ccc;
+    font-size: 12px;
+    padding: 12px 0;
+}
+
+/*数字标识*/
+nav .list-box .item ul li.active {
+    position: relative;
+}
+
+nav .list-box .item ul li.active21:after, nav .list-box .item ul li.active54:after {
+    background: #2ca0f7;
+    position: absolute;
+    padding: 5px 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 14px;
+    right: 0;
+    top: 8px;
+    line-height: 14px;
+}
+
+nav .list-box .item ul li.active21:after {
+    content: '21';
+}
+
+nav .list-box .item ul li.active54:after {
+    content: '54';
+}
+
+/*警告标识*/
+nav .list-box .item ul li.warning {
+    position: relative;
+}
+
+nav .list-box .item ul li.warning:after {
+    content: '!';
+    text-align: center;
+    background: #e64529;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 24px;
+    right: 0;
+    top: 8px;
+    line-height: 24px;
+}
+
+nav .list-box .item hr {
+    box-sizing: border-box;
+    border-color: #555;
+    border-top: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/*底部固定块*/
+nav .fixed-box {
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: left;
+    width: 190px;
+    padding: 30px 30px 40px;
+    background-color: #242C3B;
+}
+
+nav .fixed-box .left {
+    float: left;
+}
+
+nav .fixed-box .right {
+    float: right;
+}
+
+nav .fixed-box:after {
+    content: '';
+    width: 20%;
+    position: absolute;
+    height: 4px;
+    background: #8160e6;
+    z-index: 5;
+    border-radius: 4px;
+    left: 30px;
+    bottom: 20px;
+}
+
+/*页面主体部分 CSS*/
+main {
+    height: 100%;
+    float: left;
+    width: calc(100% - 350px);
+    background-color: #fff;
+}
+
+/*顶部*/
+main .top-box {
+    position: relative;
+    height: 80px;
+    border-bottom: 1px solid #d9dde3;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+main .top-box .title {
+    height: 80px;
+    line-height: 80px;
+    font-size: 24px;
+    color: #000;
+}
+
+/*右上角固定块*/
+main .top-box .top-fixed {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 30px;
+    color: #000;
+    padding: 15px 0;
+    background: url("../img/icon-down.png") center right no-repeat;
+}
+
+main .top-fixed .fixed-img {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background: url("../img/face-08.png") center center no-repeat;
+}
+
+main .top-fixed .fixed-img .imgSign {
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+}
+
+main .top-fixed .imgSign:after {
+    content: '';
+    margin: 3px;
+    display: block;
+    border-radius: 16px;
+    height: 7px;
+    width: 7px;
+    border: 3px solid #339966;
+    background-color: #fff;
+}
+
+main .top-box .fixed-text {
+    padding-left: 16px;
+    width: 136px;
+}
+
+main .top-box .fixed-text .name {
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+main .top-box .fixed-text .status {
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/*主体*/
+main .main-box {
+    height: 100%;
+}
+
+/*主体左边*/
+main .main-left-message {
+    float: left;
+    width: 400px;
+    height: 100%;
+}
+
+main .main-left-message .search {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    padding: 17px 0;
+    margin: 0 auto;
+    border-bottom: 1px solid #d9dde3;
+    box-sizing: border-box;
+}
+
+main .main-left-message .search form {
+    position: relative;
+    width: 338px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+main .main-left-message .search input {
+    box-sizing: border-box;
+    width: 338px;
+    height: 36px;
+    line-height: 36px;
+    border: 1px solid #d9dde3;
+    border-radius: 5px;
+    padding-left: 16px;
+}
+
+main .main-left-message .search span {
+    cursor: pointer;
+    background: url("../img/icon-search.png") center center no-repeat;
+    width: 16px;
+    height: 16px;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+main .main-left-message .list {
+    /*减去顶部和搜索框的高度*/
+    height: calc(100% - 150px);
+    overflow: auto;
+}
+
+/*隐藏scrollbar*/
+main .main-left-message .list::-webkit-scrollbar {
+    display: none
+}
+
+main .main-left-message .list .item {
+    box-sizing: border-box;
+    padding: 16px 16px 24px 20px;
+    position: relative;
+    border-bottom: 1px solid #e6e9ec;
+}
+
+/*选中标识*/
+main .main-left-message .list .active:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    background: #2399f1;
+    left: 0;
+    top: 0;
+}
+
+main .list .item .title {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+main .list .item .title .information {
+    width: calc(100% - 46px);
+    padding-left: 24px;
+}
+
+main .list .item .information span {
+    float: right;
+    font-size: 14px;
+    height: 22px;
+    line-height: 22px;
+    color: #7f8fa4;
+}
+
+main .item .information h3 {
+    cursor: pointer;
+    position: relative;
+    color: #585d68;
+    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
+}
+
+main .list .item .information p {
+    font-size: 14px;
+    color: #c9c9c9;
+    height: 22px;
+    line-height: 22px;
+}
+
+main .list .active .information h3 {
+    color: #2399f1;
+    padding-left: 15px;
+}
+
+main .list .active .information h3:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: #2399f1;
+}
+
+main .list .item .content {
+    width: 368px;
+}
+
+main .list .item .content .icon-num {
+    margin-top: 16px;
+    background: #2ca0f7;
+    float: right;
+    padding: 5px 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 14px;
+    line-height: 14px;
+}
+
+main .list .item .content .text {
+    width: 355px;
+    line-height: 28px;
+    font-size: 13px;
+    color: #858890;
+}
+
+/*主体右边*/
+main .main-right-detail {
+    height: 100%;
+    width: calc(100% - 400px);
+    margin-left: 400px;
+    border-left: 1px solid #d9dde3;
+    box-sizing: border-box;
+}
+
+main .main-right-detail .detail {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid #d9dde3;
+    box-sizing: border-box;
+}
+
+main .detail h3 {
+    font-size: 18px;
+    width: 135px;
+    height: 70px;
+    line-height: 70px;
+    vertical-align: middle;
+    padding-left: 30px;
+    position: relative;
+}
+
+main .detail h3:after {
+    content: '';
+    background: #1bb934;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 31px;
+    right: 0;
+    border-radius: 8px;
+}
+
+main .detail .tools {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    width: 284px;
+    height: 70px;
+}
+
+main .detail .tools ul {
+    display: flex;
+    border: 1px solid #ced0da;
+    border-radius: 4px;
+    background-color: #e7f3ff;
+    width: 105px;
+    height: 30px;
+    margin: 19px 0;
+}
+
+main .detail .tools ul li {
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 35px;
+    height: 30px;
+    padding: 7px 9px;
+}
+
+main .detail .tools ul li + li {
+    border-left: 1px solid #ced0da;
+}
+
+main .detail .tools span {
+    font-size: 14px;
+    color: #666699;
+    height: 70px;
+    line-height: 70px;
+    padding-left: 45px;
+    padding-right: 15px;
+}
+
+main .detail .tools > img {
+    height: 30px;
+    margin: 20px 0;
+}
+
+main .main-right-detail .information {
+    height: calc(100% - 150px);
+    overflow: auto;
+}
+
+main .main-right-detail .information::-webkit-scrollbar {
+    display: none;
+}
+
+main .information > ul {
+    padding: 30px;
+}
+
+main .information > ul li {
+    font-size: 0;
+    margin-bottom: 20px;
+}
+
+main .information > ul li .info-icon {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    border-radius: 46px;
+}
+
+main .information > ul li .text {
+    display: inline-block;
+    width: calc(100% - 150px);
+    padding-left: 22px;
+    vertical-align: top;
+}
+
+main .information > ul li .text > p {
+    line-height: 24px;
+    font-size: 16px;
+    color: #858890;
+    font-weight: bold;
+}
+
+main .information > ul li .text > p > span {
+    font-size: 14px;
+    color: #b2bcc8;
+}
+
+main .information > ul li > div {
+    line-height: 26px;
+    color: #858890;
+    font-size: 14px;
+}
+
+main .information > ul li .info-icon.user {
+    background: url("../img/face-01.png") center center no-repeat;
+}
+
+main .information > ul li .info-icon.admin {
+    background: url("../img/face-08.png") center center no-repeat;
+}
+
+main .line {
+    width: 100%;
+    border-bottom: 1px solid #d9dde3;
+    position: relative;
+}
+
+main .line::after {
+    content: 'Tuesday';
+    text-align: center;
+    color: #a1adbc;
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    width: 88px;
+    margin-left: -44px;
+    height: 20px;
+    line-height: 20px;
+    top: -10px;
+    background: white
+}
+
+.textImgBox {
+    margin-top: 10px;
+}
+
+.textImgBox .textImg {
+    cursor: pointer;
+    margin-right: 14px;
+    float: left;
+    position: relative;
+}
+
+.textImgBox .textImgIcon {
+    display: block;
+    width: 156px;
+    height: 100px;
+    border-radius: 4px;
+}
+
+.textImgBox .textImgIcon.photo0 {
+    background: url("../img/photo-1.png") center center no-repeat;
+    background-size: cover;
+}
+
+.textImgBox .textImgIcon.photo1 {
+    background: url("../img/photo-2.png") center center no-repeat;
+    background-size: cover;
+}
+
+.textImg .maskBox {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.bigIcon {
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    top: 50%;
+    margin-top: -25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.5) url("../img/icon-open.png") center center no-repeat;
+}
+
+.textImg:hover .maskBox {
+    display: block;
+}
+
+main .line2 {
+    border-color: #a7d6f9;
+}
+
+main .line2::after {
+    content: 'New Messages';
+    color: #2399f1;
+    width: 160px;
+    margin-left: -80px;
+}
+
+main .addContent {
+    border-radius: 4px;
+    position: relative;
+    margin: 15px auto;
+    height: 50px;
+    width: calc(100% - 60px);
+    border: 1px solid #dfe3e9;
+}
+
+main .addContent .addContentIcon {
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background: url("../img/icon-blockadd.png") center center no-repeat;
+    background-size: cover;
+}
+
+main .addContent .addContentInput {
+    color: #585d68;
+    line-height: 50px;
+    border: none;
+    display: block;
+    width: calc(100% - 90px);
+    padding: 0 20px 0 72px;
 }

@@ -10,19 +10,301 @@
 </head>
 <body>
 <!--左边栏 start-->
+<!--最左侧一列要求自适应浏览器高度，左上面4个按钮相对浏览器左上角固定位置，左下方两个按钮相对浏览器左下角固定位置-->
 <header>
+    <ul class="header-top">
+        <li><img src="img/icon-telegram.png" alt="icon-telegram"></li>
+        <li><img src="img/icon-rocket.png" alt="icon-rocket"></li>
+        <li><img src="img/icon-game.png" alt="icon-game"></li>
+        <li><img src="img/icon-add.png" alt="icon-add"></li>
+    </ul>
+    <ul class="header-bottom">
+        <li><img src="img/icon-grid.png" alt="icon-grid"></li>
+        <li><img src="img/icon-settings.png" alt="icon-setting"></li>
+    </ul>
 </header>
 <!--左边栏 end-->
 
 <!--导航栏 start-->
+<!--左侧第二列(蓝色背景色)导航列固定宽度，高度也是自适应浏览器高度，最下面的Monthly Goals部分的内容相对浏览器下边固定位置-->
 <nav>
-
+    <div class="list-box">
+        <div class="item">
+            <h3>MENU</h3>
+            <ul>
+                <li>Overview</li>
+                <li class="active active54">Sales</li>
+                <li>Your Staff</li>
+                <li>Analytics & Targeting</li>
+                <li>What's New</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="item">
+            <h3>YOUR PRODUCTS</h3>
+            <ul>
+                <li>Books</li>
+                <li>Tutorials</li>
+                <li>Stocks</li>
+                <li>Infographics</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="item">
+            <h3>DASHBOARD</h3>
+            <ul>
+                <li class="active active21">Messages</li>
+                <li>Connections</li>
+                <li class="warning">Integrations</li>
+                <li>Account Settings</li>
+                <li>App Settings</li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <div class="fixed-box">
+        <span class="left">Monthly Goals</span>
+        <span class="right"><b>$580/$3200</b></span>
+    </div>
 </nav>
 <!--导航栏 end-->
 
 <!--主体信息 start-->
+<!--整个白色区域自适应宽度，右上方的人脸，名字部分相对浏览器右上角固定位置-->
+<!--白色区域左侧列固定宽度，右侧列自适应宽度-->
 <main>
-
+    <div class="top-box">
+        <div class="title">Messages</div>
+        <div class="top-fixed">
+            <span class="fixed-img">
+                <span class="imgSign"></span>
+            </span>
+            <div class="fixed-text">
+                <span class="name">Jordan J.</span>
+                <span class="status">Administrator</span>
+            </div>
+        </div>
+    </div>
+    <div class="main-box">
+        <div class="main-left-message">
+            <div class="search">
+                <form>
+                    <input type="text" placeholder="Search">
+                    <span></span>
+                </form>
+            </div>
+            <ul class="list">
+                <li class="item active">
+                    <div class="title">
+                        <img src="img/face-01.png" alt="face-01">
+                        <div class="information">
+                            <span>3m</span>
+                            <h3>Bessie Berry</h3>
+                            <p>Twitter</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <span class="icon-num">4</span>
+                        <p class="text">I pay for the 4Mb/sec down, 512 Kb/sec up service from O2.
+                            In fact, it's relatively quick, and stable...</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="title">
+                        <img src="img/face-02.png" alt="face-02">
+                        <div class="information">
+                            <span>8m</span>
+                            <h3>Victor Weber</h3>
+                            <p>Adobe</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text">I shared this on my fb wall a few months back, and I thought
+                            I'd share it here again because it's such a great...</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="title">
+                        <img src="img/face-03.png" alt="face-03">
+                        <div class="information">
+                            <span>Yesterday</span>
+                            <h3>Dustin Benson</h3>
+                            <p>Facebook</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text">If there is anyone who needs an invitation please add
+                            yourself in the comments of this post!</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="title">
+                        <img src="img/face-04.png" alt="face-04">
+                        <div class="information">
+                            <span>Yesterday</span>
+                            <h3>Jack Mason</h3>
+                            <p>Yahoo</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text">BruteDC is a peer-to-peer movie+tv series sharing and
+                            downloading platform which works on intranet inside...</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="title">
+                        <img src="img/face-05.png" alt="face-05">
+                        <div class="information">
+                            <span>13 Jun</span>
+                            <h3>Stephen Shelton</h3>
+                            <p>Snapchat</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text">Yes, p2p traffic is often filtered (QoSed). Although i do
+                            use BT on O2 wires, and in good days dl speed...</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="title">
+                        <img src="img/face-06.png" alt="face-06">
+                        <div class="information">
+                            <span>12 Jun</span>
+                            <h3>Sally Willis</h3>
+                            <p>Twitter</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text">Yes, it's O2: 'internet extreme', which is no longer
+                            offered.</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="title">
+                        <img src="img/face-07.png" alt="face-07">
+                        <div class="information">
+                            <span>9 Jun</span>
+                            <h3>Robert Patton</h3>
+                            <p>A Team</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text">I change my service from this 4Mb plan to their much cheaper
+                            8Mb plan, my speed will dramatically decrease.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="main-right-detail">
+            <div class="detail">
+                <h3>Bessie Berry</h3>
+                <div class="tools">
+                    <ul>
+                        <li><img src="img/icon-user.png" alt="icon-user"></li>
+                        <li><img src="img/icon-upload.png" alt="icon-upload"></li>
+                        <li><img src="img/icon-trash.png" alt="icon-trash"></li>
+                    </ul>
+                    <span>1 of 28</span>
+                    <img src="img/icon-left.png" alt="icon-left">
+                    <img src="img/icon-right.png" alt="icon-right">
+                </div>
+            </div>
+            <div class="information">
+                <ul>
+                    <li>
+                        <span class="info-icon user"></span>
+                        <div class="text">
+                            <p>Bessie Berry <span class="time">8:31 AM</span></p>
+                            <div>Hi guys Ive got the O2 package and have really slow internet. A
+                                speed check online said i can get 3mbps but it seems more like 0.5
+                                these days, just freezing and taking ages to open pages and open
+                                audio files for example. I have decided to switch to the UPC package
+                                which offers 10mbps but do you think i will get it?
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="info-icon admin"></span>
+                        <div class="text">
+                            <p>Jordan Jackson <span class="time">8:31 AM</span></p>
+                            <div>I have internet for 9 month and nevere could benefit from the full
+                                capacity of 5Mbit/s as it is filtered by O2 when it detect traffic
+                                on public p2p sharing in my situation all my internet speed slows to
+                                512Kbit/s. I never had 400KB/s on when downloading from p2p public
+                                servers like torrent emule etc. I downoad with 500KB/s from private
+                                trakers instead. So conlcusion O2 block trafic on p2p connections. I
+                                have made hundreds of test in Italy and Sweden and Romania with the
+                                same file to doanload with the same setting and same antivirus and
+                                just needed to open ports in firewall and forward same ports and the
+                                speed was at full capacity in 1 minute. here in 9 month never had
+                                this luck.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="line"></div>
+                <ul>
+                    <li>
+                        <span class="info-icon user"></span>
+                        <div class="text">
+                            <p>Bessie Berry <span class="time">8:31 AM</span></p>
+                            <div>Funny comparison. so would the proper antivirus not slow down the
+                                internet as much or do you mean a freebie doenst protect the
+                                computer from viruses?
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="info-icon admin"></span>
+                        <div class="text">
+                            <p>Jordan Jackson <span class="time">8:31 AM</span></p>
+                            <div>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2, and
+                                haven't had any problems. In fact, it's relatively quick, and
+                                stable. It's not perfect, but I really don't have issues, as long as
+                                I keep track of what I'm doing on it. I max out at about 3 Mb/sec
+                                down, and 350 Kb/sec up. Probably because of a noisy telephone line,
+                                not because I'm being throttled. When my uploads go over 25 KB/sec
+                                (note, bytes, not bits), my download speed suffers. This is
+                                expected, as downloads require upload bandwidth as well.
+                            </div>
+                            <div class="textImgBox">
+                                <div class="textImg">
+                                    <span class="textImgIcon photo0"></span>
+                                    <div class="maskBox">
+                                        <span class="bigIcon"></span>
+                                    </div>
+                                </div>
+                                <div class="textImg">
+                                    <span class="textImgIcon photo1"></span>
+                                    <div class="maskBox">
+                                        <span class="bigIcon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="line line2"></div>
+                <ul>
+                    <li>
+                        <span class="info-icon user"></span>
+                        <div class="text">
+                            <p>Bessie Berry <span class="time">8:31 AM</span></p>
+                            <div>I pay for the 4Mb/sec down, 512 Kb/sec up service from O2. In fact,
+                                it's relatively quick, and stable. It's not perfect, but I really
+                                don't have issues, as long as I keep track of what I'm doing on it.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="addContent">
+                    <span class="addContentIcon"></span>
+                    <input type="text" class="addContentInput"
+                           value="Well, kinda both :) but more of that second option, i`ve seen many systems infected and crawling with">
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <!--主体信息 end-->
 </body>
