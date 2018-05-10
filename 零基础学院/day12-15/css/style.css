@@ -480,6 +480,7 @@ main .detail .tools span {
 main .detail .tools > img {
     height: 30px;
     margin: 20px 0;
+    cursor: pointer;
 }
 
 main .main-right-detail .information {
