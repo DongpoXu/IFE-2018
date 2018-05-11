@@ -39,5 +39,5 @@
 
 
 ## MVVM学院
-### No.1 - 制作一个简单的菜单动画效果
-[demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.01/01.html)
+### 1.2 用webpack4 / parcel快速搭建开发san helloworld
+[demo](https://aelousdp.github.io/IFE-2018/MVVM%E5%AD%A6%E9%99%A2/Ch1/1.2/dist/index.html)
