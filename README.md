@@ -36,3 +36,8 @@
 [demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.06/index.html)
 ### No.7 - 使用 animate.css 实现一个优雅的登录框
 [demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.07/index.html)
+
+
+## MVVM学院
+### No.1 - 制作一个简单的菜单动画效果
+[demo](https://aelousdp.github.io/IFE-2018/%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%AD%A6%E9%99%A2/NO.01/01.html)

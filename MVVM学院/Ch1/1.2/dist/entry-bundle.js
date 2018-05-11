@@ -62,7 +62,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cf9fd2fe3bacd87f70f9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "936c604813a7340d1be7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -817,7 +817,8 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./css/a.css */ \"./src/css/a.css\");\r\n__webpack_require__(/*! ./js/index.js */ \"./src/js/index.js\");\n\n//# sourceURL=webpack:///./src/a.js?");
+"use strict";
+eval("\n\n__webpack_require__(/*! ./css/a.css */ \"./src/css/a.css\");\n__webpack_require__(/*! ./js/index.js */ \"./src/js/index.js\");\n\n//# sourceURL=webpack:///./src/a.js?");
 
 /***/ }),
 
@@ -837,9 +838,10 @@ eval("\nvar content = __webpack_require__(/*! !../../node_modules/css-loader!./a
   !*** ./src/js/index.js ***!
   \*************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("function hello(str) {\r\n    alert(str);\r\n}\r\nhello('hello world!');\n\n//# sourceURL=webpack:///./src/js/index.js?");
+"use strict";
+eval("\n\nfunction hello(str) {\n    alert(str);\n}\nhello('hello world!');\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ })
 
