@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+          name="viewport"/>
+    <title>第十九天：找到那个DOM</title>
+    <link rel="stylesheet" href="19.css">
+</head>
+<body>
+
+<h1>第十九天：找到那个DOM</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<p>
+    掌握 JavaScript 的核心之一：DOM，能够熟悉DOM相关操作，了解JavaScript事件机制。
+</p>
+
+<hr/>
+<h2>正式任务：</h2>
+
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-5-9</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>1天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>...</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>...</td>
+    </tr>
+</table>
+<h3>详情：</h3>
+<div class="container">
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+    </div>
+    <script>
+
+        function getAllListItem() {
+            // 返回页面中所有li标签
+            let oLi = document.getElementsByClassName("container")[0].getElementsByTagName("li");
+            return oLi;
+        }
+
+        function findAllHtmlSpanInOneSection(sectionId) {
+            // 返回某个section下所有span中内容为HTML的span标签
+            let oSection = document.getElementById(sectionId);
+            let oSpan = oSection.getElementsByTagName("span");
+        }
+
+        function findListItem(sectionId, spanCont) {
+            // 返回某个section下，所有所包含span内容为spanCont的LI标签
+            let oSection = document.getElementById(sectionId);
+            let oSpan = oSection.getElementsByTagName("span");
+            return oSpan;
+        }
+
+        function getActiveLinkContent(sectionId) {
+            // 返回某个section下，class为active的链接中包含的文字内容
+        }
+
+    </script>
+</div>
+
+<hr/>
+<h2>验证：</h2>
+<ul>
+    <li>
+        <h3>背景，边框，列表，链接相关属性</h3>
+        <p>答：</p>
+        <ul>
+            <li>
+                <ul>背景相关属性
+                    <li>背景颜色：{background-color:数值}</li>
+                    <li>背景图片：{background-image:url(...)|none}</li>
+                    <li>背景重复：{background-repeat:inherit|no-repeat|repeat-x|repeat-y}</li>
+                    <li>背景固定：{background-attachment:fixed|scroll}</li>
+                    <li>背景定位：{background-position:数值|top|bottom|left|right|center}</li>
+                    <li>背景样式：{background:背景颜色|背景图片|背景重复|背景附件|背景位置}</li>
+                </ul>
+            </li>
+            <li>
+                <ul>边框相关属性
+                    <li>边框宽度：{border-width:数值}</li>
+                    <li>边框颜色：{border-color:数值}</li>
+                    <li>边框样式：{border-style:dotted|solid|double|dashed}</li>
+                    <li>边框简写：{border:边框宽度 边框样式 边框颜色}</li>
+                </ul>
+            </li>
+            <li>
+                <ul>列表相关属性
+                    <li>列表图片：{list-style-image:url(...)}</li>
+                    <li>列表位置：{list-style-position:inside|outside |inherit}</li>
+                    <li>列表类型：{list-style-type:...|none}</li>
+                    <li>列表简写：{list-style:square inside url('...gif');}</li>
+                </ul>
+            </li>
+            <li>
+                <ul>链接相关属性
+                    <li>a:link - 普通的、未被访问的链接</li>
+                    <li>a:visited - 用户已访问的链接</li>
+                    <li>a:hover - 鼠标指针位于链接的上方</li>
+                    <li>a:active - 正在被点击的链接</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>CSS 各种选择器的概念，使用方法及使用场景</h3>
+        <p>答：</p>
+    </li>
+    <li>
+        <h3>CSS 选择器的优先级</h3>
+        <p>答：</p>
+        <ol>
+            <li>!important总是优先于其他规则</li>
+            <li>出现顺序：越后出现的权重越大</li>
+            <li>
+                特殊性：
+                <table>
+                    <tr>
+                        <td>内联样式:</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>ID属性:</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>类属性/属性选择/伪类:</td>
+                        <td>010</td>
+                    </tr>
+                    <tr>
+                        <td>元素/伪元素:</td>
+                        <td>001</td>
+                    </tr>
+                </table>
+            </li>
+        </ol>
+        特殊性:
+        ID属性100;
+        类属性/属性选择/伪类010;
+        元素/伪元素001
+    </li>
+</ul>
+<script src="main.js"></script>
+</body>
+</html>
