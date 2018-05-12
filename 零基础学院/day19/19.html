@@ -93,17 +93,34 @@
             // 返回某个section下所有span中内容为HTML的span标签
             let oSection = document.getElementById(sectionId);
             let oSpan = oSection.getElementsByTagName("span");
+            let spanList = [];
+
+            for (let i = 0; i < oSpan.length; i++) {
+                if (oSpan[i].textContent === "HTML") {
+                    spanList.push(oSpan[i]);
+                }
+            }
+            return spanList;
         }
 
         function findListItem(sectionId, spanCont) {
             // 返回某个section下，所有所包含span内容为spanCont的LI标签
             let oSection = document.getElementById(sectionId);
             let oSpan = oSection.getElementsByTagName("span");
-            return oSpan;
+            let spanList = [];
+
+            for (let i = 0; i < oSpan.length; i++) {
+                if (oSpan[i].textContent === spanCont) {
+                    spanList.push(oSpan[i]);
+                }
+            }
+            return spanList;
         }
 
         function getActiveLinkContent(sectionId) {
             // 返回某个section下，class为active的链接中包含的文字内容
+            let oSection = document.getElementById(sectionId).getElementsByClassName("active")[0].textContent;
+            return oSection;
         }
 
     </script>
