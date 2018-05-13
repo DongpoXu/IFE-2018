@@ -53,7 +53,18 @@
     </tr>
 </table>
 <h3>详情：</h3>
+<div class="container">
+    <input id="name" type="text">
+    <button id="submit-btn">Submit</button>
+    <script>
+        let oInput = document.getElementById("name");
+        let oButton = document.getElementById("submit-btn");
 
+        oButton.onclick = function () {
+            console.log(oInput.innerHTML);
+        }
+    </script>
+</div>
 
 <hr/>
 <h2>验证：</h2>
