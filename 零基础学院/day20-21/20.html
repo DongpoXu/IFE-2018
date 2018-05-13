@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
           name="viewport"/>
     <title>第二十到第二十一天：让你和页面对话</title>
     <link rel="stylesheet" href="20.css">
+    <style>
+        select {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -57,12 +62,47 @@
     <input id="name" type="text">
     <button id="submit-btn">Submit</button>
     <script>
-        let oInput = document.getElementById("name");
         let oButton = document.getElementById("submit-btn");
+        let oInput = document.getElementById("name");
 
         oButton.onclick = function () {
-            console.log(oInput.innerHTML);
-        }
+            oInput = document.getElementById("name");
+            console.log(oInput.value);
+        };
+
+        oInput.onkeydown = function (ev) {
+            if (ev.keyCode === 13) {
+                oInput = document.getElementById("name");
+                console.log(oInput.value);
+            }
+            if (ev.keyCode === 27) {
+                oInput = document.getElementById("name");
+                oInput.value = null;
+            }
+        };
+    </script>
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+
+    <script>
+
     </script>
 </div>
 
