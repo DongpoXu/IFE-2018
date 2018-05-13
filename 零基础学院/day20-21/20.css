@@ -1,0 +1,87 @@
+hr {
+    height: 2px;
+    border: none;
+    border-top: 2px solid #78ac5f;
+}
+
+body {
+    background-color: #f1b5eb;
+}
+
+h6 {
+    font-size: 14px;
+    padding: 0;
+    margin: 0 20px;
+    font-weight: normal;
+}
+
+div {
+    background-color: #7cac69;
+    padding: 30px 20px;
+    border: 10px solid #6b7980;
+}
+
+div div {
+    border: 3px dotted #f15261;
+}
+
+div h1, div h2 {
+    cursor: pointer;
+    margin: 3px;
+    font-family: "微软雅黑 Light";
+}
+
+div h1 {
+    text-shadow: 5px 5px 5px #1b6d85;
+}
+
+div h1 {
+    text-align: center;
+}
+
+div h6 {
+    text-align: center;
+    padding-left: 30%;
+}
+
+div table {
+    margin: 10px auto;
+}
+
+div p {
+    text-indent: 2em;
+    line-height: 30px;
+}
+
+div a {
+    text-decoration: none;
+}
+
+div a:link {
+    color: #5757d6;
+}
+
+div a:active {
+    color: #71d691;
+}
+
+div a:hover {
+    color: #f19add;
+    font-style: italic;
+}
+
+div a:visited {
+    color: #622424;
+}
+
+ul li {
+    list-style: square;
+}
+
+div ul li h3 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    line-height: 20px;
+}
