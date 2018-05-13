@@ -84,6 +84,7 @@
         function getAllListItem() {
             // 返回页面中所有li标签
             let oLi = document.getElementsByClassName("container")[0].getElementsByTagName("li");
+            oLi = document.querySelectorAll("li");
             return oLi;
         }
 
@@ -98,6 +99,17 @@
                     spanList.push(oSpan[i]);
                 }
             }
+
+            oSection =  document.querySelector(sectionId);
+            oSpan = oSection.querySelectorAll('span');
+            spanList = [];
+
+            for (let i = 0; i < oSpan.length; i++) {
+                if (oSpan[i].textContent === "HTML") {
+                    spanList.push(oSpan[i]);
+                }
+            }
+
             return spanList;
         }
 
@@ -112,12 +124,24 @@
                     spanList.push(oSpan[i]);
                 }
             }
+
+
+            oSection = document.querySelector(sectionId);
+            oSpan = oSection.querySelectorAll("span");
+            spanList = [];
+
+            for (let i = 0; i < oSpan.length; i++) {
+                if (oSpan[i].textContent === spanCont) {
+                    spanList.push(oSpan[i]);
+                }
+            }
             return spanList;
         }
 
         function getActiveLinkContent(sectionId) {
             // 返回某个section下，class为active的链接中包含的文字内容
             let oSection = document.getElementById(sectionId).getElementsByClassName("active")[0].textContent;
+            oSection = document.querySelector(sectionId).querySelectorAll("active")[0].textContent;
             return oSection;
         }
 
