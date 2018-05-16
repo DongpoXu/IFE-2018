@@ -20,10 +20,12 @@
 [感受JS的乐趣](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day16/16.html)
 ### 第十七到第十八天
 [“如果”可以“重来”](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day17-18/17.html)
-### 第十九天：找到那个DOM
+### 第十九天
 [找到那个DOM](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day19/19.html)
-### 第二十到第二十一天：让你和页面对话
+### 第二十到第二十一天
 [让你和页面对话](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day20-21/20.html)
+### 第二十二天到第二十四天
+[JavaScript里面的居民们](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day22-24/22.html)
 
 ## 设计师学院
 ### No.1 - 制作一个简单的菜单动画效果
