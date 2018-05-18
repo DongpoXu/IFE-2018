@@ -31,40 +31,36 @@
     let oBtn = document.getElementsByTagName("button");
     let oP = document.getElementById("result");
 
-
-
-    oBtn[0].onclick = function () {
-        if (oRadioA.checked === true) {
-            let val = oNumA.value;
-            let reg = /^[0-9]*$/;
-            test(reg.test(val));
+    //检查radio是否选择
+    function chooseOrNot() {
+        let ORadio = document.querySelectorAll("input[type='radio']");
+        if (ORadio[0].checked || ORadio[1].checked) {
+            return true;
         }
-        if (oRadioB.checked === true) {
-            let val = oNumB.value;
-            let reg = /^[0-9]*$/;
-            test(reg.test(val));
-        }
-    };
-
-    function test(value) {
-        if (value === true) {
-            oP.innerHTML = "输入是数字";
-        } else {
-            oP.innerHTML = "输入不是数字";
+        else{
+            oP.innerHTML = "请选择一个选择框";
+            return false;
         }
     }
 
+    oBtn[0].onclick = function () {
+
+        if (!chooseOrNot()) {
+            return false;
+        }
+
+        let num = document.querySelector("input[type='radio']:checked").value;
+        num = document.querySelector('#num-' + num).value;                  //这个方法有点6，学习了。
+
+        /*
+         * 如果 x 是特殊的非数字值 NaN（或者能被转换为这样的值），返回的值就是 true。如果 x 是其他值,则返回 false。
+         * isNaN()函数可用于判断其参数是否是NaN，该值标识一个非法的数字。
+         */
+        oP.innerHTML = (!isNaN(num) && (num !== '')) ? "输入是数字" : "输入不是数字";
+    };
+
     oBtn[1].onclick = function () {
-        if (oRadioA.checked === true) {
-            let val = oNumA.value;
-            let reg = /^[0-9]*$/;
-            test(reg.test(val));
-        }
-        if (oRadioB.checked === true) {
-            let val = oNumB.value;
-            let reg = /^[0-9]*$/;
-            test(reg.test(val));
-        }
+
     }
 </script>
 </body>
