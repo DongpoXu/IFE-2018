@@ -16,6 +16,34 @@
 
     let queue = ["apple", "pear"];
 
+    let oBtn = document.querySelectorAll('button');
+
+    oBtn[0].addEventListener('click', () => {
+        if (document.querySelector('#queue-input').value) {
+            queue.push(document.querySelector('#queue-input').value);
+        }
+        display();
+    });
+
+    oBtn[1].addEventListener('click', () => {
+        if (queue.length === 0) {
+            return;
+        }
+        queue.shift();
+        display();
+    });
+
+    oBtn[2].addEventListener('click', () => {
+        console.log(queue[0]);
+    });
+
+    oBtn[3].addEventListener('click', () => {
+        console.log(queue.length === 0);
+    });
+
+    function display() {
+        document.querySelector('#queue-cont').innerText = '队列内容：' + queue.join('->');
+    }
 </script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习6</title>
+</head>
+<body>
+<script>
+    let arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+
+    function sortNum(arr, descend = false) {
+        let bubble = 1;
+        for (let i = 0; i < arr.length && bubble; i++) {
+            bubble = 0;
+            for (let j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    bubble = 1;
+                }
+            }
+        }
+        if (descend) arr = arr.reverse();
+    }
+
+    sortNum(arr);
+</script>
+</body>
+</html>
