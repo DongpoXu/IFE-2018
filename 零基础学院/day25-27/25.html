@@ -52,13 +52,334 @@
     </tr>
 </table>
 <h3>详情：</h3>
-<div class="container">
-    <ol>
-        <li><a href="25-1.html">练习1</a></li>
-        <li><a href="25-2.html">练习2</a></li>
-        <li><a href="25-3.html">练习3</a></li>
-        <li><a href="25-4.html">练习4</a></li>
-    </ol>
+<div class="part1">
+    <script>
+        function Go() {
+            console.log("Go");
+        }
+
+        function GoSteps(n = 1) {
+            if (!isNaN(n) && n > 0) {
+                n = Math.floor(n);
+            } else {
+                n = 0;
+            }
+            while (n--) {
+                Go();
+            }
+        }
+
+        GoSteps(10); // Go 10次
+        GoSteps(1); // Go 1次
+        GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+        GoSteps(0);  // 0次
+        GoSteps(-1);  // 0次
+        GoSteps(1.4);  // Go 1次
+        GoSteps(1.6);  // Go 1次
+        GoSteps(-1);  // 0次
+        GoSteps(true);  // Go 1次
+        GoSteps(false);  // 0次
+        GoSteps("Test");  // 0次
+        GoSteps(NaN);  // 0次
+        GoSteps(null);  // 0次
+    </script>
+</div>
+<div class="part2">
+    <div id="date"></div>
+    <div id="dateInEn"></div>
+    <script>
+        function getDay(d) {
+            let days = d.getDay();
+            switch (days) {
+                case 1 :
+                    days = "星期一";
+                    break;
+                case 2 :
+                    days = "星期二";
+                    break;
+                case 3 :
+                    days = "星期三";
+                    break;
+                case 4 :
+                    days = "星期四";
+                    break;
+                case 5 :
+                    days = "星期五";
+                    break;
+                case 6 :
+                    days = "星期六";
+                    break;
+                case 0 :
+                    days = "星期日";
+                    break;
+            }
+            return days;
+        }
+
+        function getTime(d) {
+            let t = Array();
+            t[0] = d.getFullYear();
+            t[1] = d.getMonth();
+            t[2] = d.getDate();
+            t[3] = d.getHours();
+            t[4] = d.getMinutes();
+            t[5] = d.getSeconds();
+            t[6] = t[3];
+            t[7] = "AM";
+            if (t[3] > 11) {
+                t[6] = t[3] - 12;
+                t[7] = "PM"
+            }
+            for (let i = 0; i < t.length - 1; i++) {
+                t[i] = checkTime(t[i]);
+            }
+            return t;
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            return i;
+        }
+
+        function showTime() {
+            let d = new Date();
+            let t = getTime(d);
+            let day = getDay(d);
+            let result = document.querySelector('#date');
+            result.innerText = t[0] + "-" + t[1] + "-" + t[2] + " " + day + " " + t[6] + ":" + t[4] + ":" + t[5] + " " + t[7];
+            setTimeout('showTime()', 1000);
+        }
+
+        showTime();
+
+        function getDayInEn(d) {
+            let days = d.getDay();
+            switch (days) {
+                case 1 :
+                    days = "Monday";
+                    break;
+                case 2 :
+                    days = "Tuesday";
+                    break;
+                case 3 :
+                    days = "Wednesday";
+                    break;
+                case 4 :
+                    days = "Thursday";
+                    break;
+                case 5 :
+                    days = "Friday";
+                    break;
+                case 6 :
+                    days = "Saturday";
+                    break;
+                case 0 :
+                    days = "Sunday";
+                    break;
+            }
+            return days;
+        }
+
+        function showTimeInEn() {
+            let d = new Date();
+            let t = getTime(d);
+            let day = getDayInEn(d);
+            let result = document.querySelector('#dateInEn');
+            result.innerText = t[0] + "-" + t[1] + "-" + t[2] + " " + day + " " + t[6] + ":" + t[4] + ":" + t[5] + " " + t[7];
+            setTimeout('showTimeInEn()', 1000);
+        }
+
+        showTimeInEn();
+    </script>
+</div>
+<div class="part3">
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2032">2002</option>
+    </select>
+
+    <select id="month-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="12">12</option>
+    </select>
+
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="31">31</option>
+    </select>
+
+    <select id="hour-select">
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="23">23</option>
+    </select>
+
+    <select id="minute-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option>59</option>
+    </select>
+
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option>59</option>
+    </select>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <script>
+        (function () {
+            let yearSelect = document.getElementById('year-select');
+            let monthSelect = document.getElementById('month-select');
+            let daySelect = document.getElementById('day-select');
+            let hourSelect = document.getElementById('hour-select');
+            let minuteSelect = document.getElementById('minute-select');
+            let secondSelect = document.getElementById('second-select');
+
+            let select = document.getElementsByTagName('select');
+            let p = document.getElementById('result-wrapper');
+
+
+            //创建下拉列表
+            function myDate(id, start, end) {
+                //JavaScript清除select下的所有options
+                id.innerHTML = "";
+                for (let i = 0; i < id.childNodes.length; i++) {
+                    id.removeChild(id.options[0]);
+                    id.remove(0);
+                    id.options[0] = null;
+                }
+                for (let j = start; j <= end; j++) {
+                    let option = document.createElement('option');
+                    option.value = j;
+                    option.innerText = j;
+                    id.appendChild(option);
+                }
+            }
+
+            myDate(yearSelect, 2001, 2020);
+            myDate(monthSelect, 1, 12);
+            myDate(daySelect, 1, 31);
+            myDate(hourSelect, 0, 23);
+            myDate(minuteSelect, 0, 59);
+            myDate(secondSelect, 0, 59);
+
+            let date = new Date(2001, 0, 1, 0, 0, 0);
+
+            function displayTime() {
+                let arr = [];
+                arr[0] = date.getFullYear();
+                arr[1] = date.getMonth() + 1;
+                arr[2] = date.getDate();
+                arr[3] = getHour();
+                arr[4] = getMinute();
+                arr[5] = getSecond();
+                return '现在距离 ' + arr[0] + '年' + supplement(arr[1]) + '月' + supplement(arr[2]) + '日' + getDay() +
+                    ' ' + arr[3] + ':' + arr[4] +
+                    ':' +
+                    arr[5] + ' ';
+            }
+
+            function display() {
+                let connect = ' 还有 ';
+                let distance;
+                let now = new Date();
+                if (date < now) {
+                    connect = ' 已经过去 ';
+                    distance = calcTimeDis(date, now)
+                } else {
+                    distance = calcTimeDis(now, date)
+                }
+                return p.innerHTML = displayTime() + connect + distance;
+            }
+
+            function calcTimeDis(start, end) {
+                let seconds = parseInt((end.getTime() - start.getTime()) / 1000);
+                let day = parseInt(seconds / (24 * 3600));
+                seconds = seconds - day * 24 * 3600;
+                let hour = parseInt(seconds / 3600);
+                seconds = seconds - hour * 3600;
+                let minute = parseInt(seconds / 60);
+                seconds = seconds % 60;
+                return day + '日' + hour + '时' + minute + '分' + seconds + '秒';
+            }
+
+            function getHour() {
+                let h = date.getHours();
+                return h < 10 ? '0' + h : h;
+            }
+
+            function getMinute() {
+                let h = date.getMinutes();
+                return h < 10 ? '0' + h : h;
+            }
+
+            function getSecond() {
+                let h = date.getSeconds();
+                return h < 10 ? '0' + h : h;
+            }
+
+            function getDay() {
+                let day = date.getDay();
+                let result = '星期';
+                switch (day) {
+                    case 1:
+                        result += '一';
+                        break;
+                    case 2:
+                        result += '二';
+                        break;
+                    case 3:
+                        result += '三';
+                        break;
+                    case 4:
+                        result += '四';
+                        break;
+                    case 5:
+                        result += '五';
+                        break;
+                    case 6:
+                        result += '六';
+                        break;
+                    case 7:
+                        result += '七';
+                        break;
+                }
+                return result;
+            }
+
+            document.body.addEventListener('change', function (e) {
+                let target = e.target || event.target;
+                if (e.target.id) {
+                    date = new Date(
+                        parseInt(yearSelect.value),
+                        parseInt(monthSelect.value) - 1,
+                        parseInt(daySelect.value),
+                        parseInt(hourSelect.value),
+                        parseInt(minuteSelect.value),
+                        parseInt(secondSelect.value)
+                    )
+                }
+                display();
+            });
+
+            function supplement(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+
+            display();
+            let timer = setInterval(display, 1000);
+        }());
+    </script>
 </div>
 
 <hr/>
