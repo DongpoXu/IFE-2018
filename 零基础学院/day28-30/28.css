@@ -1,0 +1,102 @@
+hr {
+    height: 2px;
+    border: none;
+    border-top: 2px solid #78ac5f;
+}
+
+body {
+    background-color: #f1b5eb;
+}
+
+h6 {
+    font-size: 14px;
+    padding: 0;
+    margin: 0 20px;
+    font-weight: normal;
+}
+
+html {
+    color:#000;
+    background:#FFF;
+}
+
+body,
+div,
+ul,
+li,
+input {
+    margin:0;
+    padding:0;
+}
+
+img {
+    border:0;
+}
+
+ul {
+    list-style:none;
+}
+
+q:before,
+q:after {
+    content:'';
+}
+
+input {
+    font-family:inherit;
+    font-size:inherit;
+    font-weight:inherit;
+    *font-size:100%; /*to enable resizing for IE*/
+}
+
+
+
+/* email样式 */
+.wrapper {
+    margin: 20px;
+    width: 200px;
+}
+.email-pro {
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+.email-pro li:hover {
+    background-color: #ffc0cb;
+}
+.selected {
+    background-color: #add8e6;
+}
+#email-input {
+    width: 100%;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+/* email样式 */
+.wrapper {
+    margin: 20px;
+    width: 200px;
+}
+
+.email-pro {
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+
+.email-pro li:hover {
+    background-color: #ffc0cb;
+}
+
+.selected {
+    background-color: #add8e6;
+}
+
+#email-input {
+    width: 100%;
+}

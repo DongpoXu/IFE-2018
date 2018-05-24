@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          name="viewport"/>
+    <title>第二十八天到第三十天 给爱的人发个邮件吧</title>
+    <link rel="stylesheet" href="28.css">
+</head>
+<body>
+
+<h1>第二十八天到第三十天 给爱的人发个邮件吧</h1>
+
+<hr/>
+<h2>课程目标：</h2>
+<p>
+    通过一系列的练习掌握如何分解问题、解决问题，在这个过程中如何设计自己的代码结构，如何优化及重构。
+</p>
+
+<hr/>
+<h2>正式任务：</h2>
+
+<hr/>
+<h2>学习笔记：</h2>
+<h3>概览：</h3>
+<table>
+    <tr>
+        <td>日期：</td>
+        <td>
+            <time>2018-5-24</time>
+        </td>
+    </tr>
+    <tr>
+        <td>学习时间：</td>
+        <td>3天</td>
+    </tr>
+    <tr>
+        <td>目标：</td>
+        <td>一步一步实现邮箱提示效果</td>
+    </tr>
+    <tr>
+        <td>是否达成：</td>
+        <td>达成</td>
+    </tr>
+    <tr>
+        <td>今日了解：</td>
+        <td>...</td>
+    </tr>
+    <tr>
+        <td>疑问：</td>
+        <td>...</td>
+    </tr>
+</table>
+<h3>详情：</h3>
+<div class="container">
+    <div class="wrapper">
+        <input type="text" id="email-input">
+        <ul id="email-sug-wrapper" class="email-sug">
+
+        </ul>
+    </div>
+</div>
+
+<script>
+    //核心流程==>用户输入->提示框进行反馈
+    //拆解==>发现用户输入->获取用户输入内容->生成提示框提示内容->进行提示
+
+    //借鉴代码格式
+
+    //第一步：发现用户输入，可以利用监听用户在输入框的输入对应的事件，尝试用keyup,keypress,keydown以及oninput四个事件分别来测试对于用户输入的事件监听。第一步是后面几步的起点，所以，我们可以把后面几步各自封装成一个函数，在第一步里进行调用。
+    let emailInput = document.getElementById('email-input');
+    let emailWrapper = document.getElementById('email-sug-wrapper');
+    let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    let selectedIndex = 0;      //列表选中标识，默认选中第一个
+
+    //输入框输入
+    emailInput.addEventListener('input', inputListen);
+
+    function inputListen(e) {
+        if (((e.which || e.keyCode) !== 13) && ((e.which || e.keyCode) !== 38) && ((e.which || e.keyCode) !== 40)) {
+            resetSelectStatus();
+        }
+        addToList();
+        switchStatus();
+    }
+
+    //监听上下键以及回车键
+    emailInput.addEventListener('keydown', keyDown);
+
+    function keyDown(e) {
+        let listItems = emailWrapper.getElementsByTagName('li');
+
+        switch (e.which || e.keyCode) {
+            //上键
+            case 38: {
+                e.preventDefault();
+                listItems[selectedIndex].className = '';        //清除原有样式
+                //索引上移一位
+                selectedIndex = selectedIndex === 0 ? listItems.length - 1 : selectedIndex - 1;
+                listItems[selectedIndex].className = 'selected';
+                break;
+            }
+            //下键
+            case 40: {
+                e.preventDefault();
+                listItems[selectedIndex].className = '';        //清除原有样式
+                //索引上移一位
+                selectedIndex = selectedIndex >= listItems.length - 1 ? 0 : selectedIndex + 1;
+                listItems[selectedIndex].className = 'selected';
+                break;
+            }
+            //Enter键
+            case 13: {
+                emailInput.value = HtmlUtil.htmlDecode(listItems[selectedIndex].innerText);
+                hideWrapper();
+                break;
+            }
+            //Esc键
+            case 27: {
+                emailInput.select();
+                break;
+            }
+        }
+    }
+
+    //点击选择邮箱地址
+    emailWrapper.addEventListener('click', selectEmail);
+
+    function selectEmail(e) {
+        //确认选中的是li
+        if (e.target.tagName.toLowerCase() === 'li') {
+            emailInput.value = HtmlUtil.htmlDecode(e.target.innerText);
+            hideWrapper();
+            emailInput.focus();
+        }
+    }
+
+    //点击空白处，隐藏提示
+    document.addEventListener('click', function (e) {
+        if (e.target.className !== 'wrapper') {
+            hideWrapper();
+        }
+    });
+
+    //第二步，获取用户输入，这个比较简单，注意考虑trim。
+    function getUserInputText() {
+        return emailInput.value.trim();
+    }
+
+    //第三步，生成提示框提示内容，根据第二步获得的内容，遍历postfixList数组，生成要在email-sug-wrapper的ul中填充的内容。
+    function generatePrompt() {
+        let emailList = [],
+            defaultEmailList = [],
+            inputValue = HtmlUtil.htmlEncode(getUserInputText()),
+            userName,
+            postfix;
+        //不等于-1说明存在@
+        if (inputValue.indexOf('@') !== -1) {
+            userName = inputValue.split('@')[0];
+            postfix = inputValue.split('@')[1];
+        }
+
+        if (inputValue) {
+            for (let i = 0; i < postfixList.length; i++) {
+                if (postfix) {
+                    if (postfixList[i].indexOf(postfix) !== -1) {
+                        emailList.push(userName + '@' + postfixList[i]);
+                    }
+                } else {
+                    emailList.push((userName || inputValue) + '@' + postfixList[i]);
+                }
+                defaultEmailList.push((userName || inputValue) + '@' + postfixList[i]);
+            }
+        }
+        return emailList.length > 0 ? emailList : defaultEmailList;
+    }
+
+    function addToList() {
+        let list = generatePrompt();
+        if (list.length > 0) {
+            emailWrapper.innerHTML = '';
+            for (let i = 0; i < list.length; i++) {
+                let child = document.createElement('li');
+                child.innerHTML = `${list[i]}`;
+                emailWrapper.appendChild(child);
+            }
+            emailWrapper.getElementsByTagName('li')[selectedIndex].className = 'selected';
+        }
+    }
+
+    //重置选中状态
+    function resetSelectStatus() {
+        selectedIndex = 0;
+    }
+
+    //第四步，根据实际是否有提示内容，控制email-sug-wrapper的显示/隐藏情况
+    function switchStatus() {
+        !getUserInputText() ? hideWrapper() : showWrapper();
+    }
+
+    function hideWrapper() {
+        emailWrapper.style.display = 'none';
+    }
+
+    function showWrapper() {
+        emailWrapper.style.display = 'block';
+    }
+</script>
+
+<script>
+    let HtmlUtil = {
+        /*1.用浏览器内部转换器实现html转码*/
+        htmlEncode: function (html) {
+            //1.首先动态创建一个容器标签元素，如DIV
+            let temp = document.createElement("div");
+            //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+            (temp.textContent !== undefined) ? (temp.textContent = html) : (temp.innerText = html);
+            //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+            let output = temp.innerHTML;
+            temp = null;
+            return output;
+        },
+        /*2.用浏览器内部转换器实现html解码*/
+        htmlDecode: function (text) {
+            //1.首先动态创建一个容器标签元素，如DIV
+            let temp = document.createElement("div");
+            //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+            temp.innerHTML = text;
+            //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+            let output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+    };
+</script>
+
+<hr/>
+<h2>验证：</h2>
+<p>无</p>
+
+</body>
+</html>
