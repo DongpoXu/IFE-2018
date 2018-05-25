@@ -35,18 +35,45 @@
     //核心流程==>用户输入->提示框进行反馈
     //拆解==>发现用户输入->获取用户输入内容->生成提示框提示内容->进行提示
 
-    //借鉴代码格式
+    /*
+     * 设计
+     * 整体任务核心流程为：
+     * 监听键盘事件->判断按键->如果是上下键则变更选中状态，如果是回车键则进行内容输入操作
+     *
+     * 如何记录选中状态，以及如何改，两种基本思路：
+     * 1.基于DOM，当初次渲染提示框时，在第一个Li中设定一个选中样式的CSS，
+     *   在按上下键的时候，我们通过样式找到设置了特殊样式的Li，清除掉它的样式，
+     *   然后根据上下键，判断要设置状态的新一个Li是谁，并设置上。
+     *   按回车的时候，则同样是通过样式找到这个Li，拿到它的内容，回填给input。
+     * 2.基于数据，我们设置一个变量，来保存当前选择的index（即当前选中的是第几行，从0开始计数），
+     *   当发生上下键操作的时候，直接改变index值，然后重新渲染提示框中的所有html内容，
+     *   根据index设置来操作后的选择提示样式，回车的时候，直接根据index来获取对应的内容。
+     */
 
-    //第一步：发现用户输入，可以利用监听用户在输入框的输入对应的事件，尝试用keyup,keypress,keydown以及oninput四个事件分别来测试对于用户输入的事件监听。第一步是后面几步的起点，所以，我们可以把后面几步各自封装成一个函数，在第一步里进行调用。
-    let emailInput = document.getElementById('email-input');
-    let emailWrapper = document.getElementById('email-sug-wrapper');
-    let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
-    let selectedIndex = 0;      //列表选中标识，默认选中第一个
+        //第一步：发现用户输入，可以利用监听用户在输入框的输入对应的事件，尝试用keyup,keypress,keydown以及oninput四个事件分别来测试对于用户输入的事件监听。第一步是后面几步的起点，所以，我们可以把后面几步各自封装成一个函数，在第一步里进行调用。
+        let emailInput = document.getElementById('email-input');
+        let emailWrapper = document.getElementById('email-sug-wrapper');
+        let postfixList = ['163.com', 'gmail.com', 'msn.com', 'qq.com', '163.net', '263.net', 'live.com'];
+        let selectedIndex = 0;      //列表选中标识，默认选中第一个
+
+    window.onload = function () {
+        //优化一：进入界面就将焦点放在输入框中
+        emailInput.focus();
+
+        //监听输入框输入
+        emailInput.addEventListener('input', inputListen);
+        //监听上下键以及回车键
+        emailInput.addEventListener('keydown', keyDown);
+
+        //鼠标点击选择邮箱地址
+        emailWrapper.addEventListener('click', selectEmail);
+        //点击空白处，隐藏提示
+        document.addEventListener('click',selectEmpty);
+    };
 
     //输入框输入
-    emailInput.addEventListener('input', inputListen);
-
     function inputListen(e) {
+        //获取键盘事件，检测输入值改变，选择状态重新切回第一个提示。
         if (((e.which || e.keyCode) !== 13) && ((e.which || e.keyCode) !== 38) && ((e.which || e.keyCode) !== 40)) {
             resetSelectStatus();
         }
@@ -54,77 +81,77 @@
         switchStatus();
     }
 
-    //监听上下键以及回车键
-    emailInput.addEventListener('keydown', keyDown);
-
+    //上下键以及回车键处理
     function keyDown(e) {
         let listItems = emailWrapper.getElementsByTagName('li');
 
-        switch (e.which || e.keyCode) {
-            //上键
-            case 38: {
-                e.preventDefault();
-                listItems[selectedIndex].className = '';        //清除原有样式
-                //索引上移一位
-                selectedIndex = selectedIndex === 0 ? listItems.length - 1 : selectedIndex - 1;
-                listItems[selectedIndex].className = 'selected';
-                break;
-            }
-            //下键
-            case 40: {
-                e.preventDefault();
-                listItems[selectedIndex].className = '';        //清除原有样式
-                //索引上移一位
-                selectedIndex = selectedIndex >= listItems.length - 1 ? 0 : selectedIndex + 1;
-                listItems[selectedIndex].className = 'selected';
-                break;
-            }
-            //Enter键
-            case 13: {
-                emailInput.value = HtmlUtil.htmlDecode(listItems[selectedIndex].innerText);
-                hideWrapper();
-                break;
-            }
-            //Esc键
-            case 27: {
-                emailInput.select();
-                break;
+        //当没有输入框的时候，这三个键盘按键无响应。
+        if (emailWrapper.style.display === 'block') {
+            switch (e.which || e.keyCode) {
+                //上键
+                case 38: {
+                    e.preventDefault();
+                    listItems[selectedIndex].className = '';        //清除原有样式
+                    //索引上移一位
+                    selectedIndex = selectedIndex === 0 ? listItems.length - 1 : selectedIndex - 1;
+                    listItems[selectedIndex].className = 'selected';
+                    break;
+                }
+                //下键
+                case 40: {
+                    e.preventDefault();
+                    listItems[selectedIndex].className = '';        //清除原有样式
+                    //索引上移一位
+                    selectedIndex = selectedIndex >= listItems.length - 1 ? 0 : selectedIndex + 1;
+                    listItems[selectedIndex].className = 'selected';
+                    break;
+                }
+                //Enter键
+                case 13: {
+                    emailInput.value = HtmlUtil.htmlDecode(listItems[selectedIndex].innerText);
+                    hideWrapper();
+                    break;
+                }
+                //Esc键
+                case 27: {
+                    emailInput.select();
+                    break;
+                }
             }
         }
     }
 
-    //点击选择邮箱地址
-    emailWrapper.addEventListener('click', selectEmail);
-
+    //鼠标点击选择处理
     function selectEmail(e) {
         //确认选中的是li
         if (e.target.tagName.toLowerCase() === 'li') {
+            //将li的innerText给input。
             emailInput.value = HtmlUtil.htmlDecode(e.target.innerText);
             hideWrapper();
             emailInput.focus();
         }
     }
 
-    //点击空白处，隐藏提示
-    document.addEventListener('click', function (e) {
+    //点击空白处理
+    function selectEmpty(e) {
         if (e.target.className !== 'wrapper') {
             hideWrapper();
         }
-    });
+    }
 
     //第二步，获取用户输入，这个比较简单，注意考虑trim。
     function getUserInputText() {
         return emailInput.value.trim();
     }
 
-    //第三步，生成提示框提示内容，根据第二步获得的内容，遍历postfixList数组，生成要在email-sug-wrapper的ul中填充的内容。
+    //第三步，生成提示框提示内容，根据第二步获得的内容，遍历postfixList数组，生成要填充的内容。
     function generatePrompt() {
         let emailList = [],
             defaultEmailList = [],
             inputValue = HtmlUtil.htmlEncode(getUserInputText()),
             userName,
             postfix;
-        //不等于-1说明存在@
+        //不等于-1说明存在@，如果存在@，我们采用@前面的进行拼接。
         if (inputValue.indexOf('@') !== -1) {
             userName = inputValue.split('@')[0];
             postfix = inputValue.split('@')[1];
@@ -133,18 +160,23 @@
         if (inputValue) {
             for (let i = 0; i < postfixList.length; i++) {
                 if (postfix) {
+                    //当用户输入@后有字符时，对其进行前缀匹配，符合用户合理需求。
                     if (postfixList[i].indexOf(postfix) !== -1) {
+                        //拼接匹配的
                         emailList.push(userName + '@' + postfixList[i]);
                     }
                 } else {
+                    //包括无@和有@情况
                     emailList.push((userName || inputValue) + '@' + postfixList[i]);
                 }
+                //当完全不匹配的时候，默认全部~~
                 defaultEmailList.push((userName || inputValue) + '@' + postfixList[i]);
             }
         }
         return emailList.length > 0 ? emailList : defaultEmailList;
     }
 
+    //将生成的提示框内容添加到email-sug-wrapper中
     function addToList() {
         let list = generatePrompt();
         if (list.length > 0) {
