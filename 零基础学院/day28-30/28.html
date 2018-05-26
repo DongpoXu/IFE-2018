@@ -48,13 +48,14 @@
      * 2.基于数据，我们设置一个变量，来保存当前选择的index（即当前选中的是第几行，从0开始计数），
      *   当发生上下键操作的时候，直接改变index值，然后重新渲染提示框中的所有html内容，
      *   根据index设置来操作后的选择提示样式，回车的时候，直接根据index来获取对应的内容。
+     * 以下为基于数据的思路。
      */
 
-        //第一步：发现用户输入，可以利用监听用户在输入框的输入对应的事件，尝试用keyup,keypress,keydown以及oninput四个事件分别来测试对于用户输入的事件监听。第一步是后面几步的起点，所以，我们可以把后面几步各自封装成一个函数，在第一步里进行调用。
-        let emailInput = document.getElementById('email-input');
-        let emailWrapper = document.getElementById('email-sug-wrapper');
-        let postfixList = ['163.com', 'gmail.com', 'msn.com', 'qq.com', '163.net', '263.net', 'live.com'];
-        let selectedIndex = 0;      //列表选中标识，默认选中第一个
+    //第一步：发现用户输入，可以利用监听用户在输入框的输入对应的事件，尝试用keyup,keypress,keydown以及oninput四个事件分别来测试对于用户输入的事件监听。第一步是后面几步的起点，所以，我们可以把后面几步各自封装成一个函数，在第一步里进行调用。
+    let emailInput = document.getElementById('email-input');
+    let emailWrapper = document.getElementById('email-sug-wrapper');
+    let postfixList = ['163.com', 'gmail.com', 'msn.com', 'qq.com', '163.net', '263.net', 'live.com'];
+    let selectedIndex = 0;      //列表选中标识，默认选中第一个
 
     window.onload = function () {
         //优化一：进入界面就将焦点放在输入框中
@@ -68,7 +69,7 @@
         //鼠标点击选择邮箱地址
         emailWrapper.addEventListener('click', selectEmail);
         //点击空白处，隐藏提示
-        document.addEventListener('click',selectEmpty);
+        document.addEventListener('click', selectEmpty);
     };
 
     //输入框输入
