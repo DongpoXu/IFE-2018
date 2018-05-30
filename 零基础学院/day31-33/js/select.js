@@ -1,15 +1,18 @@
 let regionSelect=document.getElementById("region-select");
 let productSelect=document.getElementById("product-select");
 let tableWrapper=document.getElementById("table-wrapper");
+
 regionSelect.onchange=function(){
-    let data=getDataByselect();
+    let data=getDataBySelect();
     tableWrapper.innerHTML=renderTable(data);
 };
+
 productSelect.onchange=function(){
-    let data=getDataByselect();
+    let data=getDataBySelect();
     tableWrapper.innerHTML=renderTable(data);
 };
-function getDataByselect(){
+
+function getDataBySelect(){
     let selectValue=regionSelect.options[regionSelect.selectedIndex].value;
     let selectValue2="";
     if(productSelect.selectedIndex!==0){
