@@ -1,6 +1,3 @@
-// import {addLoadEvent} from "./global";
-// import {sourceData} from "./sourceData";
-
 let regionSelect = document.querySelectorAll("#select");
 for (let i = 0; i < regionSelect.length; i++) {
     regionSelect[i].onchange = function () {
@@ -38,6 +35,3 @@ function showTable(data) {
     tbody += "</tbody>";
     table.innerHTML = "<table>" + thead + tbody + "</table>";
 }
-
-
-// export {showTable, getSelectValue}

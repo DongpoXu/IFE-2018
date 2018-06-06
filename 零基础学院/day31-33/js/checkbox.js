@@ -1,4 +1,3 @@
-//
 let checkboxList = {
     region: ["华东", "华南", "华北"],
     product: ["手机", "笔记本", "智能音箱"]
@@ -170,6 +169,5 @@ function renderCheckboxTable(data) {
     tableWrapper.innerHTML = "<table>" + tHead + tBody + "</table>";
 }
 
-// export {prepareCheckBox, checkboxList}
 
 
