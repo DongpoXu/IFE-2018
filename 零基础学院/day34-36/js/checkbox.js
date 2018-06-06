@@ -52,10 +52,11 @@ function checkboxCreate(checkboxList, attribute) {
             }
         }
         renderCheckboxTable(getCheckboxData());
-        drawManyBar(getCheckboxData());
+        // drawManyBar(getCheckboxData());
+        // drawManyLine(getCheckboxData());
     };
     // 默认渲染"华东-手机"
-    radioWrapper.childNodes[0].click();
+    radioWrapper.childNodes[3].click();
     // drawBar(getCheckboxData());
 }
 
@@ -101,7 +102,7 @@ function renderCheckboxTable(data) {
     if (countRegion === 1 && countProduct === 1) {
         //当商品和地区都只选择一个的情况下，以商品为第一列，地区为第二列
         tHead += '<th>商品</th><th>地区</th>';
-        tBody += '<tr><td>' + data[0]['product'] + '</td><td>' + data[0]['region'] + '</td>';
+        tBody += '<tr mycheck = "'+data[0]['product']+','+data[0]['region']+'"><td>' + data[0]['product'] + '</td><td>' + data[0]['region'] + '</td>';
         for (let i in data[0]['sale']) {
             tBody += "<td>" + data[0]['sale'][i] + "</td>";
         }
@@ -110,7 +111,7 @@ function renderCheckboxTable(data) {
         //当商品选择了一个，地区选择了多个的时候，商品作为第一列，地区作为第二列，并且把商品这一列的单元格做一个合并，只保留一个商品名称
         tHead += '<th>商品</th><th>地区</th>';
         for (let i in data) {
-            tBody += "<tr>";
+            tBody += '<tr mycheck = "'+data[i]['product']+','+data[i]['region']+'">';
             if (i === "0") {
                 tBody += "<td rowspan= '" + data.length + "'>" + data[i]['product'] + "</td><td>" + data[i]['product'] + "</td>";
             } else {
@@ -125,7 +126,7 @@ function renderCheckboxTable(data) {
         //当地区选择了一个，商品选择了多个的时候，地区作为第一列，商品作为第二列，并且把地区这一列的单元格做一个合并，只保留一个地区名称
         tHead += '<th>地区</th><th>商品</th>';
         for (let i in data) {
-            tBody += "<tr>";
+            tBody += '<tr mycheck = "'+data[i]['product']+','+data[i]['region']+'">';
             if (i === "0") {
                 tBody += "<td rowspan= '" + data.length + "'>" + data[i]['region'] + "</td><td>" + data[i]['product'] + "</td>";
             } else {
@@ -146,9 +147,9 @@ function renderCheckboxTable(data) {
                 long = 3;
             }
             for (let j = 0; j < countRegion; j++) {
-                tBody += "<tr>";
                 for (let dataAttr in data) {
                     if (data[dataAttr]['product'] === productChecked[i].value && data[dataAttr]['region'] === regionChecked[j].value) {
+                        tBody += '<tr mycheck = "'+data[dataAttr]['product']+','+data[dataAttr]['region']+'">';
                         if (flag) {
                             flag = false;
                             tBody += "<td rowspan= '" + long + "'>" + data[dataAttr]['product'] + "</td><td>" + data[dataAttr]['region'] + "</td>";
@@ -170,8 +171,41 @@ function renderCheckboxTable(data) {
     tHead += '</tr></thead>';
     tBody += "</tbody>";
     tableWrapper.innerHTML = "<table>" + tHead + tBody + "</table>";
+    prepareTableOver();
+    drawManyLine(getCheckboxData());
+    drawManyBar(getCheckboxData());
 }
 
+//更新图表
+function prepareTableOver(){
+    let table = document.querySelector("#table-wrapper");
+    //进入列表显示单行图表
+    table.onmouseover = function (e){
+        if (e.target && e.target.nodeName.toLowerCase() === 'td'){
+            let trow = e.target.parentNode.attributes['mycheck'].nodeValue;
+            trow = trow.split(',');
+            drawLine(getMouseOverTableData(trow));
+            drawBar(getMouseOverTableData(trow));
+        }
+    };
+    //离开列表显示所有的图表
+    table.onmouseout = function(e) {
+        drawManyBar(getCheckboxData());
+        drawManyLine(getCheckboxData());
+    }
+}
+
+//鼠标滑过获取数据
+function getMouseOverTableData(data) {
+    let dat = Array();
+    for(let i in sourceData) {
+        if(sourceData[i]['region'] === data[1] && sourceData[i]['product'] === data[0]) {
+            dat.push(sourceData[i]);
+        }
+    }
+    //console.log(data);
+    return dat;
+}
 // export {prepareCheckBox, checkboxList}
 
 
