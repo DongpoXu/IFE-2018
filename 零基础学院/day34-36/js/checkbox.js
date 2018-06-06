@@ -1,4 +1,3 @@
-//
 let checkboxList = {
     region: ["华东", "华南", "华北"],
     product: ["手机", "笔记本", "智能音箱"]
@@ -206,6 +205,5 @@ function getMouseOverTableData(data) {
     //console.log(data);
     return dat;
 }
-// export {prepareCheckBox, checkboxList}
 
 

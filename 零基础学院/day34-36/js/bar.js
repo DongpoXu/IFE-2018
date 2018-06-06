@@ -1,13 +1,3 @@
-// function getMouseOverTableData(data) {
-//     let dat = Array();
-//     for (let attr in sourceData) {
-//         if (sourceData[attr]["region"] === data[1] && sourceData[attr]["product"] === data[0]) {
-//             dat.push(sourceData[attr]);
-//         }
-//     }
-//     return dat;
-// }
-
 //画一组柱形图
 function drawBar(data) {
     let barWrapper = document.getElementById("bar-wrapper");

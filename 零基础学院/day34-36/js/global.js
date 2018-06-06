@@ -13,4 +13,3 @@ function addLoadEvent(func) {
     }
 }
 
-// export {addLoadEvent};
