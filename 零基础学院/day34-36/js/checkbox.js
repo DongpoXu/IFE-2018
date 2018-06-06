@@ -52,9 +52,11 @@ function checkboxCreate(checkboxList, attribute) {
             }
         }
         renderCheckboxTable(getCheckboxData());
+        drawManyBar(getCheckboxData());
     };
     // 默认渲染"华东-手机"
     radioWrapper.childNodes[0].click();
+    // drawBar(getCheckboxData());
 }
 
 //获取CheckBox数据并返回
