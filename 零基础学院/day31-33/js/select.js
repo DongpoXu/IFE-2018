@@ -1,76 +1,43 @@
-let regionSelect=document.getElementById("region-select");
-let productSelect=document.getElementById("product-select");
-let tableWrapper=document.getElementById("table-wrapper");
+// import {addLoadEvent} from "./global";
+// import {sourceData} from "./sourceData";
 
-regionSelect.onchange=function(){
-    let data=getDataBySelect();
-    tableWrapper.innerHTML=renderTable(data);
-};
-
-productSelect.onchange=function(){
-    let data=getDataBySelect();
-    tableWrapper.innerHTML=renderTable(data);
-};
-
-function getDataBySelect(){
-    let selectValue=regionSelect.options[regionSelect.selectedIndex].value;
-    let selectValue2="";
-    if(productSelect.selectedIndex!==0){
-        selectValue2=productSelect.options[productSelect.selectedIndex].value;
+let regionSelect = document.querySelectorAll("#select");
+for (let i = 0; i < regionSelect.length; i++) {
+    regionSelect[i].onchange = function () {
+        showTable(getSelectValue());
     }
-    let arr=[];
-    for(let i=0;i<sourceData.length;i++){
-        if(selectValue2!=="")
-        {
-            if(sourceData[i].region===selectValue&&sourceData[i].product===selectValue2){
-                arr.push(sourceData[i]);
+}
+
+function getSelectValue() {
+    let select = document.querySelectorAll("#select");
+    let result = Array();
+    let index = select[0].selectedIndex;
+    result[0] = select[0].querySelectorAll('option')[index].innerText;
+    index = select[1].selectedIndex;
+    result[1] = select[1].querySelectorAll('option')[index].innerText;
+    return result;
+}
+
+function showTable(data) {
+    let table = document.querySelector('#table-wrapper');
+    let thead = "<thead><tr><th>商品</th><th>地区</th>";
+    for (let i = 0; i < 12; i++) {
+        thead += "<th>" + (i + 1) + "月</th>";
+    }
+    thead += "</tr></thead>";
+    let tbody = "<tbody>";
+    for (let index in sourceData) {
+        if (sourceData[index]['region'] === data[0] && sourceData[index]['product'] === data[1]) {
+            tbody += "<tr>" + "<td>" + sourceData[index]['product'] + "</td>" + "<td>" + sourceData[index]['region'] + "</td>";
+            for (let j in sourceData[index]['sale']) {
+                tbody += "<td>" + sourceData[index]['sale'][j] + "</td>";
             }
-        }else{
-            if(sourceData[i].region===selectValue){
-                arr.push(sourceData[i])
-            }
+            tbody += "</tr>";
         }
     }
-    return arr;
+    tbody += "</tbody>";
+    table.innerHTML = "<table>" + thead + tbody + "</table>";
 }
-function renderTable(data) {
-    let temp=``;
-    if(data.length===0){
-        return;
-    }
-    temp+=`<table border="1">`;
-    temp+=`
-      <thead>
-          <tr>
-              <td>商品</td>
-              <td>地区</td>
-              <td>1月</td>
-              <td>2月</td>
-              <td>3月</td>
-              <td>4月</td>
-              <td>5月</td>
-              <td>6月</td>
-              <td>7月</td>
-              <td>8月</td>
-              <td>9月</td>
-              <td>10月</td>
-              <td>11月</td>
-              <td>12月</td>
-          </tr>
-      </thead>`;
-    for(let i=0;i<data.length;i++){
-        temp+=`<tr>`;
-        for(let attr in data[i]){
-            if(data[i][attr] instanceof Array){
-                for(let j=0;j<data[i][attr].length;j++){
-                    temp+=`<td>${data[i][attr][j]}</td>`
-                }
-            }else{
-                temp+=`<td>${data[i][attr]}</td>`
-            }
-        }
-        temp+=`</tr>`
-    }
-    temp+=`</table>`;
-    return temp;
-}
+
+
+// export {showTable, getSelectValue}

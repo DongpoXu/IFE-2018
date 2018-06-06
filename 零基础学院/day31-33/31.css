@@ -15,47 +15,21 @@ h6 {
     font-weight: normal;
 }
 
-/* email样式 */
-.wrapper {
-    margin: 20px;
-    width: 300px;
+div > label {
+    text-align: left;
+    display: inline-block;
+    width: 85px;
 }
 
-#email-input {
-    width: 100%;
-    box-sizing: border-box;
-    height: 40px;
-    line-height: 30px;
-    font-size: 18px;
-    padding-left: 10px;
+.container table {
+    border: 0 solid #000;
+    border-width: 0 1px 1px 0;
+    border-spacing: 0;
 }
 
-.email-sug {
-    box-sizing: border-box;
-    display: none;
-    width: 100%;
-    overflow: hidden;
-    border: 1px solid #000;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 0;
-}
-
-.email-sug li {
-    line-height: 30px;
-    height: 35px;
-    font-size: 18px;
-    box-sizing: border-box;
-    display: block;
-    padding-left: 10px;
-    width: 100%;
-}
-
-.email-sug li:hover {
-    background-color: #ffc0cb;
-}
-
-.selected {
-    background-color: #add8e6;
+.container th, .container td {
+    border: 0 solid #000;
+    border-width: 1px 0 0 1px;
+    padding: 5px 10px;
+    text-align: center;
 }
