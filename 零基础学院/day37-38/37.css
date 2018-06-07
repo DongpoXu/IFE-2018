@@ -1,0 +1,65 @@
+hr {
+    height: 2px;
+    border: none;
+    border-top: 2px solid #78ac5f;
+}
+
+body {
+    background-color: #f1b5eb;
+}
+
+h6 {
+    font-size: 14px;
+    padding: 0;
+    margin: 0 20px;
+    font-weight: normal;
+}
+
+div > label {
+    text-align: left;
+    display: inline-block;
+    width: 85px;
+}
+
+.container table {
+    border: 0 solid #000;
+    border-width: 0 1px 1px 0;
+    border-spacing: 0;
+}
+
+.container th, .container td {
+    border: 0 solid #000;
+    border-width: 1px 0 0 1px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.container form {
+    width: 300px;
+    margin: 10px 0 40px 30px;
+    text-align: center;
+}
+
+.container form input {
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #666;
+    color: #fff;
+    background-color: #412a74;
+    cursor: pointer;
+}
+
+.container tbody td:hover {
+    background: url('shape/pencil.svg') no-repeat;
+    background-position: 0% 0%;
+    background-size: 20px;
+}
+
+.container tbody td[rowspan]:hover, tbody td[rowspan] + td:hover, tbody td:nth-child(1):hover {
+    background: none;
+}
+
+.container table input[type='text'] {
+    width: 50px;
+}
