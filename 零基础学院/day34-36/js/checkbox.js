@@ -3,6 +3,9 @@ let checkboxList = {
     product: ["手机", "笔记本", "智能音箱"]
 };
 
+let lineChart = new LineChart();
+let barChart = new BarChart();
+
 function checkboxCreate(checkboxList, attribute) {
     let container = checkboxList[attribute];
     let radioID = attribute + "-radio-wrapper";
@@ -50,9 +53,10 @@ function checkboxCreate(checkboxList, attribute) {
                 }
             }
         }
+        //渲染表格
         renderCheckboxTable(getCheckboxData());
-        // drawManyBar(getCheckboxData());
-        // drawManyLine(getCheckboxData());
+        // lineChart.drawManyLine(getCheckboxData());
+        // barChart.drawManyBar(getCheckboxData());
     };
     // 默认渲染"华东-手机"
     radioWrapper.childNodes[3].click();
@@ -171,8 +175,8 @@ function renderCheckboxTable(data) {
     tBody += "</tbody>";
     tableWrapper.innerHTML = "<table>" + tHead + tBody + "</table>";
     prepareTableOver();
-    drawManyLine(getCheckboxData());
-    drawManyBar(getCheckboxData());
+    barChart.drawManyBar(getCheckboxData());
+    lineChart.drawManyLine(getCheckboxData());
 }
 
 //更新图表
@@ -183,14 +187,14 @@ function prepareTableOver(){
         if (e.target && e.target.nodeName.toLowerCase() === 'td'){
             let trow = e.target.parentNode.attributes['mycheck'].nodeValue;
             trow = trow.split(',');
-            drawLine(getMouseOverTableData(trow));
-            drawBar(getMouseOverTableData(trow));
+            barChart.drawBar(getMouseOverTableData(trow));
+            lineChart.drawLine(getMouseOverTableData(trow));
         }
     };
     //离开列表显示所有的图表
     table.onmouseout = function(e) {
-        drawManyBar(getCheckboxData());
-        drawManyLine(getCheckboxData());
+        barChart.drawManyBar(getCheckboxData());
+        lineChart.drawManyLine(getCheckboxData());
     }
 }
 
