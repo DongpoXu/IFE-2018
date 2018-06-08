@@ -217,28 +217,6 @@ function prepareTableOver() {
 //此处应该添加判断LocalStorage中是否存在
 
 //鼠标滑过获取数据
-// function getMouseOverTableData(data) {
-//     let dat = Array();
-//     let fData = JSON.parse(localStorage.getItem('BasicSourceData'));
-//     let x = data[1], y = data[0];
-//     for (let i in sourceData) {
-//         if (fData != null) {
-//             if (x.indexOf(fData[i]['region']) !== -1 && y.indexOf(fData[i]['product']) !== -1 && fData[i]['sale'][0] != null) {
-//                 //console.log('test');
-//                 dat.push(fData[i]);
-//             } else if (x.indexOf(sourceData[i]['region']) !== -1 && y.indexOf(sourceData[i]['product']) !== -1 && fData[i]['sale'][0] == null) {
-//                 dat.push(sourceData[i]);
-//             }
-//         } else {
-//             if (x.indexOf(sourceData[i]['region']) !== -1 && y.indexOf(sourceData[i]['product']) !== -1) {
-//                 dat.push(sourceData[i]);
-//             }
-//         }
-//     }
-//     //console.log(dat);
-//     return dat;
-// }
-
 function getMouseOverTableData(data) {
     let dat = Array();
     let fData = JSON.parse(localStorage.getItem('BasicSourceData'));
@@ -266,9 +244,9 @@ function prepareStorageButton() {
     button.onclick = function (e) {
         document.querySelector('body').click();
         let tr = document.querySelectorAll('#table-wrapper tbody tr');
-        let fData = JSON.parse(localStorage.getItem('BasicSourceData'));		//获取local的数组
-        if (fData === null || fData[0]['product'] !== '手机') {					//说明没有数组
-            fData = Array();							//搞个没有数据的
+        let fData = JSON.parse(localStorage.getItem('BasicSourceData'));        //获取LocalStorage中BasicSourceData数据
+        if (fData === null || fData[0]['product'] !== '手机') {       //如果没有数据，创建数据
+            fData = Array();        //初始为空，注意：不要加let，加了let就变成局部变量了。
             let k = 0;
             for (let i in checkboxList['product']) {
                 for (let j in checkboxList['region']) {

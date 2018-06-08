@@ -1,12 +1,14 @@
+//checkbox数据，由于全选有特殊性，所以单独添加
 let checkboxList = {
     region: ["华东", "华南", "华北"],
     product: ["手机", "笔记本", "智能音箱"]
 };
 
+//将画线和画柱形图封装成对象
 let lineChart = new LineChart();
 let barChart = new BarChart();
 
-function checkboxCreate(checkboxList, attribute) {
+function checkboxCreate(checkboxList, attribute) {      //checkboxList：容器；  attribute：属性；
     let container = checkboxList[attribute];
     let radioID = attribute + "-radio-wrapper";
     //生成全选checkbox的html，给一个自定义属性表示为全选checkbox，比如checkbox-type="all"
@@ -25,17 +27,17 @@ function checkboxCreate(checkboxList, attribute) {
 
     //给容器做一个事件委托
     radioWrapper.onchange = function (e) {
-        if (e.target && e.target.type === "checkbox") {
+        if (e.target && e.target.type === "checkbox") {     //选中checkbox
             let checkedNum = 0;      //选中数量
             let oCheckbox = radioWrapper.querySelectorAll("input[type = 'checkbox']");      //获取input数组
             let oCheckboxAll = oCheckbox[oCheckbox.length - 1];     //获取全选
             let checkboxType = e.target.getAttribute("checkbox-type");      //获取自定义属性
             if (checkboxType === "all") {       //全选对应逻辑
-                if (e.target.checked === true) {
+                if (e.target.checked === true) {        //全选选中
                     for (let i = 0; i < oCheckbox.length; i++) {
                         oCheckbox[i].checked = oCheckbox[oCheckbox.length - 1].checked;
                     }
-                } else if (e.target.checked === false) {
+                } else if (e.target.checked === false) {        //禁止取消全选
                     e.target.checked = true;
                 }
             } else if (checkboxType === "child") {      //子选项对应逻辑
@@ -55,12 +57,9 @@ function checkboxCreate(checkboxList, attribute) {
         }
         //渲染表格
         renderCheckboxTable(getCheckboxData());
-        // lineChart.drawManyLine(getCheckboxData());
-        // barChart.drawManyBar(getCheckboxData());
     };
     // 默认渲染"华东-手机"
     radioWrapper.childNodes[3].click();
-    // drawBar(getCheckboxData());
 }
 
 //获取CheckBox数据并返回
@@ -218,28 +217,6 @@ function prepareTableOver() {
 //此处应该添加判断LocalStorage中是否存在
 
 //鼠标滑过获取数据
-// function getMouseOverTableData(data) {
-//     let dat = Array();
-//     let fData = JSON.parse(localStorage.getItem('BasicSourceData'));
-//     let x = data[1], y = data[0];
-//     for (let i in sourceData) {
-//         if (fData != null) {
-//             if (x.indexOf(fData[i]['region']) !== -1 && y.indexOf(fData[i]['product']) !== -1 && fData[i]['sale'][0] != null) {
-//                 //console.log('test');
-//                 dat.push(fData[i]);
-//             } else if (x.indexOf(sourceData[i]['region']) !== -1 && y.indexOf(sourceData[i]['product']) !== -1 && fData[i]['sale'][0] == null) {
-//                 dat.push(sourceData[i]);
-//             }
-//         } else {
-//             if (x.indexOf(sourceData[i]['region']) !== -1 && y.indexOf(sourceData[i]['product']) !== -1) {
-//                 dat.push(sourceData[i]);
-//             }
-//         }
-//     }
-//     //console.log(dat);
-//     return dat;
-// }
-
 function getMouseOverTableData(data) {
     let dat = Array();
     let fData = JSON.parse(localStorage.getItem('BasicSourceData'));
@@ -267,9 +244,9 @@ function prepareStorageButton() {
     button.onclick = function (e) {
         document.querySelector('body').click();
         let tr = document.querySelectorAll('#table-wrapper tbody tr');
-        let fData = JSON.parse(localStorage.getItem('BasicSourceData'));		//获取local的数组
-        if (fData === null || fData[0]['product'] !== '手机') {					//说明没有数组
-            fData = Array();							//搞个没有数据的
+        let fData = JSON.parse(localStorage.getItem('BasicSourceData'));        //获取LocalStorage中BasicSourceData数据
+        if (fData === null || fData[0]['product'] !== '手机') {       //如果没有数据，创建数据
+            fData = Array();        //初始为空，注意：不要加let，加了let就变成局部变量了。
             let k = 0;
             for (let i in checkboxList['product']) {
                 for (let j in checkboxList['region']) {
