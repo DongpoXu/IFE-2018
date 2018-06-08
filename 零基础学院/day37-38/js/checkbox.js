@@ -1,12 +1,14 @@
+//checkbox数据，由于全选有特殊性，所以单独添加
 let checkboxList = {
     region: ["华东", "华南", "华北"],
     product: ["手机", "笔记本", "智能音箱"]
 };
 
+//将画线和画柱形图封装成对象
 let lineChart = new LineChart();
 let barChart = new BarChart();
 
-function checkboxCreate(checkboxList, attribute) {
+function checkboxCreate(checkboxList, attribute) {      //checkboxList：容器；  attribute：属性；
     let container = checkboxList[attribute];
     let radioID = attribute + "-radio-wrapper";
     //生成全选checkbox的html，给一个自定义属性表示为全选checkbox，比如checkbox-type="all"
@@ -25,17 +27,17 @@ function checkboxCreate(checkboxList, attribute) {
 
     //给容器做一个事件委托
     radioWrapper.onchange = function (e) {
-        if (e.target && e.target.type === "checkbox") {
+        if (e.target && e.target.type === "checkbox") {     //选中checkbox
             let checkedNum = 0;      //选中数量
             let oCheckbox = radioWrapper.querySelectorAll("input[type = 'checkbox']");      //获取input数组
             let oCheckboxAll = oCheckbox[oCheckbox.length - 1];     //获取全选
             let checkboxType = e.target.getAttribute("checkbox-type");      //获取自定义属性
             if (checkboxType === "all") {       //全选对应逻辑
-                if (e.target.checked === true) {
+                if (e.target.checked === true) {        //全选选中
                     for (let i = 0; i < oCheckbox.length; i++) {
                         oCheckbox[i].checked = oCheckbox[oCheckbox.length - 1].checked;
                     }
-                } else if (e.target.checked === false) {
+                } else if (e.target.checked === false) {        //禁止取消全选
                     e.target.checked = true;
                 }
             } else if (checkboxType === "child") {      //子选项对应逻辑
@@ -55,12 +57,9 @@ function checkboxCreate(checkboxList, attribute) {
         }
         //渲染表格
         renderCheckboxTable(getCheckboxData());
-        // lineChart.drawManyLine(getCheckboxData());
-        // barChart.drawManyBar(getCheckboxData());
     };
     // 默认渲染"华东-手机"
     radioWrapper.childNodes[3].click();
-    // drawBar(getCheckboxData());
 }
 
 //获取CheckBox数据并返回
@@ -186,80 +185,33 @@ function renderCheckboxTable(data) {
     tBody += "</tbody>";
     tableWrapper.innerHTML = "<table>" + tHead + tBody + "</table>";
     prepareTableOver();
+    prepareStorageButton();
     barChart.drawManyBar(getCheckboxData());
     lineChart.drawManyLine(getCheckboxData());
 }
 
-//更新图表
+//准备图表
 function prepareTableOver() {
-    let editFlag = false;
+    //选取位置
     let table = document.querySelector("#table-wrapper");
-    //进入列表显示单行图表
+    //进入列表显示一行数据的图表
     table.onmouseover = function (e) {
         if (e.target && e.target.nodeName.toLowerCase() === 'td') {
             let trow = e.target.parentNode.attributes['mycheck'].nodeValue;
             trow = trow.split(',');
+            //显示一行数据
+            console.log(trow);
             barChart.drawBar(getMouseOverTableData(trow));
             lineChart.drawLine(getMouseOverTableData(trow));
         }
     };
-    //离开列表显示所有的图表
+    //离开列表显示所有数据的图表
     table.onmouseout = function (e) {
+        //显示多行数据
         barChart.drawManyBar(getCheckboxData());
         lineChart.drawManyLine(getCheckboxData());
     };
-    table.onclick = function (e) {
-        if (e.target && e.target.nodeName.toLowerCase() === 'td') {
-            if (!isNaN(e.target.innerHTML) && (editFlag === false)) {
-                let text = e.target.innerText;
-                let td = e.target;
-                td.innerHTML = "<input type = 'text' placeholder=" + text + "><input type = 'button' value = '确认'><input type = 'button' value = '取消'>";
-                td.setAttribute('id', 'edit');
-                editFlag = true;
-                text = td.querySelector('input[type="text"]');
-                text.focus();
-                e.stopPropagation();
-            }
-        }
-        if (e.target && e.target.nodeName.toLowerCase() === 'input') {
-            let td = e.target.parentNode;
-            let text = td.querySelector('input[type="text"]');
-            switch (e.target.value) {
-                case "确认":
-                    if (text.value === text.placeholder || text.value === "") {
-                        td.innerText = text.placeholder;
-                    } else if (text.value !== text.placeholder && text.value !== "" && !isNaN(text.value)) {
-                        td.innerHTML = text.value;
-                    } else {
-                        alert("请输入正确内容！")
-                        break;
-                    }
-                    editFlag = false;
-                    td.setAttribute('id', '');
-                    break;
-                case "取消":
-                    td.innerText = text.placeholder;
-                    editFlag = false;
-                    td.setAttribute('id', '');
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-    table.onkeydown = function (e) {
-        switch (e.keyCode) {
-            case 27:
-                let cancel = table.querySelector('input[value="取消"]');
-                cancel.click();
-                break;
-            case 13:
-                let affirm = table.querySelector('input[value="确认"]');
-                affirm.click();
-                break;
-        }
-    };
-    prepareStorageButton();
+
 }
 
 //此处应该添加判断LocalStorage中是否存在
@@ -267,12 +219,23 @@ function prepareTableOver() {
 //鼠标滑过获取数据
 // function getMouseOverTableData(data) {
 //     let dat = Array();
+//     let fData = JSON.parse(localStorage.getItem('BasicSourceData'));
+//     let x = data[1], y = data[0];
 //     for (let i in sourceData) {
-//         if (sourceData[i]['region'] === data[1] && sourceData[i]['product'] === data[0]) {
-//             dat.push(sourceData[i]);
+//         if (fData != null) {
+//             if (x.indexOf(fData[i]['region']) !== -1 && y.indexOf(fData[i]['product']) !== -1 && fData[i]['sale'][0] != null) {
+//                 //console.log('test');
+//                 dat.push(fData[i]);
+//             } else if (x.indexOf(sourceData[i]['region']) !== -1 && y.indexOf(sourceData[i]['product']) !== -1 && fData[i]['sale'][0] == null) {
+//                 dat.push(sourceData[i]);
+//             }
+//         } else {
+//             if (x.indexOf(sourceData[i]['region']) !== -1 && y.indexOf(sourceData[i]['product']) !== -1) {
+//                 dat.push(sourceData[i]);
+//             }
 //         }
 //     }
-//     //console.log(data);
+//     //console.log(dat);
 //     return dat;
 // }
 
@@ -339,3 +302,72 @@ function prepareStorageButton() {
         //localStorage.removeItem('BasicSourceData');       //清除localStorage
     }
 }
+
+let editFlag = false;       //修改标志位，默认不修改
+
+//选取位置
+let table = document.querySelector("#table-wrapper");
+//按键按下事件处理
+table.onclick = function (e) {
+    if (e.target && e.target.nodeName.toLowerCase() === 'td') {
+        //点击数据，进入修改模式
+        if (!isNaN(e.target.innerHTML) && (editFlag === false)) {
+            let text = e.target.innerText;
+            let td = e.target;
+            td.innerHTML = "<input type = 'text' placeholder=" + text + "><input type = 'button' value = '确认'><input type = 'button' value = '取消'>";
+            td.setAttribute('id', 'edit');      //添加修改id
+            editFlag = true;
+            text = td.querySelector('input[type="text"]');
+            text.focus();
+            e.stopPropagation();        //阻止事件冒泡
+        }
+    }
+    if (e.target && e.target.nodeName.toLowerCase() === 'input') {
+        //点击确认或者取消，switch-case判断处理
+        let td = e.target.parentNode;
+        let text = td.querySelector('input[type="text"]');
+        switch (e.target.value) {
+            case "确认":
+                if (text.value === text.placeholder || text.value === "") {
+                    td.innerText = text.placeholder;
+                } else if (text.value !== text.placeholder && text.value !== "" && !isNaN(text.value)) {
+                    td.innerHTML = text.value;
+                } else {
+                    alert("请输入正确内容！");
+                    break;
+                }
+                editFlag = false;
+                td.setAttribute('id', '');
+
+
+                let trow = td.parentNode.attributes['mycheck'].nodeValue;
+                trow = trow.split(',');
+                console.log(trow);
+                //显示一行数据
+                barChart.drawBar(getMouseOverTableData(trow));
+                lineChart.drawLine(getMouseOverTableData(trow));
+                break;
+            case "取消":
+                td.innerText = text.placeholder;
+                editFlag = false;
+                td.setAttribute('id', '');
+                break;
+            default:
+                break;
+        }
+    }
+};
+//键盘事件处理
+table.onkeydown = function (e) {
+    switch (e.keyCode) {
+        case 27:
+            let cancel = table.querySelector('input[value="取消"]');
+            //将键盘事件绑定到案件事件
+            cancel.click();
+            break;
+        case 13:
+            let affirm = table.querySelector('input[value="确认"]');
+            affirm.click();
+            break;
+    }
+};
