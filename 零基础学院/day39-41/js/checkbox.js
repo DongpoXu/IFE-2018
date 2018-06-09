@@ -8,6 +8,30 @@ let checkboxList = {
 let lineChart = new LineChart();
 let barChart = new BarChart();
 
+function clickCheckBox() {				//用于在checkbox准备好之后，按照state值初始化checkbox
+    let product = document.querySelector('#product-radio-wrapper');
+    let region = document.querySelector('#region-radio-wrapper');
+    if(history.state != null&&history.state.length===8&&history.state.indexOf('000')===-1) {
+        let result = history.state.slice(1,8).split(2);
+        let prod = result[0].split('');
+        let regi = result[1].split('');
+        for(let i = 0 ;i< prod.length ;i++) {
+            if(prod[i] === 1) {
+                product.childNodes[i+1].click();
+            }
+        }
+        for(let i = 0 ;i< regi.length ;i++) {
+            if(regi[i] === 1) {
+                region.childNodes[i+1].click();
+            }
+        }
+    }else{
+        product.childNodes[0].click();
+        region.childNodes[0].click();
+    }
+}
+
+
 function checkboxCreate(checkboxList, attribute) {      //checkboxList：容器；  attribute：属性；
     let container = checkboxList[attribute];
     let radioID = attribute + "-radio-wrapper";
@@ -57,9 +81,22 @@ function checkboxCreate(checkboxList, attribute) {      //checkboxList：容器�
         }
         //渲染表格
         renderCheckboxTable(getCheckboxData());
+        pushCheckboxState(checkboxList, getCheckValue('product'), getCheckValue('region'));
     };
     // 默认渲染"华东-手机"
     radioWrapper.childNodes[3].click();
+}
+
+function getCheckValue(id) {				//获取某列checkbox被勾选的项
+    let wrapper = document.querySelector(" #" + id + "-radio-wrapper");
+    let checkbox = wrapper.querySelectorAll('input:checked');
+    let result = '';
+    for (let i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].value !== "全选") {
+            result += checkbox[i].value + ',';
+        }
+    }
+    return result;
 }
 
 //获取CheckBox数据并返回
@@ -349,3 +386,21 @@ table.onkeydown = function (e) {
             break;
     }
 };
+
+function pushCheckboxState(list, cp, cr) {
+    let t1 = [0, 0, 0], t2 = [0, 0, 0];
+    for (let i = 0; i < list['product'].length; i++) {
+        if (cp.indexOf(list['product'][i]) !== -1) {
+            t1[i] = 1;
+        }
+    }
+    for (let i = 0; i < list['region'].length; i++) {
+        if (cr.indexOf(list['region'][i]) !== -1) {
+            t2[i] = 1;
+        }
+    }
+    t1 = t1.join('');
+    t2 = t2.join('');
+    location.hash = t1 + '2' + t2;
+    history.replaceState('#'+t1+'2'+t2,null,'#'+t1+'2'+t2);
+}
