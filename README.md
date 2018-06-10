@@ -36,6 +36,12 @@
 [我是精明的小卖家（二）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day34-36/34.html)
 ### 第三十七天到第三十八天
 [我是精明的小卖家（三）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day37-38/37.html)
+### 第三十九天到第四十一天
+[我是精明的小卖家（四）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day39-41/39.html)
+### 第四十二天到第四十三天
+[开一家餐厅吧（一）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day42-43/42.html)
+### 第四十四天到第四十六天
+[开一家餐厅吧（二）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day44-46/44.html)
 
 ## 设计师学院
 ### No.1 - 制作一个简单的菜单动画效果
