@@ -2,38 +2,27 @@
  * @author Aelous
  * @Description: 主程序
  */
-
-//开业餐厅
-const restaurant = Restaurant.getInstance({
-    cash: 100000,
-    seats: 1,
-    staffList: []
-});
+//创建餐厅单例
+const restaurant = Restaurant.getInstance({cash: 100, seats: 1, staffList: []});
 
 //制作菜单  菜单结构：index:{name,cost,price}
 const menu = Menu.getInstance([
-    {name: '酱牛肉', cost: 1, price: 20,},
-    {name: '青椒炒肉丝', cost: 1, price: 20,},
-    {name: '老厨白菜', cost: 1, price: 20,},
-    {name: '红烧鱼块', cost: 1, price: 20,},
-    {name: '炸藕丸子', cost: 1, price: 20,},
-    {name: '肉末豇豆粒', cost: 1, price: 20,},
-    {name: '当归鸡翅', cost: 1, price: 20,},
-    {name: '小鱼干煎饼饭', cost: 1, price: 20,},
-    {name: '蛋炒饭', cost: 1, price: 20,}
+    {name: '酱牛肉', cost: 35, price: 46,},
+    {name: '青椒炒肉丝', cost: 10, price: 20,},
+    {name: '老厨白菜', cost: 16, price: 8,},
+    {name: '红烧鱼块', cost: 40, price: 40,},
+    {name: '炸藕丸子', cost: 35, price: 30,},
+    {name: '肉末豇豆粒', cost: 25, price: 15,},
+    {name: '当归鸡翅', cost: 70, price: 33,},
+    {name: '小鱼干煎饼饭', cost: 28, price: 42,},
+    {name: '蛋炒饭', cost: 18, price: 10,}
 ]);
 
 //创建厨师一号
-const cook_1 = Cook.getInstance({
-    name: '王厨师',
-    salary: 4000
-});
+const cook_1 = Cook.getInstance({name: '王厨师', salary: 4000});
 
 //创建侍者一号
-const waiter_1 = Waiter.getInstance({
-    name: '许服务',
-    salary: 3000
-});
+const waiter_1 = Waiter.getInstance({name: '许服务', salary: 3000});
 
 //招聘
 restaurant.hire(cook_1);
@@ -41,29 +30,22 @@ restaurant.hire(waiter_1);
 
 //顾客队列
 let customerQueue = [];
+
+const NUM = 20;
+
+for (let i = 1; i <= NUM; i++) {
+    let customer = new Customer({name: '顾客' + i, gender: '先生'});
+    customerQueue.push(customer);
+}
+
 //创建顾客一二三四五
-const customer_1 = Customer.getInstance({
-    name: '赵',
-    gender: '先生'
-});
-const customer_2 = Customer.getInstance({
-    name: '钱',
-    gender: '女士'
-});
-const customer_3 = Customer.getInstance({
-    name: '孙',
-    gender: '先生'
-});
-const customer_4 = Customer.getInstance({
-    name: '李',
-    gender: '女士'
-});
-const customer_5 = Customer.getInstance({
-    name: '周',
-    gender: '先生'
-});
-// customerQueue.push(customer_1);
-customerQueue.push(customer_1, customer_2, customer_3, customer_4, customer_5);
+// const customer_1 = new Customer({name: '赵', gender: '先生'});
+// const customer_2 = new Customer({name: '钱', gender: '女士'});
+// const customer_3 = new Customer({name: '孙', gender: '先生'});
+// const customer_4 = new Customer({name: '李', gender: '女士'});
+// const customer_5 = new Customer({name: '周', gender: '先生'});
+
+// customerQueue.push(customer_1, customer_2, customer_3, customer_4, customer_5);
 
 //运转餐厅
 document.getElementById("open").addEventListener('click', () => opening(customerQueue));
@@ -82,6 +64,7 @@ async function opening(queue) {
     && customerList.length > 0) {
         // console.log(customerList[0]);
         //入座
+        console.log(restaurant.cash);
         restaurant.seats -= 1;
         let currentCustomer = customerList.shift();      //删除第一个元素并返回
         console.log(">>>>>>来人");
@@ -99,6 +82,7 @@ async function opening(queue) {
         if (waiterFlag) {
             console.log(cook_1.name + "烹饪中...");
             await delay(4000);      //等待烹饪
+            restaurant.cash = restaurant.cash - order[0].cost;
             cookFlag = cook_1.doJob(order);
         }
         //做菜完成，通知上菜
@@ -120,10 +104,22 @@ async function opening(queue) {
         //顾客吃完离开
         if (customerFlag) {
             restaurant.seats += 1;
+            restaurant.cash = restaurant.cash + order[0].price;
         }
     }
     await delay(1000);
-    console.log("没客人了");
+    if (restaurant.cash <= 0) {
+        console.log("破产啦~");
+    }
+    if (customerList.length <= 0) {
+        console.log("没客人了");
+    }
+    if (restaurant.seats <= 0) {
+        console.log("满客了");
+    }
+    if (restaurant.staffList.length <= 0) {
+        console.log("员工跑了");
+    }
 }
 
 /**
@@ -132,9 +128,9 @@ async function opening(queue) {
  * @param {number} time
  */
 function delay(time) {
-    return new Promise((resolve) => {
-        setTimeout(function () {
-            resolve();
-        }, time);
-    })
+    // return new Promise((resolve) => {
+    //     setTimeout(function () {
+    //         resolve();
+    //     }, time);
+    // })
 }

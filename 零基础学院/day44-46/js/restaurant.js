@@ -11,7 +11,10 @@ class Restaurant {
 
     //单例接口
     static getInstance(param) {
-        return new Restaurant(param);
+        if (!this.instance) {
+            this.instance = new Restaurant(param);
+        }
+        return this.instance;
     }
 
     //招聘职员
@@ -42,11 +45,10 @@ class Staff {
 
     //单例接口
     static getInstance(param) {
-        // if (!this.instance) {
-        //     this.instance = new Staff(param);
-        // }
-        // return this.instance;
-        return new Staff(param);
+        if (!this.instance) {
+            this.instance = new Staff(param);
+        }
+        return this.instance;
     }
 
     //完成工作
@@ -66,7 +68,10 @@ class Waiter extends Staff {
 
     //单例接口
     static getInstance(param) {
-        return new Waiter(param);
+        if (!this.instance) {
+            this.instance = new Waiter(param);
+        }
+        return this.instance;
     }
 
     //服务员完成工作
@@ -93,7 +98,10 @@ class Cook extends Staff {
 
     //单例接口
     static getInstance(param) {
-        return new Cook(param);
+        if (!this.instance) {
+            this.instance = new Cook(param);
+        }
+        return this.instance;
     }
 
     //厨师完成工作
@@ -122,7 +130,10 @@ class Menu {
 
     //单例接口
     static getInstance(param) {
-        return new Menu(param);
+        if (!this.instance) {
+            this.instance = new Menu(param);
+        }
+        return this.instance;
     }
 }
 
@@ -135,12 +146,7 @@ class Customer {
         this.name = name;
         this.gender = gender;
     }
-
-    //单例接口
-    static getInstance(param) {
-        return new Customer(param);
-    }
-
+    //顾客不用单例
     // 点菜
     order(menu) {
         // 随便点一道菜
