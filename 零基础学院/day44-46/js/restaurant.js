@@ -11,10 +11,7 @@ class Restaurant {
 
     //单例接口
     static getInstance(param) {
-        if (!this.instance) {
-            this.instance = new Restaurant(param);
-        }
-        return this.instance;
+        return new Restaurant(param);
     }
 
     //招聘职员
@@ -37,7 +34,7 @@ class Restaurant {
 let id = 1;
 
 class Staff {
-    constructor({name = '', salary = 0} = {}) {
+    constructor(name,salary) {
         this.id = Math.random().toString(36).substr(2, 16);
         this.name = name;
         this.salary = salary;
@@ -45,10 +42,11 @@ class Staff {
 
     //单例接口
     static getInstance(param) {
-        if (!this.instance) {
-            this.instance = new Staff(param);
-        }
-        return this.instance;
+        // if (!this.instance) {
+        //     this.instance = new Staff(param);
+        // }
+        // return this.instance;
+        return new Staff(param);
     }
 
     //完成工作
@@ -62,26 +60,23 @@ class Staff {
  * @Description: 服务员：继承自职员类
  */
 class Waiter extends Staff {
-    constructor({name = '', salary = 0} = {}) {
-        super(name, salary);     //使用super代替call(this)
+    constructor(name,salary) {
+        super(name, salary);
     }
 
     //单例接口
     static getInstance(param) {
-        if (!this.instance) {
-            this.instance = new Waiter(param);
-        }
-        return this.instance;
+        return new Waiter(param);
     }
 
     //服务员完成工作
     doJob(order) {
         //如果参数为数组，则记录客人点菜，如果不是则为上菜行为
         if (order.length !== undefined && typeof order !== "string") {
-            console.log("记录点菜");
+            console.log(this.name + "记录点菜");
             return true;
         } else {
-            console.log("进行上菜");
+            console.log(this.name + "进行上菜");
             return true;
         }
     }
@@ -92,21 +87,18 @@ class Waiter extends Staff {
  * @Description: 厨师类：继承自职员类
  */
 class Cook extends Staff {
-    constructor({name = '', salary = 0} = {}) {
+    constructor(name,salary) {
         super(name, salary);
     }
 
     //单例接口
     static getInstance(param) {
-        if (!this.instance) {
-            this.instance = new Cook(param);
-        }
-        return this.instance;
+        return new Cook(param);
     }
 
     //厨师完成工作
     doJob() {
-        console.log("完成烹饪");
+        console.log(this.name + "完成烹饪");
         return true;
     }
 }
@@ -130,10 +122,7 @@ class Menu {
 
     //单例接口
     static getInstance(param) {
-        if (!this.instance) {
-            this.instance = new Menu(param);
-        }
-        return this.instance;
+        return new Menu(param);
     }
 }
 
@@ -149,10 +138,7 @@ class Customer {
 
     //单例接口
     static getInstance(param) {
-        if (!this.instance) {
-            this.instance = new Customer(param);
-        }
-        return this.instance;
+        return new Customer(param);
     }
 
     // 点菜
@@ -164,7 +150,7 @@ class Customer {
 
     // 吃
     eat() {
-        console.log('>>>>吃完了<<<<');
+        console.log("吃完了>>>>>>走了");
         return true;
     }
 }
