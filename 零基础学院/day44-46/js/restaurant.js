@@ -34,7 +34,7 @@ class Restaurant {
 let id = 1;
 
 class Staff {
-    constructor(name,salary) {
+    constructor({name='',salary=''}) {
         this.id = Math.random().toString(36).substr(2, 16);
         this.name = name;
         this.salary = salary;
@@ -60,8 +60,8 @@ class Staff {
  * @Description: 服务员：继承自职员类
  */
 class Waiter extends Staff {
-    constructor(name,salary) {
-        super(name, salary);
+    constructor({name='',salary=''}) {
+        super({name, salary});
     }
 
     //单例接口
@@ -87,8 +87,8 @@ class Waiter extends Staff {
  * @Description: 厨师类：继承自职员类
  */
 class Cook extends Staff {
-    constructor(name,salary) {
-        super(name, salary);
+    constructor({name='',salary=''}) {
+        super({name, salary});
     }
 
     //单例接口

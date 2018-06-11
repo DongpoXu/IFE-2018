@@ -24,10 +24,16 @@ const menu = Menu.getInstance([
 ]);
 
 //创建厨师一号
-const cook_1 = Cook.getInstance('王厨师', 4000);
+const cook_1 = Cook.getInstance({
+    name: '王厨师',
+    salary: 4000
+});
 
 //创建侍者一号
-const waiter_1 = Waiter.getInstance('许服务', 3000);
+const waiter_1 = Waiter.getInstance({
+    name: '许服务',
+    salary: 3000
+});
 
 //招聘
 restaurant.hire(cook_1);
