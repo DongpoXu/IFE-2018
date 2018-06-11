@@ -120,9 +120,9 @@ async function opening(queue) {
  * @param {number} time
  */
 function delay(time) {
-    // return new Promise((resolve) => {
-    //     setTimeout(function () {
-    //         resolve();
-    //     }, time);
-    // })
+    return new Promise((resolve) => {
+        setTimeout(function () {
+            resolve();
+        }, time);
+    })
 }
