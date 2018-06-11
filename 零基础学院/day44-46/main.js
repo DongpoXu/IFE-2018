@@ -57,7 +57,6 @@ async function opening(queue) {
     && customerList.length > 0) {
         // console.log(customerList[0]);
         //入座
-        console.log(restaurant.cash);
         restaurant.seats -= 1;
         let currentCustomer = customerList.shift();      //删除第一个元素并返回
         console.log(">>>>>>来人");
