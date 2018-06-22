@@ -5,33 +5,43 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
           name="viewport"/>
     <title>第四十七天到第四十九天：开一家餐厅吧（三）</title>
-    <link rel="stylesheet" href="47.css">
+    <link rel="stylesheet" href="css/47.css">
 </head>
 <body>
 
-<hr/>
 <h3>详情：</h3>
 <div class="container">
-    <button id="open">饭馆开业！！！</button>
-    <h3 id="cash">$0</h3>
-    <div class="main">
+    <div class="restaurant">
         <!--厨房-->
-        <div class="kitchen"></div>
+        <div class="kitchen">
+            <div class="title">Kitchen</div>
+            <div class="status">free</div>
+            <ul class="dish-list"></ul>
+        </div>
         <!--用餐区-->
         <div class="dining-area">
-            <div class="seat-1"></div>
-            <div class="seat-2"></div>
-            <div class="seat-3"></div>
-            <div class="seat-4"></div>
+            <div class="title">Dining</div>
+            <div class="status"></div>
+            <div class="dish-list"></div>
         </div>
         <!--顾客排队-->
-        <div class="customer" id="customerQueue"></div>
+        <div class="waiting-area">
+            <div class="title">Queue</div>
+        </div>
+    </div>
+    <div class="info">
+        <div class="restaurant-title"></div>
+        <div class="start">Start</div>
+        <div class="reset">Reset</div>
+        <div class="cash"></div>
+        <div class="waiting-num"></div>
+        <div class="log"></div>
     </div>
 </div>
-<hr/>
 
 <script src="js/restaurant.js"></script>
 <script src="js/dom.js"></script>
 <script src="main.js"></script>
+
 </body>
 </html>

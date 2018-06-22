@@ -25,25 +25,27 @@ class cookDomOperate {
         this.timeLeft
     }
 
-    //再container中创建厨师dom
+    //在container中创建厨师dom
     createCook(container) {
-        let divOvj = document.createElement('div');
-        divOvj.setAttribute('style', 'display:flex;justify-content: space-between;');
-        let listObj = document.createElement('div');
-        listObj.setAttribute('class', 'cook-list');
-        let stateObj = document.createElement('div');
-        stateObj.setAttribute('class', 'cook-state');
-        let svgObj = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgObj.setAttribute('class', 'icon cook');
-        svgObj.setAttribute('free', '');
-        svgObj.innerHTML = '<use xlink:href="#icon-kaoyan"></use>';
-        this.cookDom = svgObj;
-        divOvj.appendChild(svgObj);
-        divOvj.appendChild(listObj);
-        divOvj.appendChild(stateObj);
-        this.cookDomFather = divOvj;
-        container.appendChild(divOvj);
-        this.position = container.childElementCount * 80;
+        //innerHTML添加元素的时候比较尴尬
+        //创建厨师工位
+        let cookStation = document.createElement('div');
+        cookStation.setAttribute('class','cook-station');
+        //创建工位内部信息：厨师图片 要做菜品列表 厨师当前状态
+        let cookIcon = document.createElement('img');
+        cookIcon.setAttribute('src','img/cook.png');
+        // cookIcon.setAttribute('class','cook-icon');
+        let cookingList = document.createElement('div');
+        cookingList.setAttribute('class','cooking-list');
+        let cookState = document.createElement('div');
+        cookState.setAttribute('class','cook-state');
+        cookStation.appendChild(cookIcon);
+        cookStation.appendChild(cookingList);
+        cookStation.appendChild(cookState);
+        this.cookDom = cookIcon;
+        this.cookDomFather = cookStation;
+        container.appendChild(cookStation);
+        // this.position = container.childElementCount * 80;
     }
 
     //添加待做食物列表
@@ -211,7 +213,7 @@ class customerDomOperate {
         this.state.innerHTML = `点餐${time}s`;
     }
 
-    // 去除点餐状态 加上上菜列表
+    // 去除点餐状态，加上上菜列表
     addOrderList(order) {
         this.state.innerHTML = '';
         order.forEach(item => {

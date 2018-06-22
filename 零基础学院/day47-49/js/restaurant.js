@@ -64,7 +64,7 @@ class Staff {
 class Waiter extends Staff {
     constructor({name = '', salary = ''}) {
         super({name, salary});
-        this.dom = new waiterDomOperate();
+        this.dom = new waiterDomOperate();      //创建一个服务员DOM操作
     }
 
     //单例接口
@@ -80,18 +80,18 @@ class Waiter extends Staff {
         //如果参数为数组，则记录客人点菜，如果不是则为上菜行为
         if (order.length !== undefined && typeof order !== "string") {
             //修改服务员位置
-            let position = this.dom.goToTheCook('order', 'cook');
+            let position = this.dom.goToTheCook('order', cook);
             this.dom.waiterDom.setAttribute('style', `left:${position.left}px;top:${position.top}px`);
-            await delay(500);
+            await delay(0.5);       //运动过程时间为0.5个时间单位
             return true;
         } else {
             let position = this.dom.goToTheCook('pass', cook);
             this.dom.waiterDom.setAttribute('style', `left:${position.left}px;top:${position.top}px`);
             cook.dom.removeState();
-            await delay(500);
+            await delay(0.5);
             this.dom.goToTheCustomer(order.index);
-            await delay(500);
-            console.log(">>>>>进行上菜<<<<<")
+            await delay(0.5);
+            console.log(">>>>>进行上菜<<<<<");
             this.dom.goToDefault();
             return order.meal;
         }
@@ -124,7 +124,7 @@ class Cook extends Staff {
         let currentCooking = this.dom.removeItem(menu);
         this.dom.addState(currentCooking);
         for (let i = 0; i < (Number(menu.takeTime)); i++) {
-            await delay(1000);
+            await delay(1);
             this.dom.updateTime();
         }
         this.dom.cookDom.setAttribute('complete', '');
@@ -185,11 +185,11 @@ class Customer {
         //根据baseTime延时
         for (let i = this.baseTime; i >= 0; i--) {
             this.dom.updateOrderState(i);
-            await delay(1000);
+            await delay(1);
         }
         // 将点的菜添加到列表
         this.dom.addOrderList(orderList);
-        return new Promise((resolve)=>resolve(orderList))
+        return new Promise((resolve) => resolve(orderList))
     }
 
     // 吃
@@ -197,17 +197,17 @@ class Customer {
         let time = addTime + this.baseTime;
         for (let i = time; i >= 0; i--) {
             this.dom.updateOrderList(meal, 'eat', i);
-            await delay(1000);
+            await delay(1);
         }
         this.dom.updateOrderList(meal, 'over');
         console.log('吃完', meal.name);
-        return new Promise(resolve=>resolve(true))
+        return new Promise(resolve => resolve(true))
     }
 
     //结账
     checkOut() {
         let money = 0;
-        for (dish of this.order) {
+        for (let dish of this.order) {
             money += dish.price;
         }
         console.log("结帐", money);
@@ -218,12 +218,12 @@ class Customer {
 /**
  * @author Aelous
  * @Description: 延迟函数
- * @param {number} time
+ * @param {number} time(s)
  */
 function delay(time) {
     return new Promise((resolve) => {
         setTimeout(function () {
             resolve()
-        }, time);
+        }, time * 1000);
     });
 }

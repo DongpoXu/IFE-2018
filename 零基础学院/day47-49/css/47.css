@@ -1,0 +1,47 @@
+hr {
+    height: 2px;
+    border: none;
+    border-top: 2px solid #78ac5f;
+}
+
+body {
+    background-color: #fff;
+}
+
+h6 {
+    font-size: 14px;
+    padding: 0;
+    margin: 0 20px;
+    font-weight: normal;
+}
+
+div > label {
+    text-align: left;
+    display: inline-block;
+    width: 85px;
+}
+
+.kitchen {
+    float: left;
+    width: 30%;
+    height: 500px;
+    background-color: #1e7db9;
+}
+
+.dining-area {
+    float: right;
+    width: 40%;
+    height: 500px;
+    background-color: #99cc99;
+}
+
+.cook-station {
+    height: 200px;
+    width: 305px;
+    background-color: #1ABC9C;
+}
+
+.cook-icon {
+    height: 100px;
+    background-color: #68ff59;
+}

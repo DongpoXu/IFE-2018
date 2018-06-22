@@ -46,7 +46,7 @@ customerQueue.push(customer_1, customer_2, customer_3, customer_4, customer_5);
 
 //添加顾客等待列表
 let customerQueueObj = document.getElementById("customerQueue");
-for (customer of customerQueue) {
+for (let customer of customerQueue) {
     customer.dom.createCustomerList(customerQueueObj);
 }
 
@@ -101,14 +101,14 @@ async function opening(queue) {
                 // 补时间 具体原理不赘述了
                 meal.takeTime > 3 ? addTime = 0 : addTime = Number(3 - meal.takeTime);
                 // 异步操作放入数组
-                await delay(300);
-                if (x === '0') promiseList.push(currentCustomer.eat(meal))
+                await delay(0.3);
+                if (x === '0') promiseList.push(currentCustomer.eat(meal));
                 else promiseList.push(currentCustomer.eat(meal, addTime))
             }
             //等待所有吃饭异步操作完成
             await Promise.all(promiseList);
             waiter_1.dom.goToTheCustomer(currentCustomer.dom.seatIndex);
-            await delay(500);
+            await delay(0.5);
             const bill = currentCustomer.checkOut();
             restaurant.dom.updateCash(restaurant.cash = restaurant.cash + (bill - cost));
             //腾出空位
@@ -116,7 +116,7 @@ async function opening(queue) {
             currentCustomer.dom.seatEmpty();
         }
     }
-    await delay(1000);
+    await delay(1);
     if (restaurant.cash <= 0) {
         console.log("破产啦~");
     }
@@ -129,17 +129,4 @@ async function opening(queue) {
     if (restaurant.staffList.length <= 0) {
         console.log("员工跑了");
     }
-}
-
-/**
- * @author Aelous
- * @Description: 延时函数
- * @param {number} time
- */
-function delay(time) {
-    return new Promise((resolve) => {
-        setTimeout(function () {
-            resolve();
-        }, time);
-    })
 }
