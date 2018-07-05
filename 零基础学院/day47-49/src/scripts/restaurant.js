@@ -143,12 +143,12 @@ class Cook extends Staff {
     }
 
     changeStatus(str) {
-        var status = document.querySelector("#cook-status");
+        let status = document.querySelector("#cook-status");
         switch (str) {
             case '开始':
                 let i = 0;
                 while (this.preList.length > 0) {
-                    var dash = this.preList[0];
+                    let dash = this.preList[0];
                     //console.log(dash);
                     //this.preList.shift();
                     let arr = [];
@@ -162,8 +162,8 @@ class Cook extends Staff {
                         }, (i * 1000 + j * 1000), dash);
                     }
                     i += dash.time;
-                    var temp = this.preList;
-                    var it = this;
+                    let temp = this.preList;
+                    let it = this;
                     setTimeout(function (temp, it, dash) {
                         Waiter.getInstance().changeStatus('上菜', dash);
                         it.updateCookList(temp)
@@ -174,15 +174,15 @@ class Cook extends Staff {
                 }, i * 1000);
                 break;
             case '下单':
-                status.innerText = '下单'
+                status.innerText = '下单';
                 break;
         }
     }
 
     updateCookList(order) {
-        var order = order || this.preList;
-        var list = document.querySelector("#app #cook-list");
-        var result = '';
+        order = order || this.preList;
+        let list = document.querySelector("#app #cook-list");
+        let result = '';
         for (let i = 0; i < order.length; i++) {
             result += '<li>' + order[i].name + '</li>';
         }
