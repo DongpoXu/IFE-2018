@@ -89,14 +89,7 @@ function toTest() {
             eatList[0].parentNode.innerHTML = '';
         }, 1000)
     }
-
     let start = setInterval(startRestaurant, 1000);
-
-    //console.log(Restaurant.getInstance());
-    //console.log(newWaiter);
-    // new Promise(function(resolve,reject){
-    // resolve()
-    // }).then(function(){ setTimeout('console.log("promise test")',2000)})
 }
 
 let queue = [];             //建立一个数组，用于存放顾客队列
