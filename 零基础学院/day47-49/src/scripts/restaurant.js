@@ -282,10 +282,4 @@ class Menu {
     }
 }
 
-export {Restaurant};
-export {Staff};
-export {Waiter};
-export {Cook};
-export {Customer};
-export {Dash};
-export {Menu};
+export {Restaurant,Staff,Waiter,Cook,Customer,Dash,Menu};

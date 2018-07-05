@@ -1,6 +1,4 @@
-import {Restaurant} from "./restaurant";
-import {Cook} from "./restaurant";
-import {Waiter} from "./restaurant";
+import {Restaurant,Cook,Waiter} from "./restaurant";
 import {Factory} from "./factory";
 
 function toTest() {
@@ -20,8 +18,8 @@ function toTest() {
     ifeMenu.add('蒜枣大黄鱼', 180, 440, 4);
     ifeRestaurant.hire(newCook);
     ifeRestaurant.hire(newWaiter);
-    ifeRestaurant.setTime(100);
-    var basicTime = ifeRestaurant.getTime();
+    ifeRestaurant.setTime(1000);
+    let basicTime = ifeRestaurant.getTime();
     let button = document.querySelector('#app #add-customer');
     button.onclick = function () {
         if (queue.length < 18) {
