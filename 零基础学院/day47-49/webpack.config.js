@@ -1,6 +1,6 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var webpack = require('webpack');
+let path = require('path');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+let webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 分离css
 
 const uglify = require('uglifyjs-webpack-plugin'); //js代码压缩插件
@@ -21,7 +21,7 @@ const config = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit:500000, // 是把小于500000B的文件打成Base64的格式，写入JS。
+                            limit: 500000, // 是把小于500000B的文件打成Base64的格式，写入JS。
                             name: 'images/[name]-[hash].[ext]'
                         }
                     }
@@ -38,15 +38,15 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename:	'index.html',	//生成文件名
-            template:	'47.html',  //模板文件
-            inject:		'body'    //js插入位置
+            filename: 'index.html',	//生成文件名
+            template: '47.html',  //模板文件
+            inject: 'body'    //js插入位置
         }),
         new webpack.HotModuleReplacementPlugin()
     ]
 };
 
-if(isDev) {
+if (isDev) {
     // 在开发模式下的配置
     config.devServer = {
         host: 'localhost',    // 服务器的IP地址，可以使用IP也可以使用localhost
@@ -58,7 +58,6 @@ if(isDev) {
             errors: true
         }
     };
-
 
     // 【1】 开发模式下使用style-loader,其实这个style-loader就是将我们的css打包到了style标签中，然后放在了head中
     config.module.rules.push(
@@ -80,7 +79,7 @@ if(isDev) {
     config.module.rules.push(
         {
             test: /\.css$/,
-            use: [ MiniCssExtractPlugin.loader, 'css-loader']
+            use: [MiniCssExtractPlugin.loader, 'css-loader']
         }
     );
     config.module.rules.push(
@@ -92,7 +91,7 @@ if(isDev) {
     config.module.rules.push(
         {
             test: /\.html$/,
-            use: [ {
+            use: [{
                 loader: 'html-loader',
             }]
         }

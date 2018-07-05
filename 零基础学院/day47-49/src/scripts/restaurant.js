@@ -3,12 +3,12 @@ class Restaurant {
         this.cash = arr['cash'] || 0;
         this.seats = arr['seats'] || 0;
         this.staffList = arr['staffList'] || [];
-        this.worldTime = 1000;
+        this.worldTime = 1000;      //基准时间
     }
 
     //招聘职员
     hire(staff) {
-        if (this.staffList.indexOf(staff) === -1) {
+        if (this.staffList.indexOf(staff) === -1) {     //通过indexOf判断加入staff是否再staffList中
             this.staffList.push(staff);   //推入staffList中。
             console.log("招聘了" + staff.name);
         } else {
@@ -18,7 +18,7 @@ class Restaurant {
 
     //解雇职员
     fire(staff) {
-        if (this.staffList.indexOf(staff) !== -1) {
+        if (this.staffList.indexOf(staff) !== -1) {     //同上
             this.staffList.map((item, index) => {
                 if (item.id === staff.id) {
                     this.staffList.splice(index, 1);
@@ -30,17 +30,22 @@ class Restaurant {
         }
     }
 
+    //获取基准时间
     getTime() {
+        console.log("获取基准时间" + this.worldTime);
         return this.worldTime;
     }
 
-    setTime() {
+    //设定基准时间
+    setTime(num) {
         if (Number(num)) {
+            console.log("设定基准时间为" + Number(num));
             this.worldTime = Number(num);
         }
         return this.worldTime;
     }
 
+    //单例接口
     static getInstance(arr) {
         if (!this.instance) {
             this.instance = new this(arr);
@@ -49,7 +54,7 @@ class Restaurant {
     }
 }
 
-var id = 0;
+let id = 0;
 
 class Staff {
     constructor(name, salary) {
@@ -58,10 +63,15 @@ class Staff {
         this.salary = salary || 0;
     }
 
-    finish() {
+    startWork() {
+        console.log(this.name + "开始工作");
+    }
+
+    finishWork() {
         console.log(this.name + "工作完毕");
     }
 
+    //单例接口
     static getInstance(arr) {
         if (!this.instance) {
             this.instance = new this(arr);
@@ -70,39 +80,5 @@ class Staff {
     }
 }
 
-export {Restaurant, Staff};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export {Restaurant};
+export {Staff};

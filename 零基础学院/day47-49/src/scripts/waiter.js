@@ -7,16 +7,16 @@ class Waiter extends Staff {
     }
 
     startWork() {
-        console.log(this.name + "烹饪菜品");
+        console.log(this.name + "开始服务");
     }
 
     finishWork() {
-        console.log(this.name + "烹饪完毕");
+        console.log(this.name + "服务完毕");
     }
 
     changeStatus(str, dash) {
-        var pos = document.querySelector("#waiter-wrapper");
-        var status = pos.querySelector("#waiter-status");
+        let pos = document.querySelector("#waiter-wrapper");
+        let status = pos.querySelector("#waiter-status");
         switch (str) {
             case '点单':
                 status.innerText = '点单';
@@ -42,7 +42,6 @@ class Waiter extends Staff {
                 setTimeout(function (status) {
                     status.innerText = '空闲';
                 }, 1000, status);
-                //console.log(dashName);
                 this.customer.eat(dash);
                 break;
         }

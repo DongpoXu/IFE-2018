@@ -1,5 +1,5 @@
 function addLoadEvent(func) {
-    var oldonload = window.onload;
+    let oldonload = window.onload;
     if (typeof window.onload !== "function") {
         window.onload = func;
     } else {
@@ -10,4 +10,4 @@ function addLoadEvent(func) {
     }
 }
 
-export {addLoadEvent}
+export {addLoadEvent};
