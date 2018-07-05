@@ -5,43 +5,47 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
           name="viewport"/>
     <title>第四十七天到第四十九天：开一家餐厅吧（三）</title>
-    <link rel="stylesheet" href="css/47.css">
 </head>
 <body>
-
-<h3>详情：</h3>
-<div class="container">
-    <div class="restaurant">
-        <!--厨房-->
-        <div class="kitchen">
-            <div class="title">Kitchen</div>
-            <div class="status">free</div>
-            <ul class="dish-list"></ul>
+<div id='app'>
+    <h1>ifeRestaurant</h1>
+    <div id='cash-wrapper'>
+        <p>现金数量:<span id='cash'></span></p>
+        <input id='add-customer' type='button' value="添加客人">
+    </div>
+    <div id='restaurant-wrapper'>
+        <div id='cook-wrapper'>
+            <div id='cook-list-wrapper'>
+                <p>待做列表:</p>
+                <ul id='cook-list'>
+                </ul>
+            </div>
+            <div id='cook-status-wrapper'>
+                <p>厨师状态:</p>
+                <p id='cook-status'>无</p>
+                <img src='./src/asserts/cook.png' alt=''>
+            </div>
         </div>
-        <!--用餐区-->
-        <div class="dining-area">
-            <div class="title">Dining</div>
-            <div class="status"></div>
-            <div class="dish-list"></div>
+        <div id='waiter-wrapper'>
+            <p>服务员状态:</p>
+            <p id='waiter-status'>无</p>
+            <img src='src/asserts/waiter.png' alt='waiter'>
         </div>
-        <!--顾客排队-->
-        <div class="waiting-area">
-            <div class="title">Queue</div>
+        <div id='customer-wrapper'>
+            <div id='customer-status-wrapper'>
+                <p>顾客状态:</p>
+                <p id='customer-status'>无</p>
+                <img src='src/asserts/customer.png' alt='customer'>
+            </div>
+            <div id='customer-list-wrapper'>
+                <p>菜品列表:</p>
+                <ul id='customer-dash-list'>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="info">
-        <div class="restaurant-title"></div>
-        <div class="start">Start</div>
-        <div class="reset">Reset</div>
-        <div class="cash"></div>
-        <div class="waiting-num"></div>
-        <div class="log"></div>
+    <div id='customer-list'>
     </div>
 </div>
-
-<script src="js/restaurant.js"></script>
-<script src="js/dom.js"></script>
-<script src="main.js"></script>
-
 </body>
 </html>

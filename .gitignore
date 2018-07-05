@@ -1,7 +1,6 @@
 /设计师学院/资料文件/*
 /零基础学院/资料文件/*
-/MVVM学院/Ch1/1.2/node_modules/*
+/MVVM学院/Ch1/1.2/node_modules/
+/零基础学院/day47-49/node_modules/
 .idea/inspectionProfiles/
 .idea/workspace.xml
-"MVVM\345\255\246\351\231\242/Ch1/1.1/"
-"MVVM\345\255\246\351\231\242/Ch2/"
