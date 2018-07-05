@@ -1,6 +1,4 @@
-import {Restaurant} from "./restaurant";
-import {Cook} from "./cook";
-import {Waiter} from "./waiter";
+import {Restaurant,Cook,Waiter} from "./restaurant";
 import {Factory} from "./factory";
 
 function toTest() {
