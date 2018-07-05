@@ -93,7 +93,8 @@ function toTest() {
 }
 
 let queue = [];             //建立一个数组，用于存放顾客队列
-function updateQueue() {    //更新页面上的顾客队列
+//更新页面上的顾客队列
+function updateQueue() {
     let list = document.querySelector('#app #customer-list');
     let result = '';
     for (let i = 0; i < queue.length; i++) {

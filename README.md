@@ -43,7 +43,7 @@
 ### 第四十四天到第四十六天
 [开一家餐厅吧（二）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day44-46/44.html)
 ### 第四十七天到第四十九天
-[开一家餐厅吧（三）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day47-49/47.html)
+[开一家餐厅吧（三）](https://aelousdp.github.io/IFE-2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/day47-49/dist/index.html)
 
 ## 设计师学院
 ### No.1 - 制作一个简单的菜单动画效果

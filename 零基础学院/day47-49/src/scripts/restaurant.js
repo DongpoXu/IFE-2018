@@ -94,6 +94,7 @@ class Waiter extends Staff {
         console.log(this.name + "服务完毕");
     }
 
+    //改变状态
     changeStatus(str, dash) {
         let pos = document.querySelector("#waiter-wrapper");
         let status = pos.querySelector("#waiter-status");
@@ -179,6 +180,7 @@ class Cook extends Staff {
         }
     }
 
+    //更新烹饪表
     updateCookList(order) {
         order = order || this.preList;
         let list = document.querySelector("#app #cook-list");
