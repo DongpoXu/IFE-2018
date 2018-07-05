@@ -71,6 +71,7 @@ class Staff {
         console.log(this.name + "工作完毕");
     }
 
+    
     //单例接口
     static getInstance(arr) {
         if (!this.instance) {
