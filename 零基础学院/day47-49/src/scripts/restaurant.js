@@ -302,7 +302,12 @@ class Menu {
     }
 }
 
-class Dash {                //菜品类
+/*
+ * @author 许东坡
+ * @date 2018/7/7
+ * @desc 菜品类
+ */
+class Dash {
     constructor(name, cost, price, time) {         //time时间单位（1-10）
         this.name = name;
         this.cost = cost;
