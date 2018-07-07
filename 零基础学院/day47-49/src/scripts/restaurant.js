@@ -158,11 +158,11 @@ class Cook extends Staff {
     }
 
     startWork() {
-        console.log(this.name + '烹饪菜品')
+        console.log(this.name + '烹饪菜品');
     }
 
     finishWork() {
-        console.log(this.name + '烹饪完')
+        console.log(this.name + '烹饪完');
     }
 
     changeStatus(str) {
@@ -186,7 +186,7 @@ class Cook extends Staff {
                     let temp = this.preList;
                     let that = this;      //在闭包内部调用updateCookList()，先存入that中
                     setTimeout(function (temp, that, dash) {
-                        Waiter.getInstance().changeStatus('上菜', dash);      //新建服务员单例进行上菜。
+                        Waiter.getInstance().changeStatus('上菜', dash);      //新建服务员单例进行上菜,dash服务于customer.eat()
                         that.updateCookList(temp);
                     }, i * 1000, temp, that, dash);
                 }
@@ -216,7 +216,7 @@ class Cook extends Staff {
  */  
 class Customer {
     constructor() {
-        this.seatNumber = 0;
+        //this.seatNumber = 0;
         this.eatList = [];      //存放点的菜，以及这些菜的状态（未上，已上，吃完）
     }
 
