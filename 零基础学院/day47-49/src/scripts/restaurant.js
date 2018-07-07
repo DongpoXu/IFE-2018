@@ -105,27 +105,27 @@ class Waiter extends Staff {
     //改变状态
     changeStatus(str, dash) {
         let pos = document.querySelector("#waiter-wrapper");
-        let status = pos.querySelector("#waiter-status");       //获取状态值
+        let waiterStatus = pos.querySelector("#waiter-status");       //获取状态值
         switch (str) {
             case '点单':
-                status.innerText = '点单';
+                waiterStatus.innerText = '点单';
                 this.moveToWhere("Customer", pos);
                 break;
             case '下单':
-                status.innerText = '下单';
+                waiterStatus.innerText = '下单';
                 this.moveToWhere("Cook", pos);
                 setTimeout(function (status) {
                     status.innerText = '空闲';
-                }, 500, status);        //status作为实参被传入function，上面俩status为形参
+                }, 500, waiterStatus);        //status作为实参被传入function，上面俩status为形参
                 break;
             case '上菜':
-                status.innerText = '上菜';
+                waiterStatus.innerText = '上菜';
                 this.moveToWhere("Customer", pos);
                 //如果传入this.goToCook()必须为字符串格式
                 setTimeout(this.moveToWhere, 500, "Cook", pos);
                 setTimeout(function (status) {
                     status.innerText = '空闲';
-                }, 1000, status);
+                }, 1000, waiterStatus);
                 this.customer.eat(dash);        //调用顾客吃的方法
                 break;
         }
@@ -166,7 +166,7 @@ class Cook extends Staff {
     }
 
     changeStatus(str) {
-        let status = document.querySelector("#cook-status");
+        let cookStatus = document.querySelector("#cook-status");
         switch (str) {
             case '开始':
                 let i = 0;
@@ -179,7 +179,7 @@ class Cook extends Staff {
                     this.preList = arr;     //循环写入
                     for (let j = 0; j < dash.time; j++) {       //通过定时显示时间
                         setTimeout(function (dash) {
-                            status.innerText = '烹饪' + dash.name + '还需' + (dash.time - j) + '秒'
+                            cookStatus.innerText = '烹饪' + dash.name + '还需' + (dash.time - j) + '秒'
                         }, (i * 1000 + j * 1000), dash);
                     }
                     i += dash.time;     //应该是做时间补偿用
@@ -191,7 +191,7 @@ class Cook extends Staff {
                     }, i * 1000, temp, that, dash);
                 }
                 setTimeout(function () {
-                    status.innerText = '空闲'
+                    cookStatus.innerText = '空闲'
                 }, i * 1000);
                 break;
         }
@@ -213,7 +213,7 @@ class Cook extends Staff {
  * @author 许东坡
  * @date 2018/7/6
  * @desc 顾客类
- */  
+ */
 class Customer {
     constructor() {
         //this.seatNumber = 0;
@@ -225,27 +225,27 @@ class Customer {
         return list;
     }
 
-    changeStatus(str, time) {
-        let customer_status = document.querySelector('#customer-status');
+    changeStatus(str, time) {       //顾客状态改变
+        let customerStatus = document.querySelector('#customer-status');
         switch (str) {
             case '入座':
-                customer_status.innerText = '入座';
+                customerStatus.innerText = '入座';
                 break;
             case '点单':
                 for (let i = 0; i < time; i += 1000) {
                     setTimeout(function () {
-                        customer_status.innerText = '点单还需' + (time - i) / 1000 + '秒'
+                        customerStatus.innerText = '点单还需' + (time - i) / 1000 + '秒'
                     }, i);
                 }
                 break;
             case '点单完毕':
-                customer_status.innerText = '点单完毕';
+                customerStatus.innerText = '点单完毕';
                 break;
         }
     }
 
     eat(dash) {     //吃每道菜需要3个时间单位      注：此处为3秒，不是单位时间
-        let customer = document.querySelector('#customer-status');
+        let customerStatus = document.querySelector('#customer-status');
         let dashList = document.querySelectorAll('#customer-dash-list li');
         let d = {};
         for (let i = 0; i < dashList.length; i++) {
@@ -255,13 +255,18 @@ class Customer {
             }
         }
         d.innerText = dash.name + '已上';
-        customer.innerText = '开始用餐';
+        customerStatus.innerText = '开始用餐';
         setTimeout(function () {
             d.innerText = dash.name + '已吃完';
         }, 3000)
     }
 }
 
+/*
+ * @author 许东坡
+ * @date 2018/7/7
+ * @desc 菜单类
+ */
 class Menu {
     constructor(list) {
         this.list = [];
@@ -276,7 +281,7 @@ class Menu {
         this.list.push(new Dash(name, cost, price, time));
     }
 
-    getRandom() {
+    getRandom() {       //随机获取菜品
         let times = Math.ceil(Math.random() * this.list.length);//获取次数
         let order = [];     //存放点单
         for (let i = 0; i < times; i++) {
