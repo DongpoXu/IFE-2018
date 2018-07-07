@@ -308,7 +308,7 @@ class Menu {
  * @desc 菜品类
  */
 class Dash {
-    constructor(name, cost, price, time) {         //time时间单位（1-10）
+    constructor(name, cost, price, time) {      //time时间单位（1-10）
         this.name = name;
         this.cost = cost;
         this.price = price;

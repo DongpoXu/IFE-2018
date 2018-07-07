@@ -1,23 +1,29 @@
+//I can't use Chinese, because this IDE has a bug, I can't solve it. So I change my language.
 import {Restaurant,Cook,Waiter} from "./restaurant";
 import {Factory} from "./factory";
 
 function toTest() {
-    let ifeRestaurant = Restaurant.getInstance({	//建立一个ife餐馆
+    let ifeRestaurant = Restaurant.getInstance({        //create Restaurant Instance
         cash: 1000000,
         seats: 1,
         staffList: []
     });
-    let cash = document.querySelector('#app #cash');
+    let cash = document.querySelector('#app #cash');        //let the cash init
     cash.innerText = ifeRestaurant.cash;
-    let newCook = Cook.getInstance('王大厨', 10000);
-    let newWaiter = Waiter.getInstance('许服务', 9000);
+
+    //create staff, then hire
+    let newCook = Cook.getInstance('Cook_Wang', 10000);
+    let newWaiter = Waiter.getInstance('Waiter_Xu', 5000);
+    ifeRestaurant.hire(newCook);
+    ifeRestaurant.hire(newWaiter);
+
+    //create menu, add dash
     let ifeMenu = Factory.create('Menu');
     ifeMenu.add('糖醋排骨', 120, 360, 3);
     ifeMenu.add('麻婆豆腐', 30, 120, 2);
     ifeMenu.add('老鸭粉丝汤', 130, 390, 2);
     ifeMenu.add('蒜枣大黄鱼', 180, 440, 4);
-    ifeRestaurant.hire(newCook);
-    ifeRestaurant.hire(newWaiter);
+
     ifeRestaurant.setTime(1000);
     let basicTime = ifeRestaurant.getTime();
     let button = document.querySelector('#app #add-customer');
@@ -25,7 +31,7 @@ function toTest() {
         if (queue.length < 18) {
             queue.push(Factory.create('Customer'));
         } else {
-            alert('队伍太长啦，客人请等等再来排队吧')
+            alert('The queue is too long, you can\'t wait in here.');
         }
         updateQueue();
     };
