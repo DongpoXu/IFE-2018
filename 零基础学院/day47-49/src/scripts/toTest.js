@@ -37,7 +37,7 @@ function toTest() {
     };
 
     function startRestaurant() {
-        if (document.querySelector('#customer-status').innerText !== '无') {
+        if (document.querySelector('#customer-status').innerText !== 'None') {
             return;
         }
         if (queue.length === 0) {
@@ -91,7 +91,7 @@ function toTest() {
 
         customer_status.innerText = '就餐完毕';
         setTimeout(function () {
-            customer_status.innerText = '无';
+            customer_status.innerText = 'None';
             eatList[0].parentNode.innerHTML = '';
         }, 1000)
     }
