@@ -3,7 +3,7 @@ import {Restaurant, Cook, Waiter} from "./restaurant";
 import {Factory} from "./factory";
 
 /*
- * @author 许东坡
+ * @author XDP
  * @date 2018/7/8
  * @desc the restaurant open
  */
@@ -22,12 +22,12 @@ function restaurantStart() {
     ifeRestaurant.hire(newCook);
     ifeRestaurant.hire(newWaiter);
 
-    //create menu, add dash
+    //create menu, add dish
     let ifeMenu = Factory.create('Menu');
-    ifeMenu.add('糖醋排骨', 120, 360, 3);
-    ifeMenu.add('麻婆豆腐', 30, 120, 2);
-    ifeMenu.add('老鸭粉丝汤', 130, 390, 2);
-    ifeMenu.add('蒜枣大黄鱼', 180, 440, 4);
+    ifeMenu.add('Pasta', 130, 390, 2);
+    ifeMenu.add('Cabbage mustard', 120, 360, 3);
+    ifeMenu.add('Bean sprouts', 30, 120, 2);
+    ifeMenu.add('Cocoa powder', 180, 440, 4);
 
     ifeRestaurant.setTime(1000);
     let basicTime = ifeRestaurant.getTime();
@@ -42,13 +42,13 @@ function restaurantStart() {
     };
 
     let start = setInterval(startRestaurant, 1000);
-    let oBtnPause = document.getElementById("pause");
+    let oBtnPause = document.getElementById("pause");       //pause and continue
     oBtnPause.onclick = function () {
         if (this.value === "PAUSE") {
             console.log(this.value);
             this.value = "CONTINUE";
             clearInterval(start);
-        }else{
+        } else {
             console.log(this.value);
             this.value = "PAUSE";
             setInterval(startRestaurant, 1000)
@@ -65,40 +65,53 @@ function restaurantStart() {
         let customer = queue.shift();
         updateQueue();
 
-        new Promise(function (resovle, reject) {
-            customer.changeStatus('入座');
-        }).then(newWaiter.changeStatus('点单'))
-            .then(customer.changeStatus('点单', 3 * basicTime))
-            .then(setTimeout(function () {
-                customer.eatList = customer.order();
-                updateCustomerList(customer.eatList);
-                customer.changeStatus('点单完毕');
-                newCook.preList = customer.eatList;
-                newWaiter.changeStatus('下单');
-                newWaiter.customer = customer;
-            }, 3 * basicTime))
-            .then(setTimeout(function () {
-                newCook.updateCookList();
-                newCook.changeStatus('开始');
-            }, 3.5 * basicTime));
+        new Promise(
+            function (resolve,rejects) {
+                customer.changeStatus('have a seat');
+                console.log("The customer has sat down");
+                resolve();      //you have to write this. is mean do the promise.
+            })
+            .then(() => {
+                newWaiter.changeStatus('order');
+            })
+            .then(() => {
+                customer.changeStatus('order', 3000);
+            })
+            .then(() => {
+                setTimeout(function () {
+                    customer.eatList = customer.order();
+                    updateCustomerList(customer.eatList);
+                    customer.changeStatus('order over');
+                    newCook.preList = customer.eatList;
+                    newWaiter.changeStatus('place an order');
+                    newWaiter.customer = customer;
+                }, 3 * basicTime);
+            })
+            .then(() => {
+                setTimeout(function () {
+                    newCook.updateCookList();
+                    newCook.changeStatus('start');
+                }, 3.5 * basicTime);
+            });
 
+        //listen current customer has left, if so, the next customer enter.
         let next = setInterval(function (customer) {
-            nextCustomer(customer)
+            nextCustomer(customer);
         }, 100, customer);
     }
 
     function nextCustomer(customer) {
-        let eatList = document.querySelectorAll('#app #customer-dash-list li');
+        let eatList = document.querySelectorAll('#app #customer-dish-list li');
         let cash = document.querySelector('#app #cash');
         let customer_status = document.querySelector('#customer-status');
-        if (customer_status.innerText === '就餐完毕') {
+        if (customer_status.innerText === 'After dinner') {
             return;
         }
         if (eatList.length === 0) {
             return;
         }
         for (let i = 0; i < eatList.length; i++) {
-            if (eatList[i].innerText.indexOf('已吃完') === -1) {
+            if (eatList[i].innerText.indexOf('eat up') === -1) {
                 return;
             }
         }
@@ -109,15 +122,16 @@ function restaurantStart() {
         cash.innerText = money;
         ifeRestaurant.cash = money;
 
-        customer_status.innerText = '就餐完毕';
+        customer_status.innerText = 'After dinner';
         setTimeout(function () {
             customer_status.innerText = 'None';
             eatList[0].parentNode.innerHTML = '';
         }, 1000)
     }
 
-    let queue = [];     //建立一个数组，用于存放顾客队列
-    //更新页面上的顾客队列
+    let queue = [];     //Create an array to hold the customer queue.
+
+    //Update the customer queue on the page.
     function updateQueue() {
         let list = document.querySelector('#app #customer-list');
         let result = '';
@@ -127,8 +141,8 @@ function restaurantStart() {
         list.innerHTML = result;
     }
 
-    function updateCustomerList(order) {             //更新点单列表
-        let list = document.querySelector('#app #customer-dash-list');
+    function updateCustomerList(order) {             //Update the order list
+        let list = document.querySelector('#app #customer-dish-list');
         let result = '';
         for (let i = 0; i < order.length; i++) {
             result += '<li>' + order[i].name + '</li>';

@@ -101,14 +101,10 @@ html, body {
     background-size: 100%;
 }
 
-#customer-dash-list {
-    list-style: none inside;
-    padding: 0;
-}
-
-#cook-list {
-    list-style: none inside;
-    padding: 0;
+#customer-dish-list,#cook-list {
+    list-style: none;
+    text-align: left;
+    padding: 0 10px;
 }
 
 p {
