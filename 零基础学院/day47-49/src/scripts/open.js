@@ -1,8 +1,13 @@
 //I can't use Chinese, because this IDE has a bug, I can't solve it. So I change my language.
-import {Restaurant,Cook,Waiter} from "./restaurant";
+import {Restaurant, Cook, Waiter} from "./restaurant";
 import {Factory} from "./factory";
 
-function toTest() {
+/*
+ * @author 许东坡
+ * @date 2018/7/8
+ * @desc the restaurant open
+ */
+function restaurantStart() {
     let ifeRestaurant = Restaurant.getInstance({        //create Restaurant Instance
         cash: 1000000,
         seats: 1,
@@ -26,25 +31,40 @@ function toTest() {
 
     ifeRestaurant.setTime(1000);
     let basicTime = ifeRestaurant.getTime();
-    let button = document.querySelector('#app #add-customer');
-    button.onclick = function () {
+    let oBtnAddCustomer = document.querySelector('#app #add-customer');
+    oBtnAddCustomer.onclick = function () {
         if (queue.length < 18) {
-            queue.push(Factory.create('Customer'));
+            queue.push(Factory.create('Customer'));     //press the button, push the customer
         } else {
             alert('The queue is too long, you can\'t wait in here.');
         }
-        updateQueue();
+        updateQueue();      //every time add we have to update the queue
+    };
+
+    let start = setInterval(startRestaurant, 1000);
+    let oBtnPause = document.getElementById("pause");
+    oBtnPause.onclick = function () {
+        if (this.value === "PAUSE") {
+            console.log(this.value);
+            this.value = "CONTINUE";
+            clearInterval(start);
+        }else{
+            console.log(this.value);
+            this.value = "PAUSE";
+            setInterval(startRestaurant, 1000)
+        }
     };
 
     function startRestaurant() {
-        if (document.querySelector('#customer-status').innerText !== 'None') {
+        let customerStatus = document.querySelector('#customer-status').innerText;
+        if (customerStatus !== 'None' || queue.length === 0) {
             return;
         }
-        if (queue.length === 0) {
-            return;
-        }
-        let customer = queue.pop();
+
+        //shift() method is used to remove and return the first element of the array
+        let customer = queue.shift();
         updateQueue();
+
         new Promise(function (resovle, reject) {
             customer.changeStatus('入座');
         }).then(newWaiter.changeStatus('点单'))
@@ -95,27 +115,26 @@ function toTest() {
             eatList[0].parentNode.innerHTML = '';
         }, 1000)
     }
-    let start = setInterval(startRestaurant, 1000);
-}
 
-let queue = [];             //建立一个数组，用于存放顾客队列
-//更新页面上的顾客队列
-function updateQueue() {
-    let list = document.querySelector('#app #customer-list');
-    let result = '';
-    for (let i = 0; i < queue.length; i++) {
-        result += '<div class = "customer"></div>';
+    let queue = [];     //建立一个数组，用于存放顾客队列
+    //更新页面上的顾客队列
+    function updateQueue() {
+        let list = document.querySelector('#app #customer-list');
+        let result = '';
+        for (let i = 0; i < queue.length; i++) {
+            result += '<div class = "customer"></div>';
+        }
+        list.innerHTML = result;
     }
-    list.innerHTML = result;
-}
 
-function updateCustomerList(order) {             //更新点单列表
-    let list = document.querySelector('#app #customer-dash-list');
-    let result = '';
-    for (let i = 0; i < order.length; i++) {
-        result += '<li>' + order[i].name + '</li>';
+    function updateCustomerList(order) {             //更新点单列表
+        let list = document.querySelector('#app #customer-dash-list');
+        let result = '';
+        for (let i = 0; i < order.length; i++) {
+            result += '<li>' + order[i].name + '</li>';
+        }
+        list.innerHTML = result;
     }
-    list.innerHTML = result;
 }
 
-export {toTest};
+export {restaurantStart};

@@ -1,5 +1,5 @@
 import {addLoadEvent} from "./scripts/global";
-import {toTest} from './scripts/toTest';
+import {restaurantStart} from './scripts/open';
 import './style/index.css';
 
-addLoadEvent(toTest);
+addLoadEvent(restaurantStart);

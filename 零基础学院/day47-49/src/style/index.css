@@ -22,7 +22,8 @@ html, body {
     margin: 20px;
 }
 
-#add-customer {
+#add-customer, #pause {
+    width: 100px;
     padding: 6px 12px;
     border: 1px solid #555;
     border-radius: 5px;
