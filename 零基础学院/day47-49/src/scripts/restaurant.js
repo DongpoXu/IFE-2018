@@ -233,7 +233,6 @@ class Customer {
                 customerStatus.innerText = 'have a seat';
                 break;
             case 'order':
-                console.log(time);
                 for (let i = 0; i < time; i += 1000) {
                     setTimeout(function () {
                         customerStatus.innerText = 'order need ' + (time - i) / 1000 + ' seconds'

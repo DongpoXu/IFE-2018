@@ -66,7 +66,7 @@ function restaurantStart() {
         updateQueue();
 
         new Promise(
-            function (resolve,rejects) {
+            function (resolve,rejects) {        //resolve is ok, rejects is wrong.
                 customer.changeStatus('have a seat');
                 console.log("The customer has sat down");
                 resolve();      //you have to write this. is mean do the promise.
@@ -98,8 +98,10 @@ function restaurantStart() {
         let next = setInterval(function (customer) {
             nextCustomer(customer);
         }, 100, customer);
+        //you can use the next.clearInterval() to stop listen.
     }
 
+    //check the customer eat up.
     function nextCustomer(customer) {
         let eatList = document.querySelectorAll('#app #customer-dish-list li');
         let cash = document.querySelector('#app #cash');
@@ -114,6 +116,7 @@ function restaurantStart() {
             if (eatList[i].innerText.indexOf('eat up') === -1) {
                 return;
             }
+            //all of dish have to eat up.
         }
         let money = Number(cash.innerText);
         for (let i = 0; i < customer.eatList.length; i++) {
@@ -125,7 +128,7 @@ function restaurantStart() {
         customer_status.innerText = 'After dinner';
         setTimeout(function () {
             customer_status.innerText = 'None';
-            eatList[0].parentNode.innerHTML = '';
+            eatList[0].parentNode.innerHTML = '';       //empty node
         }, 1000)
     }
 
