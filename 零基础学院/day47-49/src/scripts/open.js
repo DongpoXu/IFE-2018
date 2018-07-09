@@ -141,7 +141,7 @@ function restaurantStart() {
         list.innerHTML = result;
     }
 
-    function updateCustomerList(order) {             //Update the order list
+    function updateCustomerList(order) {        //Update the order list
         let list = document.querySelector('#app #customer-dish-list');
         let result = '';
         for (let i = 0; i < order.length; i++) {

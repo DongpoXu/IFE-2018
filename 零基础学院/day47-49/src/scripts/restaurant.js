@@ -8,22 +8,22 @@ class Restaurant {
         this.cash = arr['cash'] || 0;
         this.seats = arr['seats'] || 0;
         this.staffList = arr['staffList'] || [];
-        this.worldTime = 1000;      //基准时间
+        this.worldTime = 1000;      //Base time
     }
 
-    //招聘职员
+    //hire staff
     hire(staff) {
         if (this.staffList.indexOf(staff) === -1) {     //通过indexOf判断加入staff是否再staffList中
-            this.staffList.push(staff);   //推入staffList中。
+            this.staffList.push(staff);     //push staff into the staff list
             console.log("hire " + staff.name);
         } else {
             console.log("hire error" + staff.name + ", because he is your staff.");
         }
     }
 
-    //解雇职员
+    //fire staff
     fire(staff) {
-        if (this.staffList.indexOf(staff) !== -1) {     //同上
+        if (this.staffList.indexOf(staff) !== -1) {
             this.staffList.map((item, index) => {
                 if (item.id === staff.id) {
                     this.staffList.splice(index, 1);
@@ -35,13 +35,13 @@ class Restaurant {
         }
     }
 
-    //获取基准时间
+    //get base time
     getTime() {
         console.log("get base time " + this.worldTime);
         return this.worldTime;
     }
 
-    //设定基准时间
+    //set base time
     setTime(num) {
         if (Number(num)) {
             console.log("set base time " + Number(num));
@@ -50,7 +50,7 @@ class Restaurant {
         return this.worldTime;
     }
 
-    //单例接口
+    //Singleton interface
     static getInstance(arr) {
         if (!this.instance) {
             this.instance = new this(arr);
@@ -82,7 +82,7 @@ class Staff {
         console.log(this.name + "work over.");
     }
 
-    //单例接口
+    //Singleton interface
     static getInstance(arr) {
         if (!this.instance) {
             this.instance = new this(arr);
@@ -94,7 +94,7 @@ class Staff {
 /*
  * @author XDP
  * @date 2018/7/6
- * @desc
+ * @desc Waiter Class
  */
 class Waiter extends Staff {
     constructor(name, salary) {
@@ -102,10 +102,10 @@ class Waiter extends Staff {
         this.customer = {};
     }
 
-    //改变状态
+    //change status
     changeStatus(str, dish) {
         let pos = document.querySelector("#waiter-wrapper");
-        let waiterStatus = pos.querySelector("#waiter-status");       //获取状态值
+        let waiterStatus = pos.querySelector("#waiter-status");       //get status value
         switch (str) {
             case 'order':
                 waiterStatus.innerText = 'order';
@@ -114,24 +114,25 @@ class Waiter extends Staff {
             case 'place an order':
                 waiterStatus.innerText = 'place an order';
                 this.moveToWhere("Cook", pos);
+                //waiterStatus: actual parameter; status: formal parameters
                 setTimeout(function (status) {
                     status.innerText = 'free';
-                }, 500, waiterStatus);        //status作为实参被传入function，上面俩status为形参
+                }, 500, waiterStatus);
                 break;
             case 'serving':
                 waiterStatus.innerText = 'serving';
                 this.moveToWhere("Customer", pos);
-                //如果传入this.goToCook()必须为字符串格式
+                //this.goToCook() have to be a string!!!
                 setTimeout(this.moveToWhere, 500, "Cook", pos);
                 setTimeout(function (status) {
                     status.innerText = 'free';
                 }, 1000, waiterStatus);
-                this.customer.eat(dish);        //调用顾客吃的方法
+                this.customer.eat(dish);        //call the customer.eat() method
                 break;
         }
     }
 
-    //定义移动函数
+    //define move function
     moveToWhere(where, obj) {
         switch (where) {
             case "Customer":
@@ -171,22 +172,22 @@ class Cook extends Staff {
             case 'start':
                 let i = 0;
                 while (this.preList.length > 0) {
-                    let dish = this.preList[0];     //取出菜单中的第一个元素进行烹饪
+                    let dish = this.preList[0];     //take the first element out of the menu and cook
                     let arr = [];
-                    for (let k = 1; k < this.preList.length; k++) {     //将其余元素放入arr[];
+                    for (let k = 1; k < this.preList.length; k++) {     //put the rest in the arr[]
                         arr.push(this.preList[k]);
                     }
-                    this.preList = arr;     //循环写入
-                    for (let j = 0; j < dish.time; j++) {       //通过定时显示时间
+                    this.preList = arr;     //write back
+                    for (let j = 0; j < dish.time; j++) {       //time is display by timing
                         setTimeout(function (dish) {
                             cookStatus.innerText = 'cook ' + dish.name + ' need ' + (dish.time - j) + ' seconds'
                         }, (i * 1000 + j * 1000), dish);
                     }
-                    i += dish.time;     //应该是做时间补偿用
+                    i += dish.time;     //time compensation
                     let temp = this.preList;
-                    let that = this;      //在闭包内部调用updateCookList()，先存入that中
-                    setTimeout(function (temp, that, dish) {
-                        Waiter.getInstance().changeStatus('serving', dish);      //新建服务员单例进行上菜,dish服务于customer.eat()
+                    let that = this;      //UpdateCookList () is called inside the closure and is stored in that first
+                    setTimeout(function (temp, that, dish) {        //dish is server of customer.eat() method
+                        Waiter.getInstance().changeStatus('serving', dish);      //make a new waiter
                         that.updateCookList(temp);
                     }, i * 1000, temp, that, dish);
                 }
@@ -197,7 +198,7 @@ class Cook extends Staff {
         }
     }
 
-    //更新烹饪表
+    //update cook list
     updateCookList(order) {
         order = order || this.preList;
         let list = document.querySelector("#app #cook-list");
@@ -217,15 +218,15 @@ class Cook extends Staff {
 class Customer {
     constructor() {
         //this.seatNumber = 0;
-        this.eatList = [];      //存放点的菜，以及这些菜的状态（未上，已上，吃完）
+        this.eatList = [];      //store the dish and the dish status
     }
 
-    order() {       //点单，并获取随机出的一个菜品列
+    order() {       //get a random menu
         let list = Menu.getInstance().getRandom();
         return list;
     }
 
-    changeStatus(str, time) {       //顾客状态改变
+    changeStatus(str, time) {       //change customer status
         let customerStatus = document.querySelector('#customer-status');
         switch (str) {
             case 'have a seat':
@@ -278,13 +279,13 @@ class Menu {
         }
     }
 
-    add(name, cost, price, time) {          //添加菜品
+    add(name, cost, price, time) {      //add dish
         this.list.push(new Dish(name, cost, price, time));
     }
 
-    getRandom() {       //随机获取菜品
-        let times = Math.ceil(Math.random() * this.list.length);//获取次数
-        let order = [];     //存放点单
+    getRandom() {       //random meal list
+        let times = Math.ceil(Math.random() * this.list.length);        //get times
+        let order = [];     //store order list
         for (let i = 0; i < times; i++) {
             let index = Math.floor(Math.random() * this.list.length);
             if (order.indexOf(this.list[index]) === -1) {
@@ -294,7 +295,7 @@ class Menu {
         return order;
     }
 
-    //单例接口
+    //Singleton interface
     static getInstance(arr) {
         if (!this.instance) {
             this.instance = new this(arr);
@@ -309,7 +310,7 @@ class Menu {
  * @desc Dish Class
  */
 class Dish {
-    constructor(name, cost, price, time) {      //time时间单位（1-10）
+    constructor(name, cost, price, time) {      //time unit (1-10）
         this.name = name;
         this.cost = cost;
         this.price = price;

@@ -1,4 +1,4 @@
-//共享onload      由 “Simon Willison” 编写
+//shared window.onload      by-Simon Willison
 function addLoadEvent(func) {
     let oldonload = window.onload;
     if (typeof window.onload !== "function") {
