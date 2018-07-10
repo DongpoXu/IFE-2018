@@ -59,7 +59,6 @@ class Restaurant {
     }
 }
 
-
 /*
  * @author XDP
  * @date 2018/7/6
